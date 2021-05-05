@@ -22,6 +22,8 @@ import {
   ViroARSceneNavigator
 } from 'react-viro';
 
+import SketchView from './js/SketchGuy'
+
 /*
  TODO: Insert your API key below
  */
@@ -36,6 +38,7 @@ var InitialVRScene = require('./js/HelloWorldScene');
 var UNSET = "UNSET";
 var VR_NAVIGATOR_TYPE = "VR";
 var AR_NAVIGATOR_TYPE = "AR";
+var SKETCH_GUY = "SKETCH_GUY"
 
 // This determines which type of experience to launch in, or UNSET, if the user should
 // be presented with a choice of AR or VR. By default, we offer the user a choice.
@@ -65,6 +68,9 @@ export default class ViroSample extends Component {
       return this._getVRNavigator();
     } else if (this.state.navigatorType == AR_NAVIGATOR_TYPE) {
       return this._getARNavigator();
+    } 
+    else if(this.state.navigatorType == SKETCH_GUY){
+      return this._getSketchGuy();
     }
   }
 
@@ -91,8 +97,17 @@ export default class ViroSample extends Component {
 
             <Text style={localStyles.buttonText}>VR</Text>
           </TouchableHighlight>
-        </View>
+          
+           <TouchableHighlight style={localStyles.buttons}
+            onPress={this._getExperienceButtonOnPress(SKETCH_GUY)}
+            underlayColor={'#68a0ff'} >
+
+            <Text style={localStyles.buttonText}>SKETCH</Text>
+          </TouchableHighlight>
+
       </View>
+            </View>
+
     );
   }
 
@@ -110,6 +125,14 @@ export default class ViroSample extends Component {
       <ViroVRSceneNavigator {...this.state.sharedProps}
         initialScene={{scene: InitialVRScene}} onExitViro={this._exitViro}/>
     );
+  }
+
+  //Returns the SketchGuy Component
+  _getSketchGuy(){
+     this._exitViro()
+    return(
+      <SketchView/>
+    )
   }
 
   // This function returns an anonymous/lambda function to be used

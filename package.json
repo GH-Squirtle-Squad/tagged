@@ -3,13 +3,20 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-"prestart": "./node_modules/react-viro/bin/run_ngrok.sh",
+    "prestart": "./node_modules/react-viro/bin/run_ngrok.sh",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
   "dependencies": {
+    "@benjeau/react-native-draw": "^0.3.3",
+    "@terrylinla/react-native-sketch-canvas": "^0.8.0",
+    "ngrok": "^4.0.1",
     "react": "16.8.3",
     "react-native": "0.59.9",
+    "react-native-gesture-handler": "^1.10.3",
+    "react-native-sketch": "^1.1.0",
+    "react-native-sketch-draw": "^2.0.2",
+    "react-native-svg": "^12.1.1",
     "react-viro": "2.17.0"
   },
   "devDependencies": {
