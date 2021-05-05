@@ -1,35 +1,25 @@
 /**
- * Metro configuration for React Native
- * https://github.com/facebook/react-native
+ * Copyright (c) 2015-present, Facebook, Inc.
+ * All rights reserved.
  *
- * @format
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * React Native CLI configuration file
  */
+'use strict';
 
-const path = require('path');
-const extraNodeModules = {
-  '@modules': path.resolve(__dirname, 'modules'),
-  '@screens': path.resolve(__dirname, 'screens')
-};
-const watchFolders = [
-  path.resolve(__dirname, 'modules'),
-  path.resolve(__dirname, 'screens')
-];
-module.exports = {
-  transformer: {
-    getTransformOptions: async () => ({
-      transform: {
-        experimentalImportSupport: false,
-        inlineRequires: false,
-      },
-    }),
-  },
-  resolver: {
-    extraNodeModules: new Proxy(extraNodeModules, {
-      get: (target, name) =>
-        //redirects dependencies referenced from extraNodeModules to local node_modules
-        name in target ? target[name] : path.join(process.cwd(), "node_modules", name),
-    }),
-  },
-  watchFolders,
-  resetCache: true
-};
+const { getDefaultConfig } = require("metro-config");
+
+module.exports = (async () => {
+  const {
+    resolver: { assetExts }
+  } = await getDefaultConfig();
+
+  return {
+    resolver: {
+      assetExts: [...assetExts, "obj", "mtl", "JPG", "vrx", "hdr", "gltf", "glb", "bin", "arobject", "gif"]
+    }
+  };
+})();
