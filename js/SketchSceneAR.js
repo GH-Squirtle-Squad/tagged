@@ -12,7 +12,7 @@ import {
   ViroImage
 } from "react-viro"
 
-export default class HelloWorldSceneAR extends Component {
+export default class SketchSceneAR extends Component {
   constructor() {
     super()
 
@@ -29,12 +29,18 @@ export default class HelloWorldSceneAR extends Component {
   render() {
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized}>
-        <ViroText
-          text={this.state.text}
-          scale={[0.5, 0.5, 0.5]}
+        <ViroFlexView
+          style={{
+            flexDirection: "row",
+            padding: 0.1,
+            backgroundColor: "white"
+          }}
+          width={0.7}
+          height={0.7}
           position={[0, 0, -1]}
-          style={styles.helloWorldTextStyle}
-        />
+        >
+          <ViroText text={"draw here!"} style={{ color: "black" }} />
+        </ViroFlexView>
       </ViroARScene>
     )
   }
@@ -60,4 +66,4 @@ var styles = StyleSheet.create({
   }
 })
 
-module.exports = HelloWorldSceneAR
+module.exports = SketchSceneAR
