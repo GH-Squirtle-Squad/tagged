@@ -43,8 +43,8 @@ export default class SketchSceneAR extends Component {
     this.state = {
       thickness: 0.1,
       points: [[0, 0, 0]],
+      polylines: [],
       drawing: false,
-      polyline: [],
       color: "white"
     }
 
@@ -86,24 +86,21 @@ export default class SketchSceneAR extends Component {
           onClick={() => this._toggleColor("purple")}
           onGaze={this._onButtonGaze}
         />
-
+        {this.state.polylines.map((line, i) => (
+          <ViroPolyline
+            key={i}
+            position={[0, 0, -2]}
+            points={line.points}
+            thickness={this.state.thickness}
+            materials={line.color}
+          />
+        ))}
         <ViroPolyline
           position={[0, 0, -2]}
           points={this.state.points}
           thickness={this.state.thickness}
           materials={this.state.color}
         />
-
-        {/*<ViroPolyline
-          position={[-1, -1, -0.9]}
-          points={[
-            [0, 0, 0],
-            [0.5, 0.5, 0.5],
-            [1, 0, 0]
-          ]}
-          thickness={0.1}
-          materials={["yellow"]}
-        /> */}
         {/* <ViroFlexView
           style={{
             flexDirection: "row",
@@ -120,16 +117,38 @@ export default class SketchSceneAR extends Component {
 
   _toggleDraw() {
     const current = this.state.drawing
+    const points = [...this.state.points]
+    if (current) {
+      this.setState({
+        polylines: [
+          ...this.state.polylines,
+          { points: points, color: this.state.color }
+        ],
+        points: [[0, 0, 0]]
+      })
+    }
     this.setState({
       drawing: !current
     })
   }
 
   _toggleColor(colorName) {
-    // console.log("color", colorName)
-    this.setState({
-      color: colorName
-    })
+    console.log("CLICKED COLOR")
+    const current = this.state.color
+    const points = [...this.state.points]
+    if (this.state.color !== colorName) {
+      this.setState({
+        polylines: [
+          ...this.state.polylines,
+          { points: points, color: current }
+        ],
+        points: [[0, 0, 0]]
+      })
+
+      this.setState({
+        color: colorName
+      })
+    }
   }
 
   _onCameraARHitTest(results) {
@@ -139,8 +158,7 @@ export default class SketchSceneAR extends Component {
           let result = results.hitTestResults[i]
           if (
             result.type == "ExistingPlaneUsingExtent" ||
-            result.type == "FeaturePoint" ||
-            result.type == "ExistingPlane"
+            result.type == "FeaturePoint"
           ) {
             this.setState({
               points: [...this.state.points, result.transform.position]
