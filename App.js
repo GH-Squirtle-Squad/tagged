@@ -33,7 +33,6 @@ var InitialARScene = require("./js/HelloWorldSceneAR")
 var InitialVRScene = require("./js/HelloWorldScene")
 const SketchSceneAR = require("./js/SketchSceneAR")
 
-
 var UNSET = "UNSET"
 var VR_NAVIGATOR_TYPE = "VR"
 var AR_NAVIGATOR_TYPE = "AR"
@@ -74,10 +73,8 @@ export default class ViroSample extends Component {
       return this._getARNavigator()
     } else if (this.state.navigatorType == SKETCH_GUY) {
       return this._getSketchGuy()
-
     } else if (this.state.navigatorType === AR_SKETCH) {
       return this._getARSketch()
-
     }
   }
 
@@ -86,16 +83,13 @@ export default class ViroSample extends Component {
     return (
       <View style={localStyles.outer}>
         <View style={localStyles.inner}>
-          <Text style={localStyles.titleText}>
-            Choose your desired experience:
-          </Text>
+          <Text style={localStyles.titleText}>Welcome to {"<tagged />"}</Text>
 
           <TouchableHighlight
             style={localStyles.buttons}
             onPress={this._getExperienceButtonOnPress(AR_NAVIGATOR_TYPE)}
             underlayColor={"#68a0ff"}
           >
-
             <Text style={localStyles.buttonText}>View</Text>
           </TouchableHighlight>
 
@@ -136,7 +130,6 @@ export default class ViroSample extends Component {
             <Text style={localStyles.buttonText}>SKETCH</Text>
 
           </TouchableHighlight> */}
-
         </View>
       </View>
     )
@@ -150,7 +143,6 @@ export default class ViroSample extends Component {
         initialScene={{ scene: InitialARScene }}
       />
     )
-
   }
 
   // Returns ViroARSceneNavigator with Sketch
@@ -162,7 +154,6 @@ export default class ViroSample extends Component {
       />
     )
   }
-
 
   // Returns the ViroSceneNavigator which will start the VR experience
   _getVRNavigator() {
