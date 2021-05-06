@@ -12,13 +12,12 @@ import {
   ViroImage
 } from "react-viro"
 
-export default class HelloWorldSceneAR extends Component {
+export default class SketchSceneAR extends Component {
   constructor() {
     super()
 
     // Set initial state here
     this.state = {
-
       drawing: true,
       text: "Initializing AR..."
     }
@@ -30,27 +29,18 @@ export default class HelloWorldSceneAR extends Component {
   render() {
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized}>
-        <ViroText
-          text={this.state.text}
-          scale={[0.5, 0.5, 0.5]}
-          position={[0, 0, -1]}
-          style={styles.helloWorldTextStyle}
-        />
-
-
         <ViroFlexView
-          style={{ flexDirection: "row", padding: 0.1 }}
-          width={5.0}
-          height={5.0}
-          position={[-5.0, 0.0, -2.0]}
-          rotation={[0, 45, 0]}
+          style={{
+            flexDirection: "row",
+            padding: 0.1,
+            backgroundColor: "white"
+          }}
+          width={0.7}
+          height={0.7}
+          position={[0, 0, -1]}
         >
-          <ViroImage
-            source={require("./res/guadalupe_360.jpg")}
-            style={{ flex: 0.5 }}
-          />
+          <ViroText text={"draw here!"} style={{ color: "black" }} />
         </ViroFlexView>
-
       </ViroARScene>
     )
   }
@@ -76,4 +66,4 @@ var styles = StyleSheet.create({
   }
 })
 
-module.exports = HelloWorldSceneAR
+module.exports = SketchSceneAR
