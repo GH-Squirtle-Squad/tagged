@@ -18,6 +18,7 @@ export default class HelloWorldSceneAR extends Component {
 
     // Set initial state here
     this.state = {
+
       drawing: true,
       text: "Initializing AR..."
     }
@@ -35,6 +36,21 @@ export default class HelloWorldSceneAR extends Component {
           position={[0, 0, -1]}
           style={styles.helloWorldTextStyle}
         />
+
+
+        <ViroFlexView
+          style={{ flexDirection: "row", padding: 0.1 }}
+          width={5.0}
+          height={5.0}
+          position={[-5.0, 0.0, -2.0]}
+          rotation={[0, 45, 0]}
+        >
+          <ViroImage
+            source={require("./res/guadalupe_360.jpg")}
+            style={{ flex: 0.5 }}
+          />
+        </ViroFlexView>
+
       </ViroARScene>
     )
   }

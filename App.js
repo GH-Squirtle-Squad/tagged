@@ -33,10 +33,13 @@ var InitialARScene = require("./js/HelloWorldSceneAR")
 var InitialVRScene = require("./js/HelloWorldScene")
 const SketchSceneAR = require("./js/SketchSceneAR")
 
+
 var UNSET = "UNSET"
 var VR_NAVIGATOR_TYPE = "VR"
 var AR_NAVIGATOR_TYPE = "AR"
+
 const AR_SKETCH = "AR_SKETCH"
+
 var SKETCH_GUY = "SKETCH_GUY"
 
 // This determines which type of experience to launch in, or UNSET, if the user should
@@ -71,8 +74,10 @@ export default class ViroSample extends Component {
       return this._getARNavigator()
     } else if (this.state.navigatorType == SKETCH_GUY) {
       return this._getSketchGuy()
+
     } else if (this.state.navigatorType === AR_SKETCH) {
       return this._getARSketch()
+
     }
   }
 
@@ -90,6 +95,7 @@ export default class ViroSample extends Component {
             onPress={this._getExperienceButtonOnPress(AR_NAVIGATOR_TYPE)}
             underlayColor={"#68a0ff"}
           >
+
             <Text style={localStyles.buttonText}>View</Text>
           </TouchableHighlight>
 
@@ -102,18 +108,35 @@ export default class ViroSample extends Component {
           </TouchableHighlight>
 
           {/* <TouchableHighlight style={localStyles.buttons}
-            onPress={this._getExperienceButtonOnPress(VR_NAVIGATOR_TYPE)}
-            underlayColor={'#68a0ff'} >
 
+            <Text style={localStyles.buttonText}>AR</Text>
+          </TouchableHighlight>
+
+          <TouchableHighlight
+            style={localStyles.buttons}
+
+            onPress={this._getExperienceButtonOnPress(VR_NAVIGATOR_TYPE)}
+            underlayColor={"#68a0ff"}
+          >
             <Text style={localStyles.buttonText}>VR</Text>
+
           </TouchableHighlight> */}
 
           {/* <TouchableHighlight style={localStyles.buttons}
             onPress={this._getExperienceButtonOnPress(SKETCH_GUY)}
             underlayColor={'#68a0ff'} >
 
+          </TouchableHighlight>
+
+          <TouchableHighlight
+            style={localStyles.buttons}
+            onPress={this._getExperienceButtonOnPress(SKETCH_GUY)}
+            underlayColor={"#68a0ff"}
+          >
             <Text style={localStyles.buttonText}>SKETCH</Text>
+
           </TouchableHighlight> */}
+
         </View>
       </View>
     )
@@ -127,6 +150,7 @@ export default class ViroSample extends Component {
         initialScene={{ scene: InitialARScene }}
       />
     )
+
   }
 
   // Returns ViroARSceneNavigator with Sketch
@@ -138,6 +162,8 @@ export default class ViroSample extends Component {
       />
     )
   }
+
+
   // Returns the ViroSceneNavigator which will start the VR experience
   _getVRNavigator() {
     return (
