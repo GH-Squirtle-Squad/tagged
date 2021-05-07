@@ -69,7 +69,7 @@ export default class SketchSceneAR extends Component {
           }
           // gazeSource={require("./res/startdrawing.png")}
           // tapSource={require("./res/stopdrawing.png")}
-          position={[1, 3, -5]}
+          position={[1, 3, -3]}
           height={1}
           width={1}
           onClick={this._toggleDraw}
@@ -80,9 +80,9 @@ export default class SketchSceneAR extends Component {
           source={require("./res/purple.png")}
           // gazeSource={require("./res/purple.png")}
           // tapSource={require("./res/purple.png")}
-          position={[2, 3, -6]}
-          height={1}
-          width={1}
+          position={[2, 1, -3]}
+          height={3}
+          width={3}
           onClick={() => this._toggleColor("purple")}
           onGaze={this._onButtonGaze}
         />
