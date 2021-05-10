@@ -52,24 +52,56 @@ export default class SketchSceneAR extends Component {
               : require("./res/stopdrawing.png")
           }
           position={[1, 3, -3]}
-          height={1}
-          width={1}
+          height={2}
+          width={2}
           onClick={this._toggleDraw}
         />
 
         <ViroButton
           source={require("./res/purple.png")}
           position={[2, 1, -3]}
-          height={3}
-          width={3}
+          height={2}
+          width={2}
           onClick={() => this._toggleColor("purple")}
         />
 
         <ViroButton
           source={require("./res/green.png")}
+          position={[3.5, 0, -3]}
+          height={2}
+          width={2}
+          onClick={() => this._toggleColor("green")}
+        />
+
+        <ViroButton
+          source={require("./res/orange.png")}
+          position={[3.5, -1, -3]}
+          height={2}
+          width={2}
+          onClick={() => this._toggleColor("orange")}
+        />
+
+        <ViroButton
+          source={require("./res/red.png")}
+          position={[2, 0, -3]}
+          height={2}
+          width={2}
+          onClick={() => this._toggleColor("red")}
+        />
+
+        <ViroButton
+          source={require("./res/blue.png")}
+          position={[2, -1, -3]}
+          height={2}
+          width={2}
+          onClick={() => this._toggleColor("blue")}
+        />
+
+        <ViroButton
+          source={require("./res/nevermind.png")}
           position={[-1, 3, -3]}
-          height={3}
-          width={3}
+          height={2}
+          width={2}
           onClick={this._reset}
         />
 
