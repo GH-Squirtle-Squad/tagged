@@ -1,37 +1,21 @@
 import React, { Component } from "react"
-// import Nagivator from "./routes/homeStack"
 import { Input, Button } from "react-native-elements"
-
 import background from "./res/image.png"
-
 import { View, Text, StyleSheet, ImageBackground } from "react-native"
 
 export default class ViroSample extends Component {
   constructor(props) {
     super(props)
-    // this.navigate = this.navigate.bind(this)
   }
 
-  // navigate(name, params) {
-  //   navigationRef.current && navigationRef.current.navigate(name, params)
-  // }
-
   render() {
-    // const navigationRef = React.createRef()
-    // const RootStack = createStackNavigator()
-    console.log("PROPS ARE", this.props)
     return (
       <View style={styles.container}>
         <ImageBackground style={styles.backgroundImage} source={background}>
           <View style={styles.logoContainer}></View>
         </ImageBackground>
 
-        {/* <View style={localStyles.viroContainer}> */}
         <Text style={styles.logoText}>Welcome to {"<tagged />"}</Text>
-
-        {/* <ImageBackground source={image} style={styles.image}>
-          <Text style={styles.text}>Inside</Text>
-        </ImageBackground> */}
 
         <Input
           style={localStyles.inner}
@@ -112,7 +96,6 @@ export default class ViroSample extends Component {
           loadingProps={{ animating: true }}
           loadingStyle={{}}
           onPress={() => alert("click")}
-          // onPress={() => this.props.navigation.navigate("SketchSceneAR")}
           title="Login"
           titleProps={{}}
           titleStyle={{ marginHorizontal: 5 }}
@@ -130,16 +113,10 @@ export default class ViroSample extends Component {
           loadingProps={{ animating: true }}
           loadingStyle={{}}
           onPress={() => this.props.history.push("/test")}
-          // onPress={() => this.props.navigation.navigate("SketchSceneAR")}
           title="Test"
           titleProps={{}}
           titleStyle={{ marginHorizontal: 5 }}
         />
-        {/*
-          <ImageBackground
-            source={require("./js/res/image.png")}
-            style={{ width: "100%", height: "100%", opacity: 0.7 }}
-          ></ImageBackground> */}
       </View>
     )
   }
@@ -163,11 +140,6 @@ var localStyles = StyleSheet.create({
     backgroundColor: "white"
   },
   titleText: {
-    // paddingTop: 30,
-    // paddingBottom: 20,
-    // color: "black",
-    // textAlign: "center",
-    // fontSize: 50
     fontSize: 24,
     fontWeight: "600",
     color: "white"
@@ -209,7 +181,6 @@ const styles = StyleSheet.create({
     fontFamily: "-apple-system, BlinkMacSystemFont Segoe UI",
     justifyContent: "center",
     alignItems: "center"
-    // backgroundColor: "orange"
   },
   logoContainer: {
     alignItems: "center"
@@ -220,9 +191,7 @@ const styles = StyleSheet.create({
     color: "white",
     paddingTop: 30,
     paddingBottom: 20,
-    // color: "black",
     textAlign: "center"
-    // fontSize: 50
   },
   logoDescription: {
     fontSize: 15,
@@ -238,24 +207,3 @@ const styles = StyleSheet.create({
     opacity: 0.9
   }
 })
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     flexDirection: "column"
-//   },
-//   image: {
-//     flex: 1,
-//     resizeMode: "cover",
-//     justifyContent: "center"
-//   },
-//   text: {
-//     color: "white",
-//     fontSize: 42,
-//     fontWeight: "bold",
-//     textAlign: "center",
-//     backgroundColor: "pink"
-//   }
-// })
-
-//module.exports = ViroSample
