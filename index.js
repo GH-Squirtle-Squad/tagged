@@ -1,6 +1,5 @@
 import { AppRegistry } from "react-native"
-import App from "./App.js"
-import Router from "./routes/homeStack"
+import Router from "./js/routes"
 
 AppRegistry.registerComponent("graffitiproject", () => Router)
 

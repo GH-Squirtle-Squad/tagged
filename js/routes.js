@@ -1,7 +1,7 @@
 import React from "react"
 import { nativeHistory, NativeRouter, Route } from "react-router-native"
-import App from "../App"
-import ViroNavigator from "../js/ViroNavigator"
+import App from "./App"
+import ViroNavigator from "./ViroNavigator"
 
 const Routes = props => {
   return (

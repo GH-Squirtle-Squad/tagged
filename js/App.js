@@ -2,7 +2,7 @@ import React, { Component } from "react"
 // import Nagivator from "./routes/homeStack"
 import { Input, Button } from "react-native-elements"
 
-import background from "./js/res/image.png"
+import background from "./res/image.png"
 
 import { View, Text, StyleSheet, ImageBackground } from "react-native"
 

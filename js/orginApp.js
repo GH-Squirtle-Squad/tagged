@@ -31,9 +31,9 @@ var sharedProps = {
 }
 
 // Sets the default scene you want for AR and VR
-var InitialARScene = require("./js/HelloWorldSceneAR")
+var InitialARScene = require("./HelloWorldSceneAR")
 var InitialVRScene = require("./js/HelloWorldScene")
-const SketchSceneAR = require("./js/SketchSceneAR")
+const SketchSceneAR = require("./SketchSceneAR")
 
 var UNSET = "UNSET"
 var VR_NAVIGATOR_TYPE = "VR"
@@ -47,7 +47,7 @@ var SKETCH_GUY = "SKETCH_GUY"
 // be presented with a choice of AR or VR. By default, we offer the user a choice.
 var defaultNavigatorType = UNSET
 
-export default class ViroSample11 extends Component {
+export default class ViroSample extends Component {
   constructor() {
     super()
 
@@ -58,9 +58,8 @@ export default class ViroSample11 extends Component {
     this._getExperienceSelector = this._getExperienceSelector.bind(this)
     this._getARNavigator = this._getARNavigator.bind(this)
     this._getVRNavigator = this._getVRNavigator.bind(this)
-    this._getExperienceButtonOnPress = this._getExperienceButtonOnPress.bind(
-      this
-    )
+    this._getExperienceButtonOnPress =
+      this._getExperienceButtonOnPress.bind(this)
     this._exitViro = this._exitViro.bind(this)
   }
 
