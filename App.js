@@ -2,13 +2,9 @@ import React, { Component } from "react"
 // import Nagivator from "./routes/homeStack"
 import { Input, Button } from "react-native-elements"
 
-import Icon from "react-native-vector-icons/MaterialCommunityIcons"
-
 import background from "./js/res/image.png"
 
 import { View, Text, StyleSheet, ImageBackground } from "react-native"
-
-import SketchSceneAR from "./js/SketchSceneAR"
 
 // import { NavigationContainer } from "@react-navigation/native"
 // import { createStackNavigator } from "@react-navigation/stack"
@@ -52,9 +48,7 @@ export default class ViroSample extends Component {
           label="User Form"
           labelStyle={{}}
           labelProps={{}}
-          leftIcon={<Icon name="account-outline" size={20} />}
           leftIconContainerStyle={{}}
-          rightIcon={<Icon name="close" size={20} />}
           rightIconContainerStyle={{}}
           placeholder="UserName"
         />
@@ -70,9 +64,7 @@ export default class ViroSample extends Component {
           inputStyle={{}}
           labelStyle={{}}
           labelProps={{}}
-          leftIcon={<Icon name="account-outline" size={20} />}
           leftIconContainerStyle={{}}
-          rightIcon={<Icon name="close" size={20} />}
           rightIconContainerStyle={{}}
           placeholder="E-mail"
         />
@@ -88,9 +80,7 @@ export default class ViroSample extends Component {
           inputStyle={{}}
           labelStyle={{}}
           labelProps={{}}
-          leftIcon={<Icon name="account-outline" size={20} />}
           leftIconContainerStyle={{}}
-          rightIcon={<Icon name="close" size={20} />}
           rightIconContainerStyle={{}}
           placeholder="Password"
         />
@@ -104,7 +94,6 @@ export default class ViroSample extends Component {
           }}
           disabledTitleStyle={{ color: "#00F" }}
           linearGradientProps={null}
-          icon={<Icon name="react" size={15} color="#0FF" />}
           iconContainerStyle={{ background: "#000" }}
           loadingProps={{ animating: true }}
           loadingStyle={{}}
@@ -122,7 +111,6 @@ export default class ViroSample extends Component {
           }}
           disabledTitleStyle={{ color: "#00F" }}
           linearGradientProps={null}
-          icon={<Icon name="react" size={15} color="#0FF" />}
           iconContainerStyle={{ background: "#000" }}
           loadingProps={{ animating: true }}
           loadingStyle={{}}
