@@ -37,6 +37,7 @@ export default class SketchSceneAR extends Component {
 
     // bind 'this' to functions
     this._onCameraARHitTest = this._onCameraARHitTest.bind(this)
+    this._reset = this._reset.bind(this)
     this._toggleDraw = this._toggleDraw.bind(this)
     this._toggleColor = this._toggleColor.bind(this)
   }
@@ -54,7 +55,6 @@ export default class SketchSceneAR extends Component {
           height={1}
           width={1}
           onClick={this._toggleDraw}
-          onGaze={this._onButtonGaze}
         />
 
         <ViroButton
@@ -63,8 +63,16 @@ export default class SketchSceneAR extends Component {
           height={3}
           width={3}
           onClick={() => this._toggleColor("purple")}
-          onGaze={this._onButtonGaze}
         />
+
+        <ViroButton
+          source={require("./res/green.png")}
+          position={[-1, 3, -3]}
+          height={3}
+          width={3}
+          onClick={this._reset}
+        />
+
         {this.state.polylines.map((line, i) => (
           <ViroPolyline
             key={i}
@@ -82,6 +90,14 @@ export default class SketchSceneAR extends Component {
         />
       </ViroARScene>
     )
+  }
+
+  _reset() {
+    this.setState({
+      polylines: [],
+      points: [[0, 0, 0]],
+      drawing: false
+    })
   }
 
   _toggleDraw() {
