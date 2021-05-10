@@ -1,218 +1,173 @@
-/**
- * Copyright (c) 2017-present, Viro, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
-
 import React, { Component } from "react"
-import {
-  AppRegistry,
-  Text,
-  View,
-  StyleSheet,
-  PixelRatio,
-  TouchableHighlight
-} from "react-native"
+// import Nagivator from "./routes/homeStack"
+import { Input, Button } from "react-native-elements"
 
-import { ViroVRSceneNavigator, ViroARSceneNavigator } from "react-viro"
+import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 
-import SketchView from "./js/SketchGuy"
+import background from "./js/res/image.png"
 
-/*
- TODO: Insert your API key below
- */
-var sharedProps = {
-  apiKey: "API_KEY_HERE"
-}
+import { View, Text, StyleSheet, ImageBackground } from "react-native"
 
-// Sets the default scene you want for AR and VR
-var InitialARScene = require("./js/HelloWorldSceneAR")
-var InitialVRScene = require("./js/HelloWorldScene")
-const SketchSceneAR = require("./js/SketchSceneAR")
+import SketchSceneAR from "./js/SketchSceneAR"
 
-var UNSET = "UNSET"
-var VR_NAVIGATOR_TYPE = "VR"
-var AR_NAVIGATOR_TYPE = "AR"
-
-const AR_SKETCH = "AR_SKETCH"
-
-var SKETCH_GUY = "SKETCH_GUY"
-
-// This determines which type of experience to launch in, or UNSET, if the user should
-// be presented with a choice of AR or VR. By default, we offer the user a choice.
-var defaultNavigatorType = UNSET
+// import { NavigationContainer } from "@react-navigation/native"
+// import { createStackNavigator } from "@react-navigation/stack"
+// import { navigationRef } from "./RootNavigation"
 
 export default class ViroSample extends Component {
-  constructor() {
-    super()
-
-    this.state = {
-      navigatorType: defaultNavigatorType,
-      sharedProps: sharedProps
-    }
-    this._getExperienceSelector = this._getExperienceSelector.bind(this)
-    this._getARNavigator = this._getARNavigator.bind(this)
-    this._getVRNavigator = this._getVRNavigator.bind(this)
-    this._getExperienceButtonOnPress = this._getExperienceButtonOnPress.bind(
-      this
-    )
-    this._exitViro = this._exitViro.bind(this)
+  constructor(props) {
+    super(props)
+    // this.navigate = this.navigate.bind(this)
   }
 
-  // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
-  // if you are building a specific type of experience.
+  // navigate(name, params) {
+  //   navigationRef.current && navigationRef.current.navigate(name, params)
+  // }
+
   render() {
-    if (this.state.navigatorType == UNSET) {
-      return this._getExperienceSelector()
-    } else if (this.state.navigatorType == VR_NAVIGATOR_TYPE) {
-      return this._getVRNavigator()
-    } else if (this.state.navigatorType == AR_NAVIGATOR_TYPE) {
-      return this._getARNavigator()
-    } else if (this.state.navigatorType == SKETCH_GUY) {
-      return this._getSketchGuy()
-    } else if (this.state.navigatorType === AR_SKETCH) {
-      return this._getARSketch()
-    }
-  }
-
-  // Presents the user with a choice of an AR or VR experience
-  _getExperienceSelector() {
+    // const navigationRef = React.createRef()
+    // const RootStack = createStackNavigator()
     return (
-      <View style={localStyles.outer}>
-        <View style={localStyles.inner}>
-          <Text style={localStyles.titleText}>Welcome to {"<tagged />"}</Text>
+      <View style={styles.container}>
+        <ImageBackground style={styles.backgroundImage} source={background}>
+          <View style={styles.logoContainer}></View>
+        </ImageBackground>
 
-          <TouchableHighlight
-            style={localStyles.buttons}
-            onPress={this._getExperienceButtonOnPress(AR_NAVIGATOR_TYPE)}
-            underlayColor={"#68a0ff"}
-          >
-            <Text style={localStyles.buttonText}>View</Text>
-          </TouchableHighlight>
+        {/* <View style={localStyles.viroContainer}> */}
+        <Text style={styles.logoText}>Welcome to {"<tagged />"}</Text>
 
-          <TouchableHighlight
-            style={localStyles.buttons}
-            onPress={this._getExperienceButtonOnPress(AR_SKETCH)}
-            underlayColor={"#68a0ff"}
-          >
-            <Text style={localStyles.buttonText}>Sketch</Text>
-          </TouchableHighlight>
+        {/* <ImageBackground source={image} style={styles.image}>
+          <Text style={styles.text}>Inside</Text>
+        </ImageBackground> */}
 
-          {/* <TouchableHighlight style={localStyles.buttons}
+        <Input
+          style={localStyles.inner}
+          containerStyle={{}}
+          disabledInputStyle={{ background: "#ddd" }}
+          inputContainerStyle={{}}
+          errorMessage="Oops! that's not correct."
+          errorStyle={{}}
+          errorProps={{}}
+          inputStyle={{}}
+          label="User Form"
+          labelStyle={{}}
+          labelProps={{}}
+          leftIcon={<Icon name="account-outline" size={20} />}
+          leftIconContainerStyle={{}}
+          rightIcon={<Icon name="close" size={20} />}
+          rightIconContainerStyle={{}}
+          placeholder="UserName"
+        />
 
-            <Text style={localStyles.buttonText}>AR</Text>
-          </TouchableHighlight>
+        <Input
+          style={localStyles.inner}
+          containerStyle={{}}
+          disabledInputStyle={{ background: "#ddd" }}
+          inputContainerStyle={{}}
+          errorMessage="Oops! that's not correct."
+          errorStyle={{}}
+          errorProps={{}}
+          inputStyle={{}}
+          labelStyle={{}}
+          labelProps={{}}
+          leftIcon={<Icon name="account-outline" size={20} />}
+          leftIconContainerStyle={{}}
+          rightIcon={<Icon name="close" size={20} />}
+          rightIconContainerStyle={{}}
+          placeholder="E-mail"
+        />
 
-          <TouchableHighlight
-            style={localStyles.buttons}
+        <Input
+          style={localStyles.inner}
+          containerStyle={{}}
+          disabledInputStyle={{ background: "#ddd" }}
+          inputContainerStyle={{}}
+          errorMessage="Oops! that's not correct."
+          errorStyle={{}}
+          errorProps={{}}
+          inputStyle={{}}
+          labelStyle={{}}
+          labelProps={{}}
+          leftIcon={<Icon name="account-outline" size={20} />}
+          leftIconContainerStyle={{}}
+          rightIcon={<Icon name="close" size={20} />}
+          rightIconContainerStyle={{}}
+          placeholder="Password"
+        />
 
-            onPress={this._getExperienceButtonOnPress(VR_NAVIGATOR_TYPE)}
-            underlayColor={"#68a0ff"}
-          >
-            <Text style={localStyles.buttonText}>VR</Text>
-
-          </TouchableHighlight> */}
-
-          {/* <TouchableHighlight style={localStyles.buttons}
-            onPress={this._getExperienceButtonOnPress(SKETCH_GUY)}
-            underlayColor={'#68a0ff'} >
-
-          </TouchableHighlight>
-
-          <TouchableHighlight
-            style={localStyles.buttons}
-            onPress={this._getExperienceButtonOnPress(SKETCH_GUY)}
-            underlayColor={"#68a0ff"}
-          >
-            <Text style={localStyles.buttonText}>SKETCH</Text>
-
-          </TouchableHighlight> */}
-        </View>
+        <Button
+          buttonStyle={{ width: 150 }}
+          containerStyle={{ margin: 5 }}
+          disabledStyle={{
+            borderWidth: 2,
+            borderColor: "#00F"
+          }}
+          disabledTitleStyle={{ color: "#00F" }}
+          linearGradientProps={null}
+          icon={<Icon name="react" size={15} color="#0FF" />}
+          iconContainerStyle={{ background: "#000" }}
+          loadingProps={{ animating: true }}
+          loadingStyle={{}}
+          onPress={() => alert("Account Created")}
+          title="Create Account"
+          titleProps={{}}
+          titleStyle={{ marginHorizontal: 5 }}
+        />
+        <Button
+          buttonStyle={{ width: 150 }}
+          containerStyle={{ margin: 5 }}
+          disabledStyle={{
+            borderWidth: 2,
+            borderColor: "#00F"
+          }}
+          disabledTitleStyle={{ color: "#00F" }}
+          linearGradientProps={null}
+          icon={<Icon name="react" size={15} color="#0FF" />}
+          iconContainerStyle={{ background: "#000" }}
+          loadingProps={{ animating: true }}
+          loadingStyle={{}}
+          onPress={() => alert("click")}
+          // onPress={() => this.props.navigation.navigate("SketchSceneAR")}
+          title="Login"
+          titleProps={{}}
+          titleStyle={{ marginHorizontal: 5 }}
+        />
+        {/*
+          <ImageBackground
+            source={require("./js/res/image.png")}
+            style={{ width: "100%", height: "100%", opacity: 0.7 }}
+          ></ImageBackground> */}
       </View>
     )
-  }
-
-  // Returns the ViroARSceneNavigator which will start the AR experience
-  _getARNavigator() {
-    return (
-      <ViroARSceneNavigator
-        {...this.state.sharedProps}
-        initialScene={{ scene: InitialARScene }}
-      />
-    )
-  }
-
-  // Returns ViroARSceneNavigator with Sketch
-  _getARSketch() {
-    return (
-      <ViroARSceneNavigator
-        {...this.state.sharedProps}
-        initialScene={{ scene: SketchSceneAR }}
-      />
-    )
-  }
-
-  // Returns the ViroSceneNavigator which will start the VR experience
-  _getVRNavigator() {
-    return (
-      <ViroVRSceneNavigator
-        {...this.state.sharedProps}
-        initialScene={{ scene: InitialVRScene }}
-        onExitViro={this._exitViro}
-      />
-    )
-  }
-
-  //Returns the SketchGuy Component
-  _getSketchGuy() {
-    this._exitViro()
-    return <SketchView />
-  }
-
-  // This function returns an anonymous/lambda function to be used
-  // by the experience selector buttons
-  _getExperienceButtonOnPress(navigatorType) {
-    return () => {
-      this.setState({
-        navigatorType: navigatorType
-      })
-    }
-  }
-
-  // This function "exits" Viro by setting the navigatorType to UNSET.
-  _exitViro() {
-    this.setState({
-      navigatorType: UNSET
-    })
   }
 }
 
 var localStyles = StyleSheet.create({
   viroContainer: {
     flex: 1,
-    backgroundColor: "black"
+    backgroundColor: "purple"
   },
   outer: {
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "black"
+    backgroundColor: "gray"
   },
   inner: {
     flex: 1,
     flexDirection: "column",
     alignItems: "center",
-    backgroundColor: "black"
+    backgroundColor: "white"
   },
   titleText: {
-    paddingTop: 30,
-    paddingBottom: 20,
-    color: "#fff",
-    textAlign: "center",
-    fontSize: 25
+    // paddingTop: 30,
+    // paddingBottom: 20,
+    // color: "black",
+    // textAlign: "center",
+    // fontSize: 50
+    fontSize: 24,
+    fontWeight: "600",
+    color: "white"
   },
   buttonText: {
     color: "#fff",
@@ -244,5 +199,60 @@ var localStyles = StyleSheet.create({
     borderColor: "#fff"
   }
 })
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    fontFamily: "-apple-system, BlinkMacSystemFont Segoe UI",
+    justifyContent: "center",
+    alignItems: "center"
+    // backgroundColor: "orange"
+  },
+  logoContainer: {
+    alignItems: "center"
+  },
+  logoText: {
+    fontSize: 60,
+    fontWeight: "900",
+    color: "white",
+    paddingTop: 30,
+    paddingBottom: 20,
+    // color: "black",
+    textAlign: "center"
+    // fontSize: 50
+  },
+  logoDescription: {
+    fontSize: 15,
+    fontWeight: "600",
+    color: "white"
+  },
+  backgroundImage: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    opacity: 0.27
+  }
+})
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     flexDirection: "column"
+//   },
+//   image: {
+//     flex: 1,
+//     resizeMode: "cover",
+//     justifyContent: "center"
+//   },
+//   text: {
+//     color: "white",
+//     fontSize: 42,
+//     fontWeight: "bold",
+//     textAlign: "center",
+//     backgroundColor: "pink"
+//   }
+// })
 
 module.exports = ViroSample
