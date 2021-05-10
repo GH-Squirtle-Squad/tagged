@@ -150,7 +150,6 @@ export default class SketchSceneAR extends Component {
   }
 
   _toggleColor(colorName) {
-    console.log("CLICKED COLOR")
     const current = this.state.color
     const points = [...this.state.points]
     if (this.state.color !== colorName) {
