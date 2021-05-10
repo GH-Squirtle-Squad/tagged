@@ -6,10 +6,6 @@ import background from "./js/res/image.png"
 
 import { View, Text, StyleSheet, ImageBackground } from "react-native"
 
-// import { NavigationContainer } from "@react-navigation/native"
-// import { createStackNavigator } from "@react-navigation/stack"
-// import { navigationRef } from "./RootNavigation"
-
 export default class ViroSample extends Component {
   constructor(props) {
     super(props)
@@ -23,6 +19,7 @@ export default class ViroSample extends Component {
   render() {
     // const navigationRef = React.createRef()
     // const RootStack = createStackNavigator()
+    console.log("PROPS ARE", this.props)
     return (
       <View style={styles.container}>
         <ImageBackground style={styles.backgroundImage} source={background}>
@@ -117,6 +114,24 @@ export default class ViroSample extends Component {
           onPress={() => alert("click")}
           // onPress={() => this.props.navigation.navigate("SketchSceneAR")}
           title="Login"
+          titleProps={{}}
+          titleStyle={{ marginHorizontal: 5 }}
+        />
+        <Button
+          buttonStyle={{ width: 150 }}
+          containerStyle={{ margin: 5 }}
+          disabledStyle={{
+            borderWidth: 2,
+            borderColor: "#00F"
+          }}
+          disabledTitleStyle={{ color: "#00F" }}
+          linearGradientProps={null}
+          iconContainerStyle={{ background: "#000" }}
+          loadingProps={{ animating: true }}
+          loadingStyle={{}}
+          onPress={() => this.props.history.push("/test")}
+          // onPress={() => this.props.navigation.navigate("SketchSceneAR")}
+          title="Test"
           titleProps={{}}
           titleStyle={{ marginHorizontal: 5 }}
         />
@@ -220,7 +235,7 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0,
-    opacity: 0.27
+    opacity: 0.9
   }
 })
 
@@ -243,4 +258,4 @@ const styles = StyleSheet.create({
 //   }
 // })
 
-module.exports = ViroSample
+//module.exports = ViroSample

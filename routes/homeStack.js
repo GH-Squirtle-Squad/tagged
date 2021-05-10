@@ -1,17 +1,15 @@
-import { createStackNavigator } from "react-navigation-stack"
-import { createAppContainer } from "react-navigation"
+import React from "react"
+import { nativeHistory, NativeRouter, Route } from "react-router-native"
+import App from "../App"
+import ViroNavigator from "../js/ViroNavigator"
 
-import Home from "../screens/home"
-
-const screens = {
-  Home: {
-    screen: Home
-  },
-  ReviewDetails: {
-    screen: ReviewDetails
-  }
+const Routes = props => {
+  return (
+    <NativeRouter history={nativeHistory}>
+      <Route exact path="/" render={props => <App {...props} />} />
+      <Route path="/test" component={ViroNavigator} />
+    </NativeRouter>
+  )
 }
 
-const HomeStack = createStackNavigator(screens)
-
-export default createAppContainer(HomeStack)
+export default Routes
