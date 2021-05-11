@@ -16,26 +16,21 @@ const setAuth = auth => ({ type: SET_AUTH, auth })
  */
 export const me = history => async dispatch => {
   const token = await AsyncStorage.getItem(TOKEN)
-  console.log("this is token inside me: ", token)
   if (token) {
     const res = await axios.get(`${serverURL}auth/me`, {
       headers: {
         authorization: token
       }
     })
-    console.log("this is res inside me: ", res)
     dispatch(setAuth(res.data))
-    history.push("/test")
+    history.push("/homebase")
   }
 }
 export const authenticate =
   (username, password, method, history) => async dispatch => {
     try {
-      console.log('authenticate is trying its best\n', method)
       const res = await axios.post(`${serverURL}auth/${method}`, { username, password })
-      console.log('res is: ', res)
       await AsyncStorage.setItem(TOKEN, res.data.token)
-      console.log("this is token: ", res.data.token)
       dispatch(me(history))
     } catch (authError) {
       return dispatch(setAuth({ error: authError }))
