@@ -1,5 +1,7 @@
 import axios from "axios"
-//import history from "../history"
+import { AsyncStorage } from 'react-native'
+
+const serverURL = 'https://tagged-backend.herokuapp.com/'
 const TOKEN = "token"
 /**
  * ACTION TYPES
@@ -13,22 +15,27 @@ const setAuth = auth => ({ type: SET_AUTH, auth })
  * THUNK CREATORS
  */
 export const me = history => async dispatch => {
-  const token = window.localStorage.getItem(TOKEN)
+  const token = await AsyncStorage.getItem(TOKEN)
+  console.log("this is token inside me: ", token)
   if (token) {
-    const res = await axios.get("/auth/me", {
+    const res = await axios.get(`${serverURL}auth/me`, {
       headers: {
         authorization: token
       }
     })
+    console.log("this is res inside me: ", res)
     dispatch(setAuth(res.data))
-    history.push("/")
+    history.push("/test")
   }
 }
 export const authenticate =
   (username, password, method, history) => async dispatch => {
     try {
-      const res = await axios.post(`/auth/${method}`, { username, password })
-      window.localStorage.setItem(TOKEN, res.data.token)
+      console.log('authenticate is trying its best\n', method)
+      const res = await axios.post(`${serverURL}auth/${method}`, { username, password })
+      console.log('res is: ', res)
+      await AsyncStorage.setItem(TOKEN, res.data.token)
+      console.log("this is token: ", res.data.token)
       dispatch(me(history))
     } catch (authError) {
       return dispatch(setAuth({ error: authError }))
@@ -36,7 +43,7 @@ export const authenticate =
   }
 
 export const logout = () => {
-  window.localStorage.removeItem(TOKEN)
+  AsyncStorage.removeItem(TOKEN)
   return {
     type: SET_AUTH,
     auth: {}
