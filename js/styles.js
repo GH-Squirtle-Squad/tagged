@@ -45,6 +45,19 @@ const styles = StyleSheet.create({
     height: 40,
     width: "90%",
     margin: 15
+  },
+  galleryImage: {
+    shadowColor: "cyan",
+    shadowOffset: {
+      width: 100,
+      height: 177
+    },
+    shadowOpacity: 0.8,
+    shadowRadius: 19.19,
+
+    // elevation: 23,
+    width: 200,
+    height: 210
   }
 })
 
