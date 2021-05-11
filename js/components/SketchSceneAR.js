@@ -48,8 +48,8 @@ export default class SketchSceneAR extends Component {
         <ViroButton
           source={
             !this.state.drawing
-              ? require("./res/startdrawing.png")
-              : require("./res/stopdrawing.png")
+              ? require("../res/startdrawing.png")
+              : require("../res/stopdrawing.png")
           }
           position={[1, 3, -3]}
           height={2}
@@ -58,7 +58,7 @@ export default class SketchSceneAR extends Component {
         />
 
         <ViroButton
-          source={require("./res/purple.png")}
+          source={require("../res/purple.png")}
           position={[2, 1, -3]}
           height={2}
           width={2}
@@ -66,7 +66,7 @@ export default class SketchSceneAR extends Component {
         />
 
         <ViroButton
-          source={require("./res/green.png")}
+          source={require("../res/green.png")}
           position={[3.5, 0, -3]}
           height={2}
           width={2}
@@ -74,7 +74,7 @@ export default class SketchSceneAR extends Component {
         />
 
         <ViroButton
-          source={require("./res/orange.png")}
+          source={require("../res/orange.png")}
           position={[3.5, -1, -3]}
           height={2}
           width={2}
@@ -82,7 +82,7 @@ export default class SketchSceneAR extends Component {
         />
 
         <ViroButton
-          source={require("./res/red.png")}
+          source={require("../res/red.png")}
           position={[2, 0, -3]}
           height={2}
           width={2}
@@ -90,7 +90,7 @@ export default class SketchSceneAR extends Component {
         />
 
         <ViroButton
-          source={require("./res/blue.png")}
+          source={require("../res/blue.png")}
           position={[2, -1, -3]}
           height={2}
           width={2}
@@ -98,7 +98,7 @@ export default class SketchSceneAR extends Component {
         />
 
         <ViroButton
-          source={require("./res/nevermind.png")}
+          source={require("../res/nevermind.png")}
           position={[-1, 3, -3]}
           height={2}
           width={2}
