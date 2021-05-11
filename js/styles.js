@@ -1,0 +1,51 @@
+import { StyleSheet } from "react-native"
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    fontFamily: "-apple-system, BlinkMacSystemFont Segoe UI",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  logoContainer: {
+    alignItems: "center"
+  },
+  logo: {
+    marginTop: 40,
+    resizeMode: "contain",
+    width: "98%"
+  },
+  backgroundImage: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    opacity: 0.9
+  },
+  button: {
+    width: 150,
+    borderRadius: 10
+  },
+  outer: {
+    flex: 1,
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%"
+  },
+  inner: {
+    flex: 1,
+    width: "100%",
+    marginBottom: 50
+  },
+  input: {
+    backgroundColor: "white",
+    borderRadius: 10,
+    height: 40,
+    width: "90%",
+    margin: 15
+  }
+})
+
+export default styles
