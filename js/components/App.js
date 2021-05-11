@@ -38,7 +38,7 @@ class App extends Component {
               placeholder="Username"
               placeholderTextColor="#000000"
               autoCapitalize="none"
-              onChangeText={text => this.setState({ username: text.trim() })}
+              onChangeText={text => this.setState({ username: text})}
             />
             <TextInput
               style={styles.input}
@@ -46,7 +46,7 @@ class App extends Component {
               placeholder="Password"
               placeholderTextColor="#000000"
               autoCapitalize="none"
-              onChangeText={text => this.setState({ password: text.trim() })}
+              onChangeText={text => this.setState({ password: text})}
             />
           </View>
           <Button
