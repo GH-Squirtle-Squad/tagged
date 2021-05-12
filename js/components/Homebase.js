@@ -24,7 +24,7 @@ export default class Homebase extends Component {
             iconContainerStyle={{ background: "#000" }}
             loadingProps={{ animating: true }}
             loadingStyle={{}}
-            onPress={() => this.props.history.push("/test")}
+            onPress={() => this.props.history.push('/tag')}
             title="Throw Up!"
             titleProps={{}}
             titleStyle={{ marginHorizontal: 5 }}

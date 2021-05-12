@@ -83,24 +83,6 @@ class App extends Component {
             titleProps={{}}
             titleStyle={{ marginHorizontal: 5 }}
           />
-
-          <Button
-            buttonStyle={styles.button}
-            containerStyle={{ margin: 5, marginBottom: 170 }}
-            disabledStyle={{
-              borderWidth: 2,
-              borderColor: "#00F"
-            }}
-            disabledTitleStyle={{ color: "#00F" }}
-            linearGradientProps={null}
-            iconContainerStyle={{ background: "#000" }}
-            loadingProps={{ animating: true }}
-            loadingStyle={{}}
-            onPress={() => this.props.history.push("/test")}
-            title="Test"
-            titleProps={{}}
-            titleStyle={{ marginHorizontal: 5 }}
-          />
         </View>
       </View>
     )
