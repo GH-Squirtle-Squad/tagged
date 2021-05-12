@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: 150,
-    borderRadius: 10
+    borderRadius: 10,
   },
   outer: {
     flex: 1,
