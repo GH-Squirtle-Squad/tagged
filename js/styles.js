@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: 150,
-    borderRadius: 10,
+    borderRadius: 10
   },
   outer: {
     flex: 1,
@@ -45,6 +45,9 @@ const styles = StyleSheet.create({
     height: 40,
     width: "90%",
     margin: 15
+  },
+  gallery: {
+    backgroundColor: "black"
   },
   galleryImage: {
     shadowColor: "cyan",

@@ -17,7 +17,7 @@ class Gallery extends Component {
   render() {
     const tags = this.props.tags || []
     return (
-      <ScrollView>
+      <ScrollView style={styles.gallery}>
         <Image style={styles.logo} source={require("../res/welcomelogo.png")} />
         <Button
           buttonStyle={styles.button}
