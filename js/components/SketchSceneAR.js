@@ -62,7 +62,7 @@ export default class SketchSceneAR extends Component {
           height={2}
           width={2}
           onClick={() =>
-            this.props.arSceneNavigator.viroAppProps._changeNavigator("HOME")
+            this.props.arSceneNavigator.viroAppProps._goHome()
           }
         />
 

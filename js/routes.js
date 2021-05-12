@@ -8,11 +8,12 @@ import Homebase from "./components/Homebase"
 import Gallery from "./components/Gallery"
 
 const Routes = props => {
+  console.disableYellowBox = true;
   return (
     <Provider store={store}>
       <NativeRouter history={nativeHistory}>
         <Route exact path="/" render={props => <App {...props} />} />
-        <Route exact path="/tag" component={ViroNavigator} />
+        <Route exact path="/tag" render={props => <ViroNavigator {...props} />} />
         <Route path="/homebase" component={Homebase} />
         <Route path="/gallery" component={Gallery} />
       </NativeRouter>
