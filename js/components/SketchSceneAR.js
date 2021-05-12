@@ -1,7 +1,7 @@
 "use strict"
 
 import React, { Component } from "react"
-import { Link } from 'react-router-native';
+
 import {
   ViroARScene,
   ViroConstants,
@@ -61,9 +61,10 @@ export default class SketchSceneAR extends Component {
           position={[0, 2, -3]}
           height={2}
           width={2}
-          onClick={() => console.log("this.props: ", this.props) 
-          // this.props._changeNavigator("HOME")
-          }/>
+          onClick={() =>
+            this.props.arSceneNavigator.viroAppProps._changeNavigator("HOME")
+          }
+        />
 
         <ViroButton
           source={require("../res/purple.png")}

@@ -4,17 +4,17 @@ import { Provider } from "react-redux"
 import App from "./components/App"
 import ViroNavigator from "./components/ViroNavigator"
 import store from "./store"
-import Homebase from './components/Homebase'
-import Gallery from './components/Gallery'
+import Homebase from "./components/Homebase"
+import Gallery from "./components/Gallery"
 
 const Routes = props => {
   return (
     <Provider store={store}>
       <NativeRouter history={nativeHistory}>
         <Route exact path="/" render={props => <App {...props} />} />
-        <Route exact path="/tag" render={props => <ViroNavigator {...props} />} />        
-        <Route path='/homebase' component={Homebase}/>
-        <Route path='/gallery' component={Gallery}/>
+        <Route exact path="/tag" component={ViroNavigator} />
+        <Route path="/homebase" component={Homebase} />
+        <Route path="/gallery" component={Gallery} />
       </NativeRouter>
     </Provider>
   )
