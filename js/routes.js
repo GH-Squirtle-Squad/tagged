@@ -12,7 +12,7 @@ const Routes = props => {
     <Provider store={store}>
       <NativeRouter history={nativeHistory}>
         <Route exact path="/" render={props => <App {...props} />} />
-        <Route path="/test" component={ViroNavigator} />
+        <Route exact path="/tag" render={props => <ViroNavigator {...props} />} />        
         <Route path='/homebase' component={Homebase}/>
         <Route path='/gallery' component={Gallery}/>
       </NativeRouter>
