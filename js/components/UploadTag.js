@@ -8,7 +8,8 @@ class UploadTag extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      title: ""
+      title: "",
+   
     }
     this._handleSubmit = this._handleSubmit.bind(this)
   }
