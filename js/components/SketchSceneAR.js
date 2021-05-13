@@ -52,6 +52,7 @@ export default class SketchSceneAR extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <ViroARScene onCameraARHitTest={this._onCameraARHitTest}>
         <ViroCamera position={[0, 0, 0]} active={true}>

@@ -7,6 +7,7 @@ export default class ViroNavigator extends Component {
     super(props)
     this._getARSketch = this._getARSketch.bind(this)
     this._goHome = this._goHome.bind(this)
+    this._goUpload = this._goUpload.bind(this)
     this._setARNavigatorRef = this._setARNavigatorRef.bind(this)
   }
 

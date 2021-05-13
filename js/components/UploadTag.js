@@ -9,7 +9,7 @@ class UploadTag extends Component {
     super(props)
     this.state = {
       title: "",
-   
+      image: ""
     }
     this._handleSubmit = this._handleSubmit.bind(this)
   }
@@ -25,6 +25,9 @@ class UploadTag extends Component {
             style={styles.logo}
             source={require("../res/welcomelogo.png")}
           />
+          {this.state.image.length > 1 ? (
+            <Image style={styles.preview} source={{ uri: this.state.image }} />
+          ) : null}
           <TextInput
             style={styles.input}
             placeholder="Title"

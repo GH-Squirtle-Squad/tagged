@@ -55,8 +55,9 @@ const styles = StyleSheet.create({
     width: "90%",
     margin: 15
   },
-  blackBG: {
-    backgroundColor: "black"
+  preview: {
+    resizeMode: "contain",
+    height: "50%"
   },
   galleryImage: {
     shadowColor: "cyan",
