@@ -49,6 +49,23 @@ class UploadTag extends Component {
             iconContainerStyle={{ background: "#000" }}
             loadingProps={{ animating: true }}
             loadingStyle={{}}
+            onPress={() => this._handleChoosePhoto()}
+            title="Choose Photo"
+            titleProps={{}}
+            titleStyle={{ marginHorizontal: 5 }}
+          />
+          <Button
+            buttonStyle={styles.signButton}
+            containerStyle={{ margin: 5 }}
+            disabledStyle={{
+              borderWidth: 2,
+              borderColor: "#00F"
+            }}
+            disabledTitleStyle={{ color: "#00F" }}
+            linearGradientProps={null}
+            iconContainerStyle={{ background: "#000" }}
+            loadingProps={{ animating: true }}
+            loadingStyle={{}}
             onPress={() => this._handleSubmit()}
             title="Upload"
             titleProps={{}}
