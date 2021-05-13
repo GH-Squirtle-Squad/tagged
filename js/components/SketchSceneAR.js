@@ -7,11 +7,10 @@ import {
   ViroPolyline,
   ViroMaterials,
   ViroButton,
-  ViroCamera,
-  ViroImage
+  ViroCamera
 } from "react-viro"
 
-import { PermissionsAndroid } from 'react-native'
+import { Platform, PermissionsAndroid } from "react-native"
 
 //add texture
 ViroMaterials.createMaterials({
@@ -37,7 +36,7 @@ export default class SketchSceneAR extends Component {
       drawing: false,
       color: "white",
       writeAccessPermission: false,
-			readAccessPermission: false
+      readAccessPermission: false
     }
 
     // bind 'this' to functions
@@ -46,21 +45,11 @@ export default class SketchSceneAR extends Component {
     this._takeScreenshot = this._takeScreenshot.bind(this)
     this._toggleDraw = this._toggleDraw.bind(this)
     this._toggleColor = this._toggleColor.bind(this)
-    this.requestWriteAccessPermission = this.requestWriteAccessPermission.bind(this)
-    this.requestReadAccessPermission = this.requestReadAccessPermission.bind(this)
-    //this.requestCameraPermission = this.requestCameraPermission.bind(this)
+    this.requestWriteAccessPermission =
+      this.requestWriteAccessPermission.bind(this)
+    this.requestReadAccessPermission =
+      this.requestReadAccessPermission.bind(this)
   }
-
-  componentDidMount() {
-    // if (!this.state.writeAccessPermission) {
-		// 	this.requestWriteAccessPermission();
-		// }
-    // if (!this.state.readAccessPermission) {
-		// 	this.requestReadAccessPermission();
-		// }
-    console.log('props: ', this.props)
-  }
-
 
   render() {
     return (
@@ -169,116 +158,74 @@ export default class SketchSceneAR extends Component {
     })
   }
 
- 
-  // async requestCameraPermission(){
-  //   try {
-  //     const readGranted = await PermissionsAndroid.request(
-  //       PermissionsAndroid.READ_EXTERNAL_STORAGE,
-  //       {
-  //         title: "Allow permission to read",
-  //         message: "Need access to storage."
-  //       }
-  //     );
-  //     if (readGranted === PermissionsAndroid.RESULTS.GRANTED) {
-  //       console.log("You can use the camera");
-  //     } else {
-  //       console.log("Camera permission denied");
-  //     }
+  async requestWriteAccessPermission() {
+    try {
+      const granted = await PermissionsAndroid.requestMultiple(
+        [
+          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE
+        ],
+        {
+          title: "<tagged/> Write Permission",
+          message:
+            "<tagged/> needs to access your photos" +
+            "so you can record photos of" +
+            "your tags.",
+          buttonNeutral: "Ask Me Later",
+          buttonNegative: "Cancel",
+          buttonPositive: "OK"
+        }
+      )
+      if (granted == PermissionsAndroid.RESULTS.GRANTED) {
+        this.setState({
+          writeAccessPermission: true,
+          readAccessPermission: true
+        })
+      } else {
+        this.setState({
+          writeAccessPermission: false
+        })
+      }
+    } catch (err) {
+      console.warn("[PermissionsAndroid]" + err)
+    }
+  }
 
-  //     const writeGranted = await PermissionsAndroid.request(
-  //       PermissionsAndroid.WRITE_EXTERNAL_STORAGE,
-  //       {
-  //         title: "Allow permission to write",
-  //         message: "Need access to storage."
-  //       }
-  //     );
+  async requestReadAccessPermission() {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+        {
+          title: "<tagged/> File Permission",
+          message:
+            "<tagged/> needs to access your file " +
+            "so you can view your tags in the gallery.",
+          buttonNeutral: "Ask Me Later",
+          buttonNegative: "Cancel",
+          buttonPositive: "OK"
+        }
+      )
+      if (granted == PermissionsAndroid.RESULTS.GRANTED) {
+        this.setState({
+          readAccessPermission: true
+        })
+      } else {
+        this.setState({
+          readAccessPermission: false
+        })
+      }
+    } catch (err) {
+      console.warn("[PermissionsAndroid]" + err)
+    }
+  }
 
-  //     if (writeGranted === PermissionsAndroid.RESULTS.GRANTED) {
-  //       console.log("You can use the camera");
-  //     } else {
-  //       console.log("Camera permission denied");
-  //     }
-  //   } catch (err) {
-  //     console.warn(err);
-  //   }
-  // };
-
-	async requestWriteAccessPermission() {
-		try {
-			const granted = await PermissionsAndroid.requestMultiple(
-				[
-					PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-					PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-				],
-				{
-					title: '<tagged/> Write Permission',
-					message:
-						'<tagged/> needs to access your photos' +
-						'so you can record photos of' +
-						'your tags.',
-					buttonNeutral: 'Ask Me Later',
-					buttonNegative: 'Cancel',
-					buttonPositive: 'OK',
-				}
-			);
-			if (granted == PermissionsAndroid.RESULTS.GRANTED) {
-				this.setState({
-					writeAccessPermission: true,
-					readAccessPermission: true,
-				});
-			} else {
-				this.setState({
-					writeAccessPermission: false,
-				});
-			}
-		} catch (err) {
-			console.warn('[PermissionsAndroid]' + err);
-		}
-	}
-
-	async requestReadAccessPermission() {
-		try {
-			const granted = await PermissionsAndroid.request(
-				PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-				{
-					title: '<tagged/> File Permission',
-					message:
-						'<tagged/> needs to access your file ' +
-						'so you can view your tags in the gallery.',
-					buttonNeutral: 'Ask Me Later',
-					buttonNegative: 'Cancel',
-					buttonPositive: 'OK',
-				}
-			);
-			if (granted == PermissionsAndroid.RESULTS.GRANTED) {
-				this.setState({
-					readAccessPermission: true,
-				});
-			} else {
-				this.setState({
-					readAccessPermission: false,
-				});
-			}
-		} catch (err) {
-			console.warn('[PermissionsAndroid]' + err);
-		}
-	}
- 
-
-	async _takeScreenshot() {
-		if (!this.state.writeAccessPermission) {
-			this.requestWriteAccessPermission();
-		}
-	await this._arNavigator
-			.takeScreenshot('tag', true)
-			
-			}
-
-  // async _takeScreenshot() {
-  // console.log('is this running at all ')
-  // console.log('props: ', this.props.arSceneNavigator)
-  //   const pic = await this.props.arSceneNavigator.takeScreenshot("tag", true)
-  // }
+  async _takeScreenshot() {
+    if (Platform.OS !== "ios" && !this.state.writeAccessPermission) {
+      this.requestWriteAccessPermission()
+    }
+    await this.props.arSceneNavigator.takeScreenshot("tag", true)
+    this.props.arSceneNavigator.viroAppProps._goUpload()
+  }
 
   _toggleDraw() {
     const current = this.state.drawing
