@@ -7,6 +7,8 @@ export default class ViroNavigator extends Component {
     super(props)
     this._getARSketch = this._getARSketch.bind(this)
     this._goHome = this._goHome.bind(this)
+    this._setARNavigatorRef = this._setARNavigatorRef.bind(this);
+
   }
 
   render() {
@@ -18,9 +20,14 @@ export default class ViroNavigator extends Component {
       <ViroARSceneNavigator
         initialScene={{ scene: SketchSceneAR }}
         viroAppProps={{ _goHome: this._goHome }}
+        ref={this._setARNavigatorRef}
       />
     )
   }
+
+  _setARNavigatorRef(ARNavigator) {
+		this._arNavigator = ARNavigator;
+	}
 
   _goHome() {
     this.props.history.push("/homebase")
