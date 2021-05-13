@@ -52,8 +52,13 @@ export default class SketchSceneAR extends Component {
   }
 
   componentDidMount() {
-    PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_PHONE_STATE)
-    //this.requestCameraPermission();
+    // if (!this.state.writeAccessPermission) {
+		// 	this.requestWriteAccessPermission();
+		// }
+    // if (!this.state.readAccessPermission) {
+		// 	this.requestReadAccessPermission();
+		// }
+    console.log('props: ', this.props)
   }
 
 
@@ -82,10 +87,10 @@ export default class SketchSceneAR extends Component {
           />
 
           <ViroButton
-            source={require("../res/nevermind.png")}
-            position={[-0, 0.7, -2]}
-            height={0.5}
-            width={0.5}
+            source={require("../res/camerabutton.png")}
+            position={[-0, 0.6, -2]}
+            height={0.3}
+            width={0.3}
             onClick={this._takeScreenshot}
           />
 
@@ -258,16 +263,22 @@ export default class SketchSceneAR extends Component {
 			console.warn('[PermissionsAndroid]' + err);
 		}
 	}
+ 
 
-  async _takeScreenshot() {
-    if (!this.state.writeAccessPermission) {
+	async _takeScreenshot() {
+		if (!this.state.writeAccessPermission) {
 			this.requestWriteAccessPermission();
 		}
-    if (!this.state.readAccessPermission) {
-			this.requestReadAccessPermission();
-		}
-    const pic = await this.props.arSceneNavigator.takeScreenshot("tag", true)
-  }
+	await this._arNavigator
+			.takeScreenshot('tag', true)
+			
+			}
+
+  // async _takeScreenshot() {
+  // console.log('is this running at all ')
+  // console.log('props: ', this.props.arSceneNavigator)
+  //   const pic = await this.props.arSceneNavigator.takeScreenshot("tag", true)
+  // }
 
   _toggleDraw() {
     const current = this.state.drawing
