@@ -225,7 +225,7 @@ export default class SketchSceneAR extends Component {
       this.requestWriteAccessPermission()
     }
     await this.props.arSceneNavigator.takeScreenshot("tag", true)
-    this.props.arSceneNavigator.viroAppProps._goUpload()
+    alert("Piece saved to camera roll!")
   }
 
   _toggleDraw() {
