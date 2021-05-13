@@ -17,8 +17,25 @@ class Gallery extends Component {
   render() {
     const tags = this.props.tags || []
     return (
-      <ScrollView style={styles.gallery}>
+      <ScrollView style={styles.blackBG}>
         <Image style={styles.logo} source={require("../res/welcomelogo.png")} />
+        <Button
+          buttonStyle={styles.button}
+          containerStyle={{ margin: 5 }}
+          disabledStyle={{
+            borderWidth: 2,
+            borderColor: "#00F"
+          }}
+          disabledTitleStyle={{ color: "#00F" }}
+          linearGradientProps={null}
+          iconContainerStyle={{ background: "#000" }}
+          loadingProps={{ animating: true }}
+          loadingStyle={{}}
+          onPress={() => this.props.history.push("/upload")}
+          title="Upload Your Tag"
+          titleProps={{}}
+          titleStyle={{ marginHorizontal: 5 }}
+        />
         <Button
           buttonStyle={styles.button}
           containerStyle={{ margin: 5 }}

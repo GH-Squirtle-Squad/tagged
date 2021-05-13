@@ -1,7 +1,7 @@
 import axios from "axios"
-import { AsyncStorage } from 'react-native'
+import { AsyncStorage } from "react-native"
 
-const serverURL = 'https://tagged-backend.herokuapp.com/'
+const serverURL = "https://tagged-backend.herokuapp.com/"
 const TOKEN = "token"
 /**
  * ACTION TYPES
@@ -29,7 +29,10 @@ export const me = history => async dispatch => {
 export const authenticate =
   (username, password, method, history) => async dispatch => {
     try {
-      const res = await axios.post(`${serverURL}auth/${method}`, { username, password })
+      const res = await axios.post(`${serverURL}auth/${method}`, {
+        username,
+        password
+      })
       await AsyncStorage.setItem(TOKEN, res.data.token)
       dispatch(me(history))
     } catch (authError) {
@@ -37,8 +40,9 @@ export const authenticate =
     }
   }
 
-export const logout = () => {
+export const logout = history => {
   AsyncStorage.removeItem(TOKEN)
+  history.push("/")
   return {
     type: SET_AUTH,
     auth: {}

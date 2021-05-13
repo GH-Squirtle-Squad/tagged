@@ -24,8 +24,17 @@ const styles = StyleSheet.create({
     opacity: 0.9
   },
   button: {
-    width: 150,
-    borderRadius: 10
+    borderRadius: 96
+  },
+  signButton: {
+    width: 152,
+    borderRadius: 10,
+    marginTop: 100
+  },
+  loginButton: {
+    width: 152,
+    borderRadius: 10,
+    marginBottom: 210
   },
   outer: {
     flex: 1,
@@ -46,7 +55,7 @@ const styles = StyleSheet.create({
     width: "90%",
     margin: 15
   },
-  gallery: {
+  blackBG: {
     backgroundColor: "black"
   },
   galleryImage: {

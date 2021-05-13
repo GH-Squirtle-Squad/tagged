@@ -7,7 +7,8 @@ import {
   ViroPolyline,
   ViroMaterials,
   ViroButton,
-  ViroCamera
+  ViroCamera,
+  ViroImage
 } from "react-viro"
 
 //add texture
@@ -38,6 +39,7 @@ export default class SketchSceneAR extends Component {
     // bind 'this' to functions
     this._onCameraARHitTest = this._onCameraARHitTest.bind(this)
     this._reset = this._reset.bind(this)
+    this._takeScreenshot = this._takeScreenshot.bind(this)
     this._toggleDraw = this._toggleDraw.bind(this)
     this._toggleColor = this._toggleColor.bind(this)
   }
@@ -67,6 +69,14 @@ export default class SketchSceneAR extends Component {
           />
 
           <ViroButton
+            source={require("../res/nevermind.png")}
+            position={[-0, 0.7, -2]}
+            height={0.5}
+            width={0.5}
+            onClick={this._takeScreenshot}
+          />
+
+          <ViroButton
             source={require("../res/gohome.png")}
             position={[0, -0.6, -2]}
             height={0.4}
@@ -77,59 +87,58 @@ export default class SketchSceneAR extends Component {
           <ViroButton
             source={require("../res/purplebutton.png")}
             position={[0.5, -1, -2]}
-            height={0.4}
-            width={0.4}
+            height={0.3}
+            width={0.3}
             onClick={() => this._toggleColor("purple")}
           />
 
           <ViroButton
             source={require("../res/greenbutton.png")}
             position={[-0.5, -1, -2]}
-            height={0.4}
-            width={0.4}
+            height={0.3}
+            width={0.3}
             onClick={() => this._toggleColor("green")}
           />
 
           <ViroButton
             source={require("../res/orangebutton.png")}
             position={[0.25, -1, -2]}
-            height={0.4}
-            width={0.4}
+            height={0.3}
+            width={0.3}
             onClick={() => this._toggleColor("orange")}
           />
 
           <ViroButton
             source={require("../res/redbutton.png")}
             position={[-0.25, -1, -2]}
-            height={0.4}
-            width={0.4}
+            height={0.3}
+            width={0.3}
             onClick={() => this._toggleColor("red")}
           />
 
           <ViroButton
             source={require("../res/bluebutton.png")}
             position={[0, -1, -2]}
-            height={0.4}
-            width={0.4}
+            height={0.3}
+            width={0.3}
             onClick={() => this._toggleColor("blue")}
           />
-
-          {this.state.polylines.map((line, i) => (
-            <ViroPolyline
-              key={i}
-              position={[0, 0, -3]}
-              points={line.points}
-              thickness={this.state.thickness}
-              materials={line.color}
-            />
-          ))}
-          <ViroPolyline
-            position={[0, 0, -3]}
-            points={this.state.points}
-            thickness={this.state.thickness}
-            materials={this.state.color}
-          />
         </ViroCamera>
+        {this.state.polylines.map((line, i) => (
+          <ViroPolyline
+            key={i}
+            position={[0, 0, -3]}
+            points={line.points}
+            thickness={this.state.thickness}
+            materials={line.color}
+          />
+        ))}
+        <ViroPolyline
+          position={[0, 0, -3]}
+          points={this.state.points}
+          thickness={this.state.thickness}
+          materials={this.state.color}
+        />
       </ViroARScene>
     )
   }
@@ -140,6 +149,10 @@ export default class SketchSceneAR extends Component {
       points: [[0, 0, 0]],
       drawing: false
     })
+  }
+
+  async _takeScreenshot() {
+    const pic = await this.props.arSceneNavigator.takeScreenshot("tag", true)
   }
 
   _toggleDraw() {
