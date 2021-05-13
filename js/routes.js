@@ -6,16 +6,22 @@ import ViroNavigator from "./components/ViroNavigator"
 import store from "./store"
 import Homebase from "./components/Homebase"
 import Gallery from "./components/Gallery"
+import UploadTag from "./components/UploadTag"
 
 const Routes = props => {
-  console.disableYellowBox = true;
+  console.disableYellowBox = true
   return (
     <Provider store={store}>
       <NativeRouter history={nativeHistory}>
         <Route exact path="/" render={props => <App {...props} />} />
-        <Route exact path="/tag" render={props => <ViroNavigator {...props} />} />
+        <Route
+          exact
+          path="/tag"
+          render={props => <ViroNavigator {...props} />}
+        />
         <Route path="/homebase" component={Homebase} />
         <Route path="/gallery" component={Gallery} />
+        <Route path="/upload" component={UploadTag} />
       </NativeRouter>
     </Provider>
   )

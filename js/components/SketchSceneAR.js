@@ -7,7 +7,8 @@ import {
   ViroPolyline,
   ViroMaterials,
   ViroButton,
-  ViroCamera
+  ViroCamera,
+  ViroImage
 } from "react-viro"
 
 //add texture
@@ -38,6 +39,7 @@ export default class SketchSceneAR extends Component {
     // bind 'this' to functions
     this._onCameraARHitTest = this._onCameraARHitTest.bind(this)
     this._reset = this._reset.bind(this)
+    this._takeScreenshot = this._takeScreenshot.bind(this)
     this._toggleDraw = this._toggleDraw.bind(this)
     this._toggleColor = this._toggleColor.bind(this)
   }
@@ -71,7 +73,7 @@ export default class SketchSceneAR extends Component {
             position={[-0, 0.7, -2]}
             height={0.5}
             width={0.5}
-            onClick={this._reset}
+            onClick={this._takeScreenshot}
           />
 
           <ViroButton
@@ -147,6 +149,10 @@ export default class SketchSceneAR extends Component {
       points: [[0, 0, 0]],
       drawing: false
     })
+  }
+
+  async _takeScreenshot() {
+    const pic = await this.props.arSceneNavigator.takeScreenshot("tag", true)
   }
 
   _toggleDraw() {

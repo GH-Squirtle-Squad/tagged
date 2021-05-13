@@ -38,7 +38,7 @@ class App extends Component {
               placeholder="Username"
               placeholderTextColor="#000000"
               autoCapitalize="none"
-              onChangeText={text => this.setState({ username: text})}
+              onChangeText={text => this.setState({ username: text })}
             />
             <TextInput
               style={styles.input}
@@ -46,11 +46,11 @@ class App extends Component {
               placeholder="Password"
               placeholderTextColor="#000000"
               autoCapitalize="none"
-              onChangeText={text => this.setState({ password: text})}
+              onChangeText={text => this.setState({ password: text })}
             />
           </View>
           <Button
-            buttonStyle={styles.button}
+            buttonStyle={styles.signButton}
             containerStyle={{ margin: 5 }}
             disabledStyle={{
               borderWidth: 2,
@@ -67,7 +67,7 @@ class App extends Component {
             titleStyle={{ marginHorizontal: 5 }}
           />
           <Button
-            buttonStyle={styles.button}
+            buttonStyle={styles.loginButton}
             containerStyle={{ margin: 5 }}
             disabledStyle={{
               borderWidth: 2,
