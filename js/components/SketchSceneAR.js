@@ -31,7 +31,7 @@ export default class SketchSceneAR extends Component {
     // Set initial state here
     this.state = {
       thickness: 0.1,
-      points: [[0, 0, 0]],
+      points: [[0, 0, -3]],
       polylines: [],
       writeAccessPermission: false,
       readAccessPermission: false,
@@ -53,7 +53,7 @@ export default class SketchSceneAR extends Component {
     if (color !== oldColor && drawing) {
       this.setState({
         polylines: [...polylines, { points: points, color: oldColor }],
-        points: [[0, 0, 0]],
+        points: [[0, 0, -3]],
         color: color
       })
     }
@@ -61,7 +61,7 @@ export default class SketchSceneAR extends Component {
     if (!drawing && polylines.length > 0) {
       this.setState({
         polylines: [],
-        points: [[0, 0, 0]]
+        points: [[0, 0, -3]]
       })
     }
   }
@@ -101,7 +101,7 @@ export default class SketchSceneAR extends Component {
   _reset() {
     this.setState({
       polylines: [],
-      points: [[0, 0, 0]]
+      points: [[0, 0, -3]]
     })
   }
 
@@ -167,7 +167,7 @@ export default class SketchSceneAR extends Component {
   }
 
   async _takeScreenshot() {
-    if (Platform.OS !== "ios" && !this.state.writeAccessPermission) {
+    if (Platform.OS === "android" && !this.state.writeAccessPermission) {
       this.requestWriteAccessPermission()
     }
     await this.props.arSceneNavigator.takeScreenshot("tag", true)
@@ -181,7 +181,8 @@ export default class SketchSceneAR extends Component {
           let result = results.hitTestResults[i]
           if (
             result.type == "ExistingPlaneUsingExtent" ||
-            result.type == "FeaturePoint"
+            result.type == "FeaturePoint" ||
+            result.type == "Estimated Horizontal Plane"
           ) {
             this.setState({
               points: [...this.state.points, result.transform.position]
