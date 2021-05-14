@@ -9,7 +9,7 @@ class UploadTag extends Component {
     super(props)
     this.state = {
       title: "",
-   
+      image: null
     }
     this._handleSubmit = this._handleSubmit.bind(this)
   }
@@ -25,11 +25,34 @@ class UploadTag extends Component {
             style={styles.logo}
             source={require("../res/welcomelogo.png")}
           />
+          {this.state.image ? (
+            <Image
+              style={styles.preview}
+              source={{ uri: this.state.image.uri }}
+            />
+          ) : null}
           <TextInput
             style={styles.input}
             placeholder="Title"
             autocapitalize="none"
             placeholderTextColor="#000000"
+          />
+          <Button
+            buttonStyle={styles.signButton}
+            containerStyle={{ margin: 5 }}
+            disabledStyle={{
+              borderWidth: 2,
+              borderColor: "#00F"
+            }}
+            disabledTitleStyle={{ color: "#00F" }}
+            linearGradientProps={null}
+            iconContainerStyle={{ background: "#000" }}
+            loadingProps={{ animating: true }}
+            loadingStyle={{}}
+            onPress={() => console.log("Button clicked")}
+            title="Choose Photo"
+            titleProps={{}}
+            titleStyle={{ marginHorizontal: 5 }}
           />
           <Button
             buttonStyle={styles.signButton}
