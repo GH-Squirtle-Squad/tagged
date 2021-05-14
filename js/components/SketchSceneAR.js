@@ -25,111 +25,58 @@ ViroMaterials.createMaterials({
 })
 
 export default class SketchSceneAR extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     // Set initial state here
     this.state = {
       thickness: 0.1,
       points: [[0, 0, 0]],
       polylines: [],
-      drawing: false,
-      color: "white",
       writeAccessPermission: false,
-      readAccessPermission: false
+      readAccessPermission: false,
+      color: props.arSceneNavigator.viroAppProps.color
     }
 
     // bind 'this' to functions
     this._onCameraARHitTest = this._onCameraARHitTest.bind(this)
-    this._reset = this._reset.bind(this)
     this._takeScreenshot = this._takeScreenshot.bind(this)
-    this._toggleDraw = this._toggleDraw.bind(this)
-    this._toggleColor = this._toggleColor.bind(this)
     this.requestWriteAccessPermission =
       this.requestWriteAccessPermission.bind(this)
     this.requestReadAccessPermission =
       this.requestReadAccessPermission.bind(this)
   }
 
+  componentDidUpdate(prevProps) {
+    const { drawing, color } = prevProps.arSceneNavigator.viroAppProps
+    const { color: oldColor, polylines, points } = this.state
+    if (color !== oldColor && drawing) {
+      this.setState({
+        polylines: [...polylines, { points: points, color: oldColor }],
+        points: [[0, 0, 0]],
+        color: color
+      })
+    }
+
+    if (!drawing && polylines.length > 0) {
+      this.setState({
+        polylines: [],
+        points: [[0, 0, 0]]
+      })
+    }
+  }
+
   render() {
-    console.log(this.props)
+    const viroProps = this.props.arSceneNavigator.viroAppProps
     return (
       <ViroARScene onCameraARHitTest={this._onCameraARHitTest}>
         <ViroCamera position={[0, 0, 0]} active={true}>
-          <ViroButton
-            source={
-              !this.state.drawing
-                ? require("../res/startdrawing.png")
-                : require("../res/stopdrawing.png")
-            }
-            position={[0.3, 1, -2]}
-            height={0.5}
-            width={0.5}
-            onClick={this._toggleDraw}
-          />
-
-          <ViroButton
-            source={require("../res/nevermind.png")}
-            position={[-0.3, 1, -2]}
-            height={0.5}
-            width={0.5}
-            onClick={this._reset}
-          />
-
           <ViroButton
             source={require("../res/camerabutton.png")}
             position={[-0, 0.6, -2]}
             height={0.3}
             width={0.3}
             onClick={this._takeScreenshot}
-          />
-
-          <ViroButton
-            source={require("../res/gohome.png")}
-            position={[0, -0.6, -2]}
-            height={0.4}
-            width={0.4}
-            onClick={() => this.props.arSceneNavigator.viroAppProps._goHome()}
-          />
-
-          <ViroButton
-            source={require("../res/purplebutton.png")}
-            position={[0.5, -1, -2]}
-            height={0.3}
-            width={0.3}
-            onClick={() => this._toggleColor("purple")}
-          />
-
-          <ViroButton
-            source={require("../res/greenbutton.png")}
-            position={[-0.5, -1, -2]}
-            height={0.3}
-            width={0.3}
-            onClick={() => this._toggleColor("green")}
-          />
-
-          <ViroButton
-            source={require("../res/orangebutton.png")}
-            position={[0.25, -1, -2]}
-            height={0.3}
-            width={0.3}
-            onClick={() => this._toggleColor("orange")}
-          />
-
-          <ViroButton
-            source={require("../res/redbutton.png")}
-            position={[-0.25, -1, -2]}
-            height={0.3}
-            width={0.3}
-            onClick={() => this._toggleColor("red")}
-          />
-
-          <ViroButton
-            source={require("../res/bluebutton.png")}
-            position={[0, -1, -2]}
-            height={0.3}
-            width={0.3}
-            onClick={() => this._toggleColor("blue")}
           />
         </ViroCamera>
         {this.state.polylines.map((line, i) => (
@@ -145,7 +92,7 @@ export default class SketchSceneAR extends Component {
           position={[0, 0, -3]}
           points={this.state.points}
           thickness={this.state.thickness}
-          materials={this.state.color}
+          materials={viroProps.color}
         />
       </ViroARScene>
     )
@@ -154,8 +101,7 @@ export default class SketchSceneAR extends Component {
   _reset() {
     this.setState({
       polylines: [],
-      points: [[0, 0, 0]],
-      drawing: false
+      points: [[0, 0, 0]]
     })
   }
 
@@ -228,43 +174,8 @@ export default class SketchSceneAR extends Component {
     alert("Piece saved to camera roll!")
   }
 
-  _toggleDraw() {
-    const current = this.state.drawing
-    const points = [...this.state.points]
-    if (current) {
-      this.setState({
-        polylines: [
-          ...this.state.polylines,
-          { points: points, color: this.state.color }
-        ],
-        points: [[0, 0, 0]]
-      })
-    }
-    this.setState({
-      drawing: !current
-    })
-  }
-
-  _toggleColor(colorName) {
-    const current = this.state.color
-    const points = [...this.state.points]
-    if (this.state.color !== colorName) {
-      this.setState({
-        polylines: [
-          ...this.state.polylines,
-          { points: points, color: current }
-        ],
-        points: [[0, 0, 0]]
-      })
-
-      this.setState({
-        color: colorName
-      })
-    }
-  }
-
   _onCameraARHitTest(results) {
-    if (this.state.drawing) {
+    if (this.props.arSceneNavigator.viroAppProps.drawing) {
       if (results.hitTestResults.length > 0) {
         for (var i = 0; i < results.hitTestResults.length; i++) {
           let result = results.hitTestResults[i]

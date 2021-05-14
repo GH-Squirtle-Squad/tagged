@@ -43,6 +43,22 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "100%"
   },
+  nevermind: {
+    resizeMode: "contain",
+    height: "100%"
+  },
+  goHome: {
+    resizeMode: "contain",
+    height: "50%"
+  },
+  sprayCanWrapper: {
+    backgroundColor: "#00000000",
+    height: 80
+  },
+  sprayCan: {
+    height: "100%",
+    resizeMode: "contain"
+  },
   inner: {
     flex: 1,
     width: "100%",
