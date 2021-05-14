@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { View, Image, TouchableHighlight } from "react-native"
+import { View, Image, TouchableHighlight, Platform, PermissionsAndroid  } from "react-native"
 import { ViroARSceneNavigator } from "react-viro"
 import SketchSceneAR from "./SketchSceneAR"
 import styles from "../styles"
@@ -17,6 +17,7 @@ export default class ViroNavigator extends Component {
     this._goHome = this._goHome.bind(this)
     this._toggleColor = this._toggleColor.bind(this)
     this._reset = this._reset.bind(this)
+    this._takeScreenshot = this._takeScreenshot.bind(this)
   }
 
   render() {
@@ -37,9 +38,11 @@ export default class ViroNavigator extends Component {
             _goHome: this._goHome,
             color: this.state.color,
             drawing: this.state.drawing,
-            _reset: this._reset
+            _reset: this._reset,
+            _takeScreenshot: this._takeScreenshot
           }}
         />
+
 
         <View
           style={{
@@ -170,4 +173,17 @@ export default class ViroNavigator extends Component {
       color: colorName
     })
   }
+
+
+  async _takeScreenshot() {
+    if (Platform.OS === "android") {
+      // this.requestWriteAccessPermission()
+      console.log('i am an android')
+    }
+    await this.props.arSceneNavigator.takeScreenshot("tag", true)
+    alert("Piece saved to camera roll!")
+  }
+
 }
+
+
