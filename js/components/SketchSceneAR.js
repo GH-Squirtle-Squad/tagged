@@ -98,13 +98,6 @@ export default class SketchSceneAR extends Component {
     )
   }
 
-  _reset() {
-    this.setState({
-      polylines: [],
-      points: [[0, 0, -3]]
-    })
-  }
-
   async requestWriteAccessPermission() {
     try {
       const granted = await PermissionsAndroid.requestMultiple(
