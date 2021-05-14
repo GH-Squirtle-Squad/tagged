@@ -165,11 +165,9 @@ export default class ViroNavigator extends Component {
   }
 
   _toggleColor(colorName) {
-    if (this.state.color !== colorName) {
-      this.setState({
-        drawing: true,
-        color: colorName
-      })
-    }
+    this.setState({
+      drawing: true,
+      color: colorName
+    })
   }
 }
