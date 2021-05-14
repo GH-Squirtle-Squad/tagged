@@ -30,8 +30,8 @@ export default class SketchSceneAR extends Component {
 
     // Set initial state here
     this.state = {
-      thickness: 0.1,
-      points: [[0, 0]],
+      thickness: 0.2,
+      points: [[0, 0, -3]],
       polylines: [],
       writeAccessPermission: false,
       readAccessPermission: false,
@@ -53,7 +53,7 @@ export default class SketchSceneAR extends Component {
     if (color !== oldColor && drawing) {
       this.setState({
         polylines: [...polylines, { points: points, color: oldColor }],
-        points: [[0, 0]],
+        points: [[0, 0, -3]],
         color: color
       })
     }
@@ -61,7 +61,7 @@ export default class SketchSceneAR extends Component {
     if (!drawing && polylines.length > 0) {
       this.setState({
         polylines: [],
-        points: [[0, 0]]
+        points: [[0, 0, -3]]
       })
     }
   }
@@ -101,7 +101,7 @@ export default class SketchSceneAR extends Component {
   _reset() {
     this.setState({
       polylines: [],
-      points: [[0, 0]]
+      points: [[0, 0, -3]]
     })
   }
 
