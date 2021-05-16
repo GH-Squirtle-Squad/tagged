@@ -1,11 +1,5 @@
 import React, { Component } from "react"
-import {
-  View,
-  Image,
-  TouchableHighlight,
-  Platform,
-  PermissionsAndroid
-} from "react-native"
+import { View, Image, TouchableHighlight, Platform } from "react-native"
 import { ViroARSceneNavigator } from "react-viro"
 import SketchSceneAR from "./SketchSceneAR"
 import styles from "../styles"
@@ -42,11 +36,8 @@ export default class ViroNavigator extends Component {
           style={{ flex: 1 }}
           initialScene={{ scene: SketchSceneAR }}
           viroAppProps={{
-            _goHome: this._goHome,
             color: this.state.color,
-            drawing: this.state.drawing,
-            _reset: this._reset,
-            _takeScreenshot: this._takeScreenshot
+            drawing: this.state.drawing
           }}
           ref={this._setARNavigatorRef}
         />
@@ -73,7 +64,28 @@ export default class ViroNavigator extends Component {
             />
           </TouchableHighlight>
         </View>
-
+        <View
+          style={{
+            position: "absolute",
+            bottom: 600,
+            left: 0,
+            right: 0,
+            flexDirection: "row",
+            justifyContent: "space-around",
+            alignItems: "center"
+          }}
+        >
+          <TouchableHighlight
+            style={styles.sprayCanWrapper}
+            underlayColor={"#00000000"}
+            onPress={this._takeScreenshot}
+          >
+            <Image
+              style={styles.nevermind}
+              source={require("../res/camerabutton.png")}
+            />
+          </TouchableHighlight>
+        </View>
         <View
           style={{
             position: "absolute",
@@ -180,11 +192,11 @@ export default class ViroNavigator extends Component {
 
   async _takeScreenshot() {
     if (Platform.OS === "android") {
-      // this.requestWriteAccessPermission()
-      console.log("i am an android")
+      alert("Screenshot feature for Android devices coming soon.")
+    } else {
+      await this._arNavigator._takeScreenshot("tag", true)
+      alert("Piece saved to camera roll!")
     }
-    await this._arNavigator._takeScreenshot("tag", true)
-    alert("Piece saved to camera roll!")
   }
 
   _toggleColor(colorName) {
@@ -194,3 +206,68 @@ export default class ViroNavigator extends Component {
     })
   }
 }
+
+//SAMPLE PERMISSIONS CODE:
+
+//import { PermissionsAndroid } from "react-native"
+
+// async requestWriteAccessPermission() {
+//   try {
+//     const granted = await PermissionsAndroid.requestMultiple(
+//       [
+//         PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+//         PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE
+//       ],
+//       {
+//         title: "<tagged/> Write Permission",
+//         message:
+//           "<tagged/> needs to access your photos" +
+//           "so you can record photos of" +
+//           "your tags.",
+//         buttonNeutral: "Ask Me Later",
+//         buttonNegative: "Cancel",
+//         buttonPositive: "OK"
+//       }
+//     )
+//     if (granted == PermissionsAndroid.RESULTS.GRANTED) {
+//       this.setState({
+//         writeAccessPermission: true,
+//         readAccessPermission: true
+//       })
+//     } else {
+//       this.setState({
+//         writeAccessPermission: false
+//       })
+//     }
+//   } catch (err) {
+//     console.warn("[PermissionsAndroid]" + err)
+//   }
+// }
+
+// async requestReadAccessPermission() {
+//   try {
+//     const granted = await PermissionsAndroid.request(
+//       PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+//       {
+//         title: "<tagged/> File Permission",
+//         message:
+//           "<tagged/> needs to access your file " +
+//           "so you can view your tags in the gallery.",
+//         buttonNeutral: "Ask Me Later",
+//         buttonNegative: "Cancel",
+//         buttonPositive: "OK"
+//       }
+//     )
+//     if (granted == PermissionsAndroid.RESULTS.GRANTED) {
+//       this.setState({
+//         readAccessPermission: true
+//       })
+//     } else {
+//       this.setState({
+//         readAccessPermission: false
+//       })
+//     }
+//   } catch (err) {
+//     console.warn("[PermissionsAndroid]" + err)
+//   }
+// }

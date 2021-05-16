@@ -2,15 +2,7 @@
 
 import React, { Component } from "react"
 
-import {
-  ViroARScene,
-  ViroPolyline,
-  ViroMaterials,
-  ViroButton,
-  ViroCamera
-} from "react-viro"
-
-import { Platform, PermissionsAndroid } from "react-native"
+import { ViroARScene, ViroPolyline, ViroMaterials } from "react-viro"
 
 //add texture
 ViroMaterials.createMaterials({
@@ -40,11 +32,6 @@ export default class SketchSceneAR extends Component {
 
     // bind 'this' to functions
     this._onCameraARHitTest = this._onCameraARHitTest.bind(this)
-    // this._takeScreenshot = this._takeScreenshot.bind(this)
-    // this.requestWriteAccessPermission =
-    //   this.requestWriteAccessPermission.bind(this)
-    // this.requestReadAccessPermission =
-    //   this.requestReadAccessPermission.bind(this)
   }
 
   componentDidUpdate(prevProps) {
@@ -71,15 +58,6 @@ export default class SketchSceneAR extends Component {
     console.log(viroProps)
     return (
       <ViroARScene onCameraARHitTest={this._onCameraARHitTest}>
-{/* <ViroCamera position={[0, 0, 0]} active={true}> */}
-          <ViroButton
-            source={require("../res/camerabutton.png")}
-            position={[-0, 0.6, -2]}
-            height={0.3}
-            width={0.3}
-            onClick={() => viroProps._takeScreenshot()}
-          />
-      {/* </ViroCamera> */}
         {this.state.polylines.map((line, i) => (
           <ViroPolyline
             key={i}
@@ -98,75 +76,6 @@ export default class SketchSceneAR extends Component {
       </ViroARScene>
     )
   }
-
-  // async requestWriteAccessPermission() {
-  //   try {
-  //     const granted = await PermissionsAndroid.requestMultiple(
-  //       [
-  //         PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-  //         PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE
-  //       ],
-  //       {
-  //         title: "<tagged/> Write Permission",
-  //         message:
-  //           "<tagged/> needs to access your photos" +
-  //           "so you can record photos of" +
-  //           "your tags.",
-  //         buttonNeutral: "Ask Me Later",
-  //         buttonNegative: "Cancel",
-  //         buttonPositive: "OK"
-  //       }
-  //     )
-  //     if (granted == PermissionsAndroid.RESULTS.GRANTED) {
-  //       this.setState({
-  //         writeAccessPermission: true,
-  //         readAccessPermission: true
-  //       })
-  //     } else {
-  //       this.setState({
-  //         writeAccessPermission: false
-  //       })
-  //     }
-  //   } catch (err) {
-  //     console.warn("[PermissionsAndroid]" + err)
-  //   }
-  // }
-
-  // async requestReadAccessPermission() {
-  //   try {
-  //     const granted = await PermissionsAndroid.request(
-  //       PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-  //       {
-  //         title: "<tagged/> File Permission",
-  //         message:
-  //           "<tagged/> needs to access your file " +
-  //           "so you can view your tags in the gallery.",
-  //         buttonNeutral: "Ask Me Later",
-  //         buttonNegative: "Cancel",
-  //         buttonPositive: "OK"
-  //       }
-  //     )
-  //     if (granted == PermissionsAndroid.RESULTS.GRANTED) {
-  //       this.setState({
-  //         readAccessPermission: true
-  //       })
-  //     } else {
-  //       this.setState({
-  //         readAccessPermission: false
-  //       })
-  //     }
-  //   } catch (err) {
-  //     console.warn("[PermissionsAndroid]" + err)
-  //   }
-  // }
-
-  // async _takeScreenshot() {
-  //   if (Platform.OS === "android" && !this.state.writeAccessPermission) {
-  //     this.requestWriteAccessPermission()
-  //   }
-  //   await this.props.arSceneNavigator.takeScreenshot("tag", true)
-  //   alert("Piece saved to camera roll!")
-  // }
 
   _onCameraARHitTest(results) {
     if (this.props.arSceneNavigator.viroAppProps.drawing) {
