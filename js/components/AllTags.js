@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { View, Image, ScrollView, Text } from "react-native"
 import { Button } from "react-native-elements"
 import { connect } from "react-redux"
-import { fetchTags } from "../store/tags"
+import { fetchTags, deleteTag } from "../store/tags"
 import styles from "../styles"
 
 class AllTags extends Component {
@@ -15,9 +15,23 @@ class AllTags extends Component {
     return (
       <ScrollView style={{ backgroundColor: "black" }}>
         <View>
-          <Text
-            style={{ marginTop: 100, color: "white", height: 50, fontSize: 24 }}
-          >
+          <Button
+            buttonStyle={styles.homeButton}
+            disabledStyle={{
+              borderWidth: 2,
+              borderColor: "#00F"
+            }}
+            disabledTitleStyle={{ color: "#00F" }}
+            linearGradientProps={null}
+            iconContainerStyle={{ background: "#000" }}
+            loadingProps={{ animating: true }}
+            loadingStyle={{}}
+            onPress={() => this.props.history.push("/homebase")}
+            title="Return Home"
+            titleProps={{}}
+            titleStyle={{ marginHorizontal: 5 }}
+          />
+          <Text style={{ color: "white", height: 50, fontSize: 24 }}>
             All Tags
           </Text>
         </View>
@@ -43,7 +57,7 @@ class AllTags extends Component {
                 iconContainerStyle={{ background: "#000" }}
                 loadingProps={{ animating: true }}
                 loadingStyle={{}}
-                onPress={() => console.log("delete pressed")}
+                onPress={() => this.props.deleteTag(tag.id)}
                 title="Delete"
                 titleProps={{}}
                 titleStyle={{ marginHorizontal: 5 }}
@@ -61,7 +75,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  fetchTags: () => dispatch(fetchTags())
+  fetchTags: () => dispatch(fetchTags()),
+  deleteTag: id => dispatch(deleteTag(id))
 })
 
 export default connect(mapState, mapDispatch)(AllTags)

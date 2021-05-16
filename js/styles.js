@@ -26,6 +26,11 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 96
   },
+  homeButton: {
+    marginTop: 50,
+    marginBottom: 10,
+    width: 152
+  },
   signButton: {
     width: 152,
     borderRadius: 10,

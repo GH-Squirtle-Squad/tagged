@@ -26,18 +26,20 @@ export const fetchTags = () => {
 }
 
 export const deleteTag = id => {
-  try {
-    const token = await AsyncStorage.getItem(TOKEN)
-    if (token) {
-      const { data } = await axios.delete(`${serverUrl}api/tags/${id}`, {
-        headers: {
-          authorization: token
-        }
-      })
-      dispatch(removeTag(data))
+  return async dispatch => {
+    try {
+      const token = await AsyncStorage.getItem(TOKEN)
+      if (token) {
+        const { data } = await axios.delete(`${serverUrl}api/tags/${id}`, {
+          headers: {
+            authorization: token
+          }
+        })
+        dispatch(removeTag(data))
+      }
+    } catch (err) {
+      console.log(err)
     }
-  } catch (err) {
-    console.log(err)
   }
 }
 

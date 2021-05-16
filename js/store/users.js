@@ -34,18 +34,20 @@ export const fetchUsers = () => {
 }
 
 export const deleteUser = id => {
-  try {
-    const token = await AsyncStorage.getItem(TOKEN)
-    if (token) {
-      const { data } = await axios.delete(`${serverUrl}api/users/${id}`, {
-        headers: {
-          authorization: token
-        }
-      })
-      dispatch(removeUser(data))
+  return async dispatch => {
+    try {
+      const token = await AsyncStorage.getItem(TOKEN)
+      if (token) {
+        const { data } = await axios.delete(`${serverUrl}api/users/${id}`, {
+          headers: {
+            authorization: token
+          }
+        })
+        dispatch(removeUser(data))
+      }
+    } catch (err) {
+      console.log(err)
     }
-  } catch (err) {
-    console.log(err)
   }
 }
 
