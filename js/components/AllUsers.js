@@ -35,39 +35,44 @@ class AllUsers extends Component {
             All Users
           </Text>
         </View>
-        {users.map(user => {
-          return (
-            <View key={user.id}>
-              <Text h3 style={{ color: "white" }}>
-                {user.name}
-              </Text>
-              <Button
-                buttonStyle={{ width: 100 }}
-                containerStyle={{ margin: 5 }}
-                disabledStyle={{
-                  borderWidth: 2,
-                  borderColor: "#00F"
-                }}
-                disabledTitleStyle={{ color: "#00F" }}
-                linearGradientProps={null}
-                iconContainerStyle={{ background: "#000" }}
-                loadingProps={{ animating: true }}
-                loadingStyle={{}}
-                onPress={() => this.props.deleteUser(user.id)}
-                title="Delete"
-                titleProps={{}}
-                titleStyle={{ marginHorizontal: 5 }}
-              />
-            </View>
-          )
-        })}
+        {this.props.isAdmin ? (
+          users.map(user => {
+            return (
+              <View key={user.id}>
+                <Text h3 style={{ color: "white" }}>
+                  {user.name}
+                </Text>
+                <Button
+                  buttonStyle={{ width: 100 }}
+                  containerStyle={{ margin: 5 }}
+                  disabledStyle={{
+                    borderWidth: 2,
+                    borderColor: "#00F"
+                  }}
+                  disabledTitleStyle={{ color: "#00F" }}
+                  linearGradientProps={null}
+                  iconContainerStyle={{ background: "#000" }}
+                  loadingProps={{ animating: true }}
+                  loadingStyle={{}}
+                  onPress={() => this.props.deleteUser(user.id)}
+                  title="Delete"
+                  titleProps={{}}
+                  titleStyle={{ marginHorizontal: 5 }}
+                />
+              </View>
+            )
+          })
+        ) : (
+          <Text style={{ color: "white" }}>You shall not pass!</Text>
+        )}
       </ScrollView>
     )
   }
 }
 
 const mapState = state => ({
-  users: state.users
+  users: state.users,
+  isAdmin: state.auth.isAdmin
 })
 
 const mapDispatch = dispatch => ({

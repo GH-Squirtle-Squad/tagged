@@ -35,43 +35,48 @@ class AllTags extends Component {
             All Tags
           </Text>
         </View>
-        {tags.map(tag => {
-          return (
-            <View key={tag.id}>
-              <Image
-                source={{ uri: tag.imageUrl }}
-                style={styles.galleryImage}
-              />
-              <Text h3 style={{ color: "white" }}>
-                {tag.title}
-              </Text>
-              <Button
-                buttonStyle={{ width: 100 }}
-                containerStyle={{ margin: 5 }}
-                disabledStyle={{
-                  borderWidth: 2,
-                  borderColor: "#00F"
-                }}
-                disabledTitleStyle={{ color: "#00F" }}
-                linearGradientProps={null}
-                iconContainerStyle={{ background: "#000" }}
-                loadingProps={{ animating: true }}
-                loadingStyle={{}}
-                onPress={() => this.props.deleteTag(tag.id)}
-                title="Delete"
-                titleProps={{}}
-                titleStyle={{ marginHorizontal: 5 }}
-              />
-            </View>
-          )
-        })}
+        {this.props.isAdmin ? (
+          tags.map(tag => {
+            return (
+              <View key={tag.id}>
+                <Image
+                  source={{ uri: tag.imageUrl }}
+                  style={styles.galleryImage}
+                />
+                <Text h3 style={{ color: "white" }}>
+                  {tag.title}
+                </Text>
+                <Button
+                  buttonStyle={{ width: 100 }}
+                  containerStyle={{ margin: 5 }}
+                  disabledStyle={{
+                    borderWidth: 2,
+                    borderColor: "#00F"
+                  }}
+                  disabledTitleStyle={{ color: "#00F" }}
+                  linearGradientProps={null}
+                  iconContainerStyle={{ background: "#000" }}
+                  loadingProps={{ animating: true }}
+                  loadingStyle={{}}
+                  onPress={() => this.props.deleteTag(tag.id)}
+                  title="Delete"
+                  titleProps={{}}
+                  titleStyle={{ marginHorizontal: 5 }}
+                />
+              </View>
+            )
+          })
+        ) : (
+          <Text style={{ color: "white" }}>You shall not pass!</Text>
+        )}
       </ScrollView>
     )
   }
 }
 
 const mapState = state => ({
-  tags: state.tags
+  tags: state.tags,
+  isAdmin: state.auth.isAdmin
 })
 
 const mapDispatch = dispatch => ({
