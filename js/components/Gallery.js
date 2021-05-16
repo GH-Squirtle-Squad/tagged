@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { View, Text, Image, ImageBackground, ScrollView } from "react-native"
+import { View, Text, Image, ScrollView } from "react-native"
 import { Button } from "react-native-elements"
 import styles from "../styles"
 import { fetchTags } from "../store/tags"
