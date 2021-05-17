@@ -13,7 +13,7 @@ class AllUsers extends Component {
   render() {
     const users = this.props.users || []
     return (
-      <ScrollView style={{ backgroundColor: "black" }}>
+      <ScrollView style={{ backgroundColor: "white" }}>
         <View>
           <Button
             buttonStyle={styles.homeButton}

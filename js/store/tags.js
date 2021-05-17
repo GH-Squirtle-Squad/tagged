@@ -33,7 +33,7 @@ export const deleteTag = id => {
     try {
       const token = await AsyncStorage.getItem(TOKEN)
       if (token) {
-        const { data } = await axios.delete(`${serverUrl}api/tags/${id}`, {
+        const { data } = await axios.delete(`${serverURL}api/tags/${id}`, {
           headers: {
             authorization: token
           }
