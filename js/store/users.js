@@ -22,7 +22,7 @@ export const fetchUsers = () => {
     try {
       const token = await AsyncStorage.getItem(TOKEN)
       if (token) {
-        const { data } = await axios.get(`${serverUrl}api/users`, {
+        const { data } = await axios.get(`${serverURL}api/users`, {
           headers: {
             authorization: token
           }
@@ -40,7 +40,7 @@ export const deleteUser = id => {
     try {
       const token = await AsyncStorage.getItem(TOKEN)
       if (token) {
-        const { data } = await axios.delete(`${serverUrl}api/users/${id}`, {
+        const { data } = await axios.delete(`${serverURL}api/users/${id}`, {
           headers: {
             authorization: token
           }
