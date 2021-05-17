@@ -40,7 +40,7 @@ class AllUsers extends Component {
             return (
               <View key={user.id}>
                 <Text h3 style={{ color: "white" }}>
-                  {user.name}
+                  {user.username}
                 </Text>
                 <Button
                   buttonStyle={{ width: 100 }}
