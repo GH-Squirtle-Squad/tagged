@@ -1,5 +1,8 @@
 import axios from "axios"
 const serverURL = "https://tagged-backend.herokuapp.com/"
+import { AsyncStorage } from "react-native"
+
+const TOKEN = "token"
 
 const GET_TAGS = "GET_TAGS"
 const REMOVE_TAG = "REMOVE_TAG"

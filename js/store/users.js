@@ -2,6 +2,8 @@ import axios from "axios"
 import { AsyncStorage } from "react-native"
 const serverURL = "https://tagged-backend.herokuapp.com/"
 
+const TOKEN = "token"
+
 const GET_USERS = "GET_USERS"
 const REMOVE_USER = "REMOVE_USER"
 
