@@ -7,6 +7,8 @@ import store from "./store"
 import Homebase from "./components/Homebase"
 import Gallery from "./components/Gallery"
 import UploadTag from "./components/UploadTag"
+import AllUsers from "./components/AllUsers"
+import AllTags from "./components/AllTags"
 
 const Routes = props => {
   console.disableYellowBox = true
@@ -22,6 +24,8 @@ const Routes = props => {
         <Route path="/homebase" component={Homebase} />
         <Route path="/gallery" component={Gallery} />
         <Route path="/upload" component={UploadTag} />
+        <Route path="/users" component={AllUsers} />
+        <Route path="/tags" component={AllTags} />
       </NativeRouter>
     </Provider>
   )

@@ -69,14 +69,56 @@ class Homebase extends Component {
             titleProps={{}}
             titleStyle={{ marginHorizontal: 5 }}
           />
+          {this.props.isAdmin ? (
+            <View>
+              <Button
+                buttonStyle={styles.button}
+                containerStyle={{ margin: 5 }}
+                disabledStyle={{
+                  borderWidth: 2,
+                  borderColor: "#00F"
+                }}
+                disabledTitleStyle={{ color: "#00F" }}
+                linearGradientProps={null}
+                iconContainerStyle={{ background: "#000" }}
+                loadingProps={{ animating: true }}
+                loadingStyle={{}}
+                onPress={() => this.props.history.push("/users")}
+                title="All Users"
+                titleProps={{}}
+                titleStyle={{ marginHorizontal: 5 }}
+              />
+              <Button
+                buttonStyle={styles.button}
+                containerStyle={{ margin: 5 }}
+                disabledStyle={{
+                  borderWidth: 2,
+                  borderColor: "#00F"
+                }}
+                disabledTitleStyle={{ color: "#00F" }}
+                linearGradientProps={null}
+                iconContainerStyle={{ background: "#000" }}
+                loadingProps={{ animating: true }}
+                loadingStyle={{}}
+                onPress={() => this.props.history.push("/tags")}
+                title="All Tags"
+                titleProps={{}}
+                titleStyle={{ marginHorizontal: 5 }}
+              />
+            </View>
+          ) : null}
         </View>
       </View>
     )
   }
 }
 
+const mapState = state => ({
+  isAdmin: state.auth.isAdmin
+})
+
 const mapDispatch = dispatch => ({
   logout: history => dispatch(logout(history))
 })
 
-export default connect(null, mapDispatch)(Homebase)
+export default connect(mapState, mapDispatch)(Homebase)
