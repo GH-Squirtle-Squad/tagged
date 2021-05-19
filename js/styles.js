@@ -5,13 +5,13 @@ const styles = StyleSheet.create({
     flex: 1,
     fontFamily: "-apple-system, BlinkMacSystemFont Segoe UI",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: "black"
   },
   logoContainer: {
     alignItems: "center"
   },
   logo: {
-    marginTop: 40,
     resizeMode: "contain",
     width: "98%"
   },
@@ -32,9 +32,10 @@ const styles = StyleSheet.create({
     width: 152
   },
   signButton: {
-    width: 152,
-    borderRadius: 10,
-    marginTop: 100
+    width: 250,
+    height: 200,
+    resizeMode: "contain",
+    flex: 2
   },
   loginButton: {
     width: 152,
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
     marginBottom: 210
   },
   outer: {
-    flex: 1,
+    flex: 2,
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
@@ -67,8 +68,10 @@ const styles = StyleSheet.create({
   inner: {
     flex: 1,
     width: "100%",
-    marginBottom: 50
+    justifyContent: "center",
+    alignItems: "center"
   },
+
   input: {
     backgroundColor: "white",
     borderRadius: 10,
@@ -76,10 +79,12 @@ const styles = StyleSheet.create({
     width: "90%",
     margin: 15
   },
+
   preview: {
     resizeMode: "contain",
     height: "50%"
   },
+
   galleryImage: {
     shadowColor: "cyan",
     shadowOffset: {
@@ -88,8 +93,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.8,
     shadowRadius: 19.19,
-
-    // elevation: 23,
     width: 200,
     height: 210
   }
