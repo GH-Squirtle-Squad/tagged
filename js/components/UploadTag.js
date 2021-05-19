@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { View, TextInput, Image, ImageBackground } from "react-native"
+import { View, TextInput, Image, ImageBackground, TouchableHighlight } from "react-native"
 import background from "../res/image.png"
 import { Button } from "react-native-elements"
 import styles from "../styles"
@@ -17,9 +17,8 @@ class UploadTag extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <ImageBackground style={styles.backgroundImage} source={background}>
-          <View style={styles.logoContainer}></View>
-        </ImageBackground>
+              <ImageBackground style={styles.backgroundImage} source={require('../res/bg.png')}>
+            </ImageBackground>
         <View style={styles.outer}>
           <Image
             style={styles.logo}
@@ -37,7 +36,7 @@ class UploadTag extends Component {
             autocapitalize="none"
             placeholderTextColor="#000000"
           />
-          <Button
+          {/* <Button
             buttonStyle={styles.signButton}
             containerStyle={{ margin: 5 }}
             disabledStyle={{
@@ -53,8 +52,19 @@ class UploadTag extends Component {
             title="Choose Photo"
             titleProps={{}}
             titleStyle={{ marginHorizontal: 5 }}
-          />
-          <Button
+          /> */}
+           <TouchableHighlight
+            style={styles.sprayCanWrapper}
+            underlayColor={"#00000000"}
+            onPress={this._reset}
+          >
+            <Image
+              style={styles.img}
+              source={require("../res/choosephoto.png")}
+            />
+          </TouchableHighlight>
+
+          {/* <Button
             buttonStyle={styles.signButton}
             containerStyle={{ margin: 5 }}
             disabledStyle={{
@@ -70,7 +80,27 @@ class UploadTag extends Component {
             title="Upload"
             titleProps={{}}
             titleStyle={{ marginHorizontal: 5 }}
-          />
+          /> */}
+              <TouchableHighlight
+            style={styles.sprayCanWrapper}
+            underlayColor={"#00000000"}
+            onPress={this._reset}
+          >
+            <Image
+              style={styles.img}
+              source={require("../res/uploadimage.png")}
+            />
+          </TouchableHighlight>
+
+          <TouchableHighlight
+            underlayColor={"#00000000"}
+            onPress={() => this.props.history.push("/homebase")}
+          >
+            <Image
+              source={require("../res/gobackhome.png")}
+              style={styles.img}
+            />
+          </TouchableHighlight>
         </View>
       </View>
     )
