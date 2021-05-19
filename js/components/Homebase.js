@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { Button } from "react-native-elements"
-import { View, Image, ImageBackground } from "react-native"
+import { View, Image, ImageBackground, TouchableHighlight, ScrollView } from "react-native"
 import background from "../res/image.png"
 import styles from "../styles"
 import { logout } from "../store/auth"
@@ -9,106 +9,86 @@ import { logout } from "../store/auth"
 class Homebase extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <ImageBackground style={styles.backgroundImage} source={background}>
-          <View style={styles.logoContainer}></View>
+      <ScrollView fadingEdgeLength={1} >
+     <View style={styles.homebasecontainer}>
+        <ImageBackground style={styles.homebasebackgroundImage} 
+        source={require("../res/black.jpeg")}>
+          <View style={styles.hblogoContainer}></View>
         </ImageBackground>
-        <View style={styles.outer}>
+        <View style={styles.homebaseouter}>
           <Image
             style={styles.logo}
             source={require("../res/welcomelogo.png")}
           />
-          <Button
-            buttonStyle={styles.button}
-            containerStyle={{ margin: 5 }}
-            disabledStyle={{
-              borderWidth: 2,
-              borderColor: "#00F"
-            }}
-            disabledTitleStyle={{ color: "#00F" }}
-            linearGradientProps={null}
-            iconContainerStyle={{ background: "#000" }}
-            loadingProps={{ animating: true }}
-            loadingStyle={{}}
+
+  {/* throw up button */}
+          <View style={styles.blobs}>
+           <TouchableHighlight
+            underlayColor={"#00000000"}
             onPress={() => this.props.history.push("/tag")}
-            title="Throw Up!"
-            titleProps={{}}
-            titleStyle={{ marginHorizontal: 5 }}
-          />
-          <Button
-            buttonStyle={styles.button}
-            containerStyle={{ margin: 5 }}
-            disabledStyle={{
-              borderWidth: 2,
-              borderColor: "#00F"
-            }}
-            disabledTitleStyle={{ color: "#00F" }}
-            linearGradientProps={null}
-            iconContainerStyle={{ background: "#000" }}
-            loadingProps={{ animating: true }}
-            loadingStyle={{}}
+          >
+            <Image
+              source={require("../res/throwup.png")}
+               style={styles.img}
+            />
+          </TouchableHighlight>
+            
+
+  {/* tag gallery button   */}
+          <TouchableHighlight
+            underlayColor={"#00000000"}
             onPress={() => this.props.history.push("/gallery")}
-            title="Check Pieces Out!"
-            titleProps={{}}
-            titleStyle={{ marginHorizontal: 5 }}
-          />
-          <Button
-            buttonStyle={styles.button}
-            containerStyle={{ margin: 5 }}
-            disabledStyle={{
-              borderWidth: 2,
-              borderColor: "#00F"
-            }}
-            disabledTitleStyle={{ color: "#00F" }}
-            linearGradientProps={null}
-            iconContainerStyle={{ background: "#000" }}
-            loadingProps={{ animating: true }}
-            loadingStyle={{}}
+          >
+            <Image
+              source={require("../res/checkout.png")}
+              style={styles.img}
+            />
+          </TouchableHighlight>
+          </View>
+          
+  {/* logout button  */}
+             <TouchableHighlight
+            underlayColor={"#00000000"}
             onPress={() => this.props.logout(this.props.history)}
-            title="Log Out :("
-            titleProps={{}}
-            titleStyle={{ marginHorizontal: 5 }}
-          />
+            >        
+            <Image
+              source={require("../res/logout.png")}
+              style={styles.img}
+
+            />
+          </TouchableHighlight>
+
           {this.props.isAdmin ? (
             <View>
-              <Button
-                buttonStyle={styles.button}
-                containerStyle={{ margin: 5 }}
-                disabledStyle={{
-                  borderWidth: 2,
-                  borderColor: "#00F"
-                }}
-                disabledTitleStyle={{ color: "#00F" }}
-                linearGradientProps={null}
-                iconContainerStyle={{ background: "#000" }}
-                loadingProps={{ animating: true }}
-                loadingStyle={{}}
-                onPress={() => this.props.history.push("/users")}
-                title="All Users"
-                titleProps={{}}
-                titleStyle={{ marginHorizontal: 5 }}
-              />
-              <Button
-                buttonStyle={styles.button}
-                containerStyle={{ margin: 5 }}
-                disabledStyle={{
-                  borderWidth: 2,
-                  borderColor: "#00F"
-                }}
-                disabledTitleStyle={{ color: "#00F" }}
-                linearGradientProps={null}
-                iconContainerStyle={{ background: "#000" }}
-                loadingProps={{ animating: true }}
-                loadingStyle={{}}
-                onPress={() => this.props.history.push("/tags")}
-                title="All Tags"
-                titleProps={{}}
-                titleStyle={{ marginHorizontal: 5 }}
-              />
+
+  {/* admin users button  */}
+          <View style={styles.blobsadmin}>
+           <TouchableHighlight
+            underlayColor={"#00000000"}
+            onPress={() => this.props.history.push("/users")}
+          >
+            <Image
+              source={require("../res/adminnusers.png")}
+              style={styles.imgad}
+            />
+          </TouchableHighlight>
+
+  {/* admin tags button */}
+          <TouchableHighlight
+            underlayColor={"#00000000"}
+            onPress={() => this.props.history.push("/tags")}
+          >
+            <Image
+              style={styles.imgad}
+              source={require("../res/admintags.png")}
+            />
+          </TouchableHighlight>
+            </View>
             </View>
           ) : null}
         </View>
       </View>
+      </ScrollView>
     )
   }
 }
