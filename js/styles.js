@@ -6,7 +6,8 @@ const styles = StyleSheet.create({
     fontFamily: "-apple-system, BlinkMacSystemFont Segoe UI",
     justifyContent: "center",
     alignItems: "center",
-    height: 1000
+    height: 1000,
+    backgroundColor: "black"
   },
     homebaseouter: {
     flexDirection: "column",
@@ -32,21 +33,21 @@ const styles = StyleSheet.create({
     opacity: 0.9,
     height: "100%"
   },
+  
   blobs: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
     alignContent: "center",
-    // flexWrap: "wrap",
     width: "100%",
 
   },
+
     blobsadmin: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
     alignContent: "center",
-    // flexWrap: "wrap",
     width: "100%",
   },
 
@@ -106,6 +107,7 @@ logoContainer: {
     flex: 1,
     width: "100%",
   },
+
   input: {
     backgroundColor: "white",
     borderRadius: 10,
@@ -113,10 +115,12 @@ logoContainer: {
     width: "90%",
     margin: 15
   },
+
   preview: {
     resizeMode: "contain",
     height: "50%"
   },
+
   button: {
     borderRadius: 96
   },
@@ -138,6 +142,7 @@ logoContainer: {
 
   //Gallery Styling
 
+
   galleryImage: {
     shadowColor: "cyan",
     shadowOffset: {
@@ -146,8 +151,6 @@ logoContainer: {
     },
     shadowOpacity: 0.8,
     shadowRadius: 19.19,
-
-    // elevation: 23,
     width: 200,
     height: 210
   }
