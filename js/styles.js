@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native"
-
 const styles = StyleSheet.create({
   // HomeBase Styling
   homebasecontainer: {
@@ -7,7 +6,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     height: 1000,
-    backgroundColor: "black"
   },
     homebaseouter: {
     flexDirection: "column",
@@ -33,16 +31,13 @@ const styles = StyleSheet.create({
     opacity: 0.9,
     height: "100%"
   },
-  
   blobs: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
     alignContent: "center",
     width: "100%",
-
   },
-
     blobsadmin: {
     flexDirection: "row",
     alignItems: "center",
@@ -50,7 +45,6 @@ const styles = StyleSheet.create({
     alignContent: "center",
     width: "100%",
   },
-
   img: {
     resizeMode: "contain",
     height: 150,
@@ -61,7 +55,6 @@ const styles = StyleSheet.create({
     height: 100,
     width: 200
   },
-
 //AR Nav Styling 
 logoContainer: {
     alignItems: "center"
@@ -87,17 +80,16 @@ logoContainer: {
     opacity: 0.9,
     height: "100%"
   },
-
   //App Styling
   container: {
     flex: 1,
     fontFamily: "-apple-system, BlinkMacSystemFont Segoe UI",
     justifyContent: "center",
     alignItems: "center",
-    height: 1500
+    height: 1500,
   },
     outer: {
-    flex: 1,
+    flex: 2,
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
@@ -106,8 +98,9 @@ logoContainer: {
   inner: {
     flex: 1,
     width: "100%",
+     justifyContent: "center",
+    alignItems: "center"
   },
-
   input: {
     backgroundColor: "white",
     borderRadius: 10,
@@ -115,12 +108,10 @@ logoContainer: {
     width: "90%",
     margin: 15
   },
-
   preview: {
     resizeMode: "contain",
     height: "50%"
   },
-
   button: {
     borderRadius: 96
   },
@@ -130,19 +121,17 @@ logoContainer: {
     width: 152
   },
   signButton: {
-    width: 152,
-    borderRadius: 10,
-    marginTop: 100
+     width: 250,
+    height: 200,
+    resizeMode: "contain",
+    flex: 2
   },
   loginButton: {
     width: 152,
     borderRadius: 10,
     marginBottom: 210
   },
-
   //Gallery Styling
-
-
   galleryImage: {
     shadowColor: "cyan",
     shadowOffset: {
@@ -155,6 +144,4 @@ logoContainer: {
     height: 210
   }
 })
-
-
 export default styles
