@@ -2,9 +2,11 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import { Button } from "react-native-elements"
 import background from "../res/image.png"
-import { View, Text, ImageBackground, TextInput, Image } from "react-native"
+import { View, Text, ImageBackground, TextInput, Image, TouchableHighlight } from "react-native"
 import { authenticate } from "../store/auth"
 import styles from "../styles"
+import signup from "../res/signup.png"
+import login from "../res/login.png"
 
 class App extends Component {
   constructor(props) {
@@ -24,9 +26,6 @@ class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <ImageBackground style={styles.backgroundImage} source={background}>
-          <View style={styles.logoContainer}></View>
-        </ImageBackground>
         <View style={styles.outer}>
           <Image
             style={styles.logo}
@@ -48,43 +47,35 @@ class App extends Component {
               autoCapitalize="none"
               onChangeText={text => this.setState({ password: text })}
             />
-          </View>
-          <Button
-            buttonStyle={styles.signButton}
-            containerStyle={{ margin: 5 }}
-            disabledStyle={{
-              borderWidth: 2,
-              borderColor: "#00F"
-            }}
-            disabledTitleStyle={{ color: "#00F" }}
-            linearGradientProps={null}
-            iconContainerStyle={{ background: "#000" }}
-            loadingProps={{ animating: true }}
-            loadingStyle={{}}
-            onPress={() => this._handleSubmit("signup")}
-            title="Sign Up"
-            titleProps={{}}
-            titleStyle={{ marginHorizontal: 5 }}
-          />
-          <Button
-            buttonStyle={styles.loginButton}
-            containerStyle={{ margin: 5 }}
-            disabledStyle={{
-              borderWidth: 2,
-              borderColor: "#00F"
-            }}
-            disabledTitleStyle={{ color: "#00F" }}
-            linearGradientProps={null}
-            iconContainerStyle={{ background: "#000" }}
-            loadingProps={{ animating: true }}
-            loadingStyle={{}}
+          
+         
+          <View style = {styles.container}>
+          <TouchableHighlight
+            underlayColor={"#00000000"}
             onPress={() => this._handleSubmit("login")}
-            title="Login"
-            titleProps={{}}
-            titleStyle={{ marginHorizontal: 5 }}
-          />
+          >
+            <Image
+              style={styles.signButton}
+              source={require("../res/login.png")}
+            />
+            </TouchableHighlight>
+          </View>
+          
+          <View style = {styles.container}>
+          <TouchableHighlight
+            underlayColor={"#00000000"}
+            onPress={() => this._handleSubmit("signup")}
+          >
+            <Image
+              style={styles.signButton}
+              source={require("../res/signup.png")}
+            />
+          </TouchableHighlight>
+          </View>
+          </View>
         </View>
       </View>
+      
     )
   }
 }
