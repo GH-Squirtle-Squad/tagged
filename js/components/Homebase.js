@@ -5,22 +5,19 @@ import { View, Image, ImageBackground, TouchableHighlight, ScrollView } from "re
 import background from "../res/image.png"
 import styles from "../styles"
 import { logout } from "../store/auth"
-
 class Homebase extends Component {
   render() {
     return (
       <ScrollView fadingEdgeLength={1} >
      <View style={styles.homebasecontainer}>
-        <ImageBackground style={styles.homebasebackgroundImage} 
-        source={require("../res/black.jpeg")}>
-          <View style={styles.hblogoContainer}></View>
+      <ImageBackground style={styles.backgroundImage} source={require('../res/bg.png')}>
+          {/* <View style={styles.hblogoContainer}></View> */}
         </ImageBackground>
         <View style={styles.homebaseouter}>
           <Image
             style={styles.logo}
             source={require("../res/welcomelogo.png")}
           />
-
   {/* throw up button */}
           <View style={styles.blobs}>
            <TouchableHighlight
@@ -32,8 +29,6 @@ class Homebase extends Component {
                style={styles.img}
             />
           </TouchableHighlight>
-            
-
   {/* tag gallery button   */}
           <TouchableHighlight
             underlayColor={"#00000000"}
@@ -45,7 +40,6 @@ class Homebase extends Component {
             />
           </TouchableHighlight>
           </View>
-          
   {/* logout button  */}
              <TouchableHighlight
             underlayColor={"#00000000"}
@@ -54,13 +48,10 @@ class Homebase extends Component {
             <Image
               source={require("../res/logout.png")}
               style={styles.img}
-
             />
           </TouchableHighlight>
-
           {this.props.isAdmin ? (
             <View>
-
   {/* admin users button  */}
           <View style={styles.blobsadmin}>
            <TouchableHighlight
@@ -72,7 +63,6 @@ class Homebase extends Component {
               style={styles.imgad}
             />
           </TouchableHighlight>
-
   {/* admin tags button */}
           <TouchableHighlight
             underlayColor={"#00000000"}
@@ -92,13 +82,10 @@ class Homebase extends Component {
     )
   }
 }
-
 const mapState = state => ({
   isAdmin: state.auth.isAdmin
 })
-
 const mapDispatch = dispatch => ({
   logout: history => dispatch(logout(history))
 })
-
 export default connect(mapState, mapDispatch)(Homebase)
