@@ -63,6 +63,10 @@ logoContainer: {
     resizeMode: "contain",
     height: "50%"
   },
+  nevermind: {
+    resizeMode: 'contain',
+    height: '100%'
+  },
   sprayCanWrapper: {
     backgroundColor: "#00000000",
     height: 80
