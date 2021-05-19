@@ -1,57 +1,70 @@
 import { StyleSheet } from "react-native"
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  // HomeBase Styling
+  homebasecontainer: {
     fontFamily: "-apple-system, BlinkMacSystemFont Segoe UI",
     justifyContent: "center",
     alignItems: "center",
+    height: 1000,
     backgroundColor: "black"
   },
-  logoContainer: {
-    alignItems: "center"
-  },
-  logo: {
-    resizeMode: "contain",
-    width: "98%"
-  },
-  backgroundImage: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-    opacity: 0.9
-  },
-  button: {
-    borderRadius: 96
-  },
-  homeButton: {
-    marginTop: 50,
-    marginBottom: 10,
-    width: 152
-  },
-  signButton: {
-    width: 250,
-    height: 200,
-    resizeMode: "contain",
-    flex: 2
-  },
-  loginButton: {
-    width: 152,
-    borderRadius: 10,
-    marginBottom: 210
-  },
-  outer: {
-    flex: 2,
+    homebaseouter: {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     width: "100%"
   },
-  nevermind: {
+  hblogoContainer: {
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    alignContent: "flex-start"
+  },
+  logo: {
     resizeMode: "contain",
+    width: "98%"
+  },
+  homebasebackgroundImage: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    opacity: 0.9,
     height: "100%"
+  },
+  
+  blobs: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+    alignContent: "center",
+    width: "100%",
+
+  },
+
+    blobsadmin: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+    alignContent: "center",
+    width: "100%",
+  },
+
+  img: {
+    resizeMode: "contain",
+    height: 150,
+    width: 150
+  },
+   imgad: {
+    resizeMode: "contain",
+    height: 100,
+    width: 200
+  },
+
+//AR Nav Styling 
+logoContainer: {
+    alignItems: "center"
   },
   goHome: {
     resizeMode: "contain",
@@ -65,11 +78,34 @@ const styles = StyleSheet.create({
     height: "100%",
     resizeMode: "contain"
   },
+   backgroundImage: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    opacity: 0.9,
+    height: "100%"
+  },
+
+  //App Styling
+  container: {
+    flex: 1,
+    fontFamily: "-apple-system, BlinkMacSystemFont Segoe UI",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 1500
+  },
+    outer: {
+    flex: 1,
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%"
+  },
   inner: {
     flex: 1,
     width: "100%",
-    justifyContent: "center",
-    alignItems: "center"
   },
 
   input: {
@@ -85,6 +121,28 @@ const styles = StyleSheet.create({
     height: "50%"
   },
 
+  button: {
+    borderRadius: 96
+  },
+  homeButton: {
+    marginTop: 50,
+    marginBottom: 10,
+    width: 152
+  },
+  signButton: {
+    width: 152,
+    borderRadius: 10,
+    marginTop: 100
+  },
+  loginButton: {
+    width: 152,
+    borderRadius: 10,
+    marginBottom: 210
+  },
+
+  //Gallery Styling
+
+
   galleryImage: {
     shadowColor: "cyan",
     shadowOffset: {
@@ -97,5 +155,6 @@ const styles = StyleSheet.create({
     height: 210
   }
 })
+
 
 export default styles
