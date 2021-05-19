@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { View, Text, Image, ScrollView } from "react-native"
+import { View, Text, ScrollView, FlatList, ImageBackground, TouchableHighlight, Image } from "react-native"
 import { Button } from "react-native-elements"
 import styles from "../styles"
 import { fetchTags } from "../store/tags"
@@ -17,42 +17,39 @@ class Gallery extends Component {
   render() {
     const tags = this.props.tags || []
     return (
-      <ScrollView style={{ backgroundColor: "black" }}>
+      <ScrollView>
+            <ImageBackground style={styles.backgroundImage} source={require('../res/bg.png')}>
+            </ImageBackground>
         <Image style={styles.logo} source={require("../res/welcomelogo.png")} />
-        <Button
-          buttonStyle={styles.button}
-          containerStyle={{ margin: 5 }}
-          disabledStyle={{
-            borderWidth: 2,
-            borderColor: "#00F"
-          }}
-          disabledTitleStyle={{ color: "#00F" }}
-          linearGradientProps={null}
-          iconContainerStyle={{ background: "#000" }}
-          loadingProps={{ animating: true }}
-          loadingStyle={{}}
-          onPress={() => this.props.history.push("/upload")}
-          title="Upload Your Tag"
-          titleProps={{}}
-          titleStyle={{ marginHorizontal: 5 }}
-        />
-        <Button
-          buttonStyle={styles.button}
-          containerStyle={{ margin: 5 }}
-          disabledStyle={{
-            borderWidth: 2,
-            borderColor: "#00F"
-          }}
-          disabledTitleStyle={{ color: "#00F" }}
-          linearGradientProps={null}
-          iconContainerStyle={{ background: "#000" }}
-          loadingProps={{ animating: true }}
-          loadingStyle={{}}
-          onPress={() => this.props.history.push("/homebase")}
-          title="Return Home"
-          titleProps={{}}
-          titleStyle={{ marginHorizontal: 5 }}
-        />
+       
+   {/* upload button  */}
+   <View style={styles.gallbuttons}>
+       <TouchableHighlight
+            underlayColor={"#00000000"}
+            onPress={() => this.props.history.push("/upload")}
+          >
+            <Image
+              source={require("../res/upload.png")}
+              style={styles.img}
+            />
+          </TouchableHighlight>
+        
+
+ {/* return to home button         */}
+
+  <TouchableHighlight
+            underlayColor={"#00000000"}
+            onPress={() => this.props.history.push("/homebase")}
+          >
+            <Image
+              source={require("../res/gobackhome.png")}
+              style={styles.img}
+            />
+          </TouchableHighlight>
+  </View>
+
+  {/* gallery       */}
+        <View style={styles.gallflex}>
         {tags.map(tag => {
           return (
             <View key={tag.id}>
@@ -60,12 +57,13 @@ class Gallery extends Component {
                 source={{ uri: tag.imageUrl }}
                 style={styles.galleryImage}
               />
-              <Text h3 style={{ color: "white" }}>
+              <Text h3 style={styles.shadow}>
                 {tag.title}
               </Text>
             </View>
           )
         })}
+        </View>
       </ScrollView>
     )
   }

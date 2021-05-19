@@ -136,16 +136,30 @@ logoContainer: {
     marginBottom: 210
   },
   //Gallery Styling
+  gallflex:{
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    // alignContent: "space-around",
+    width: "100%",
+  },
   galleryImage: {
-    shadowColor: "cyan",
-    shadowOffset: {
-      width: 100,
-      height: 177
-    },
-    shadowOpacity: 0.8,
-    shadowRadius: 19.19,
     width: 200,
-    height: 210
+    height: 210,
+  },
+    shadow: {
+    color: 'white',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 4,
+    textShadowColor: '#9bc44f',
+    textAlign: 'center'
+  },
+    gallbuttons: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+    alignContent: "center",
+    width: "100%",
   }
 })
 export default styles
