@@ -55,7 +55,6 @@ export default class SketchSceneAR extends Component {
 
   render() {
     const viroProps = this.props.arSceneNavigator.viroAppProps
-    console.log(viroProps)
     return (
       <ViroARScene onCameraARHitTest={this._onCameraARHitTest}>
         {this.state.polylines.map((line, i) => (

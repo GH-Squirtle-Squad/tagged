@@ -13,7 +13,6 @@ import styles from "../styles"
 import { fetchTags } from "../store/tags"
 
 const Item = ({ key, imageUrl, title }) => {
-  console.log(imageUrl)
   return (
     <View key={key}>
       <Image source={{ uri: imageUrl }} style={styles.galleryImage} />
@@ -37,7 +36,6 @@ class Gallery extends Component {
     const tags = this.props.tags || []
 
     const renderItem = ({ item }) => {
-      console.log(item)
       return <Item key={item.id} imageUrl={item.imageUrl} title={item.title} />
     }
     return (
@@ -76,6 +74,7 @@ class Gallery extends Component {
             data={tags}
             keyExtractor={tag => `${tag.id}`}
             renderItem={renderItem}
+            initialNumToRender={2}
           />
           {/* {tags.map(tag => {
           return (

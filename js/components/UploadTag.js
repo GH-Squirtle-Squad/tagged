@@ -1,7 +1,12 @@
 import React, { Component } from "react"
-import { View, TextInput, Image, ImageBackground, TouchableHighlight } from "react-native"
-import background from "../res/image.png"
-import { Button } from "react-native-elements"
+import {
+  View,
+  TextInput,
+  Image,
+  ImageBackground,
+  TouchableHighlight
+} from "react-native"
+import { connect } from "react-redux"
 import styles from "../styles"
 
 class UploadTag extends Component {
@@ -14,11 +19,20 @@ class UploadTag extends Component {
     this._handleSubmit = this._handleSubmit.bind(this)
   }
 
+  componentDidMount() {
+    this.setState({
+      image: this.props.myTags[this.props.myTags.length - 1]
+    })
+  }
+
   render() {
+    console.log(this.state.image)
     return (
       <View style={styles.container}>
-              <ImageBackground style={styles.backgroundImage} source={require('../res/bg.png')}>
-            </ImageBackground>
+        <ImageBackground
+          style={styles.backgroundImage}
+          source={require("../res/bg.png")}
+        ></ImageBackground>
         <View style={styles.outer}>
           <Image
             style={styles.logo}
@@ -26,7 +40,7 @@ class UploadTag extends Component {
           />
           {this.state.image ? (
             <Image
-              style={styles.preview}
+              style={{ height: "25%", width: "25%" }}
               source={{ uri: this.state.image.uri }}
             />
           ) : null}
@@ -36,24 +50,8 @@ class UploadTag extends Component {
             autocapitalize="none"
             placeholderTextColor="#000000"
           />
-          {/* <Button
-            buttonStyle={styles.signButton}
-            containerStyle={{ margin: 5 }}
-            disabledStyle={{
-              borderWidth: 2,
-              borderColor: "#00F"
-            }}
-            disabledTitleStyle={{ color: "#00F" }}
-            linearGradientProps={null}
-            iconContainerStyle={{ background: "#000" }}
-            loadingProps={{ animating: true }}
-            loadingStyle={{}}
-            onPress={() => console.log("Button clicked")}
-            title="Choose Photo"
-            titleProps={{}}
-            titleStyle={{ marginHorizontal: 5 }}
-          /> */}
-           <TouchableHighlight
+
+          <TouchableHighlight
             style={styles.sprayCanWrapper}
             underlayColor={"#00000000"}
             onPress={this._reset}
@@ -64,24 +62,7 @@ class UploadTag extends Component {
             />
           </TouchableHighlight>
 
-          {/* <Button
-            buttonStyle={styles.signButton}
-            containerStyle={{ margin: 5 }}
-            disabledStyle={{
-              borderWidth: 2,
-              borderColor: "#00F"
-            }}
-            disabledTitleStyle={{ color: "#00F" }}
-            linearGradientProps={null}
-            iconContainerStyle={{ background: "#000" }}
-            loadingProps={{ animating: true }}
-            loadingStyle={{}}
-            onPress={() => this._handleSubmit()}
-            title="Upload"
-            titleProps={{}}
-            titleStyle={{ marginHorizontal: 5 }}
-          /> */}
-              <TouchableHighlight
+          <TouchableHighlight
             style={styles.sprayCanWrapper}
             underlayColor={"#00000000"}
             onPress={this._reset}
@@ -109,4 +90,8 @@ class UploadTag extends Component {
   _handleSubmit() {}
 }
 
-export default UploadTag
+const mapState = state => ({
+  myTags: state.myTags
+})
+
+export default connect(mapState, null)(UploadTag)
