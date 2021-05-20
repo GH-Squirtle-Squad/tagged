@@ -8,18 +8,31 @@
  *
  * React Native CLI configuration file
  */
-'use strict';
+"use strict"
 
-const { getDefaultConfig } = require("metro-config");
+const { getDefaultConfig } = require("metro-config")
 
 module.exports = (async () => {
   const {
     resolver: { assetExts }
-  } = await getDefaultConfig();
+  } = await getDefaultConfig()
 
   return {
     resolver: {
-      assetExts: [...assetExts, "obj", "mtl", "JPG", "vrx", "hdr", "gltf", "glb", "bin", "arobject", "gif"]
+      assetExts: [
+        ...assetExts,
+        "obj",
+        "mtl",
+        "JPG",
+        "vrx",
+        "hdr",
+        "gltf",
+        "glb",
+        "bin",
+        "arobject",
+        "gif"
+      ],
+      sourceExts: ["jsx", "js", "ts", "tsx"]
     }
-  };
-})();
+  }
+})()

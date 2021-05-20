@@ -7,7 +7,7 @@ import {
   TouchableHighlight
 } from "react-native"
 import { connect } from "react-redux"
-import { uploadTagThunk } from "../store/singleTag"
+import { uploadTagThunk } from "../store/tags"
 import styles from "../styles"
 
 class UploadTag extends Component {
@@ -29,7 +29,6 @@ class UploadTag extends Component {
   }
 
   render() {
-    console.log(this.state.image)
     return (
       <View style={styles.container}>
         <ImageBackground
@@ -96,11 +95,20 @@ class UploadTag extends Component {
     this.setState({
       loading: true
     })
-    let formData = new FormData()
-    formData.append("tag", this.state.image)
-    formData.append("title", this.state.title)
-    formData.append("id", this.props.auth.id)
-    this.props.uploadTagThunk(formData, this.props)
+    // let formData = new FormData()
+    // formData.append("path", this.state.image.uri)
+    // formData.append("title", this.state.title)
+    // formData.append("id", this.props.auth.id)
+    // formData.append("type", "image/png")
+
+    const file = {
+      uri: this.state.image.uri,
+      title: this.state.title,
+      name: this.state.title,
+      type: "image/png",
+      userId: this.props.auth.id
+    }
+    this.props.uploadTagThunk(file, this.props)
   }
 }
 
