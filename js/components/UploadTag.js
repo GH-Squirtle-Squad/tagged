@@ -7,6 +7,7 @@ import {
   TouchableHighlight
 } from "react-native"
 import { connect } from "react-redux"
+import { uploadTagThunk } from "../store/singleTag"
 import styles from "../styles"
 
 class UploadTag extends Component {
@@ -14,9 +15,11 @@ class UploadTag extends Component {
     super(props)
     this.state = {
       title: "",
-      image: null
+      image: null,
+      loading: false
     }
-    this._handleSubmit = this._handleSubmit.bind(this)
+
+    this.Upload_To_AWS_S3 = this.Upload_To_AWS_S3.bind(this)
   }
 
   componentDidMount() {
@@ -49,6 +52,7 @@ class UploadTag extends Component {
             placeholder="Title"
             autocapitalize="none"
             placeholderTextColor="#000000"
+            onChangeText={text => this.setState({ title: text })}
           />
 
           <TouchableHighlight
@@ -65,7 +69,7 @@ class UploadTag extends Component {
           <TouchableHighlight
             style={styles.sprayCanWrapper}
             underlayColor={"#00000000"}
-            onPress={this._reset}
+            onPress={this.Upload_To_AWS_S3}
           >
             <Image
               style={styles.img}
@@ -87,11 +91,26 @@ class UploadTag extends Component {
     )
   }
 
-  _handleSubmit() {}
+  async Upload_To_AWS_S3(e) {
+    e.preventDefault()
+    this.setState({
+      loading: true
+    })
+    let formData = new FormData()
+    formData.append("tag", this.state.image)
+    formData.append("title", this.state.title)
+    formData.append("id", this.props.auth.id)
+    this.props.uploadTagThunk(formData, this.props)
+  }
 }
 
 const mapState = state => ({
-  myTags: state.myTags
+  myTags: state.myTags,
+  auth: state.auth
 })
 
-export default connect(mapState, null)(UploadTag)
+const mapDispatch = dispatch => ({
+  uploadTagThunk: (data, props) => dispatch(uploadTagThunk(data, props))
+})
+
+export default connect(mapState, mapDispatch)(UploadTag)
