@@ -1,7 +1,13 @@
 import React, { Component } from "react"
-import { View, TextInput, Image, ImageBackground, TouchableHighlight } from "react-native"
-import background from "../res/image.png"
-import { Button } from "react-native-elements"
+import {
+  View,
+  TextInput,
+  Image,
+  ImageBackground,
+  TouchableHighlight
+} from "react-native"
+import { connect } from "react-redux"
+import { uploadTagThunk } from "../store/singleTag"
 import styles from "../styles"
 
 class UploadTag extends Component {
@@ -9,16 +15,27 @@ class UploadTag extends Component {
     super(props)
     this.state = {
       title: "",
-      image: null
+      image: null,
+      loading: false
     }
-    this._handleSubmit = this._handleSubmit.bind(this)
+
+    this.Upload_To_AWS_S3 = this.Upload_To_AWS_S3.bind(this)
+  }
+
+  componentDidMount() {
+    this.setState({
+      image: this.props.myTags[this.props.myTags.length - 1]
+    })
   }
 
   render() {
+    console.log(this.state.image)
     return (
       <View style={styles.container}>
-              <ImageBackground style={styles.backgroundImage} source={require('../res/bg.png')}>
-            </ImageBackground>
+        <ImageBackground
+          style={styles.backgroundImage}
+          source={require("../res/bg.png")}
+        ></ImageBackground>
         <View style={styles.outer}>
           <Image
             style={styles.logo}
@@ -26,7 +43,7 @@ class UploadTag extends Component {
           />
           {this.state.image ? (
             <Image
-              style={styles.preview}
+              style={{ height: "25%", width: "25%" }}
               source={{ uri: this.state.image.uri }}
             />
           ) : null}
@@ -35,25 +52,10 @@ class UploadTag extends Component {
             placeholder="Title"
             autocapitalize="none"
             placeholderTextColor="#000000"
+            onChangeText={text => this.setState({ title: text })}
           />
-          {/* <Button
-            buttonStyle={styles.signButton}
-            containerStyle={{ margin: 5 }}
-            disabledStyle={{
-              borderWidth: 2,
-              borderColor: "#00F"
-            }}
-            disabledTitleStyle={{ color: "#00F" }}
-            linearGradientProps={null}
-            iconContainerStyle={{ background: "#000" }}
-            loadingProps={{ animating: true }}
-            loadingStyle={{}}
-            onPress={() => console.log("Button clicked")}
-            title="Choose Photo"
-            titleProps={{}}
-            titleStyle={{ marginHorizontal: 5 }}
-          /> */}
-           <TouchableHighlight
+
+          <TouchableHighlight
             style={styles.sprayCanWrapper}
             underlayColor={"#00000000"}
             onPress={this._reset}
@@ -64,27 +66,10 @@ class UploadTag extends Component {
             />
           </TouchableHighlight>
 
-          {/* <Button
-            buttonStyle={styles.signButton}
-            containerStyle={{ margin: 5 }}
-            disabledStyle={{
-              borderWidth: 2,
-              borderColor: "#00F"
-            }}
-            disabledTitleStyle={{ color: "#00F" }}
-            linearGradientProps={null}
-            iconContainerStyle={{ background: "#000" }}
-            loadingProps={{ animating: true }}
-            loadingStyle={{}}
-            onPress={() => this._handleSubmit()}
-            title="Upload"
-            titleProps={{}}
-            titleStyle={{ marginHorizontal: 5 }}
-          /> */}
-              <TouchableHighlight
+          <TouchableHighlight
             style={styles.sprayCanWrapper}
             underlayColor={"#00000000"}
-            onPress={this._reset}
+            onPress={this.Upload_To_AWS_S3}
           >
             <Image
               style={styles.img}
@@ -106,7 +91,26 @@ class UploadTag extends Component {
     )
   }
 
-  _handleSubmit() {}
+  async Upload_To_AWS_S3(e) {
+    e.preventDefault()
+    this.setState({
+      loading: true
+    })
+    let formData = new FormData()
+    formData.append("tag", this.state.image)
+    formData.append("title", this.state.title)
+    formData.append("id", this.props.auth.id)
+    this.props.uploadTagThunk(formData, this.props)
+  }
 }
 
-export default UploadTag
+const mapState = state => ({
+  myTags: state.myTags,
+  auth: state.auth
+})
+
+const mapDispatch = dispatch => ({
+  uploadTagThunk: (data, props) => dispatch(uploadTagThunk(data, props))
+})
+
+export default connect(mapState, mapDispatch)(UploadTag)

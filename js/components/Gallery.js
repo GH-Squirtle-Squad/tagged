@@ -1,9 +1,27 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { View, Text, ScrollView, FlatList, ImageBackground, TouchableHighlight, Image } from "react-native"
-import { Button } from "react-native-elements"
+import {
+  View,
+  Text,
+  FlatList,
+  ImageBackground,
+  ScrollView,
+  TouchableHighlight,
+  Image
+} from "react-native"
 import styles from "../styles"
 import { fetchTags } from "../store/tags"
+
+const Item = ({ key, imageUrl, title }) => {
+  return (
+    <View key={key}>
+      <Image source={{ uri: imageUrl }} style={styles.galleryImage} />
+      <Text h3 style={styles.shadow}>
+        {title}
+      </Text>
+    </View>
+  )
+}
 
 class Gallery extends Component {
   constructor() {
@@ -16,28 +34,30 @@ class Gallery extends Component {
 
   render() {
     const tags = this.props.tags || []
+
+    const renderItem = ({ item }) => {
+      return <Item key={item.id} imageUrl={item.imageUrl} title={item.title} />
+    }
     return (
       <ScrollView>
-            <ImageBackground style={styles.backgroundImage} source={require('../res/bg.png')}>
-            </ImageBackground>
+        <ImageBackground
+          style={styles.backgroundImage}
+          source={require("../res/bg.png")}
+        ></ImageBackground>
         <Image style={styles.logo} source={require("../res/welcomelogo.png")} />
-       
-   {/* upload button  */}
-   <View style={styles.gallbuttons}>
-       <TouchableHighlight
+
+        {/* upload button  */}
+        <View style={styles.gallbuttons}>
+          <TouchableHighlight
             underlayColor={"#00000000"}
             onPress={() => this.props.history.push("/upload")}
           >
-            <Image
-              source={require("../res/upload.png")}
-              style={styles.img}
-            />
+            <Image source={require("../res/upload.png")} style={styles.img} />
           </TouchableHighlight>
-        
 
- {/* return to home button         */}
+          {/* return to home button         */}
 
-  <TouchableHighlight
+          <TouchableHighlight
             underlayColor={"#00000000"}
             onPress={() => this.props.history.push("/homebase")}
           >
@@ -46,11 +66,17 @@ class Gallery extends Component {
               style={styles.img}
             />
           </TouchableHighlight>
-  </View>
+        </View>
 
-  {/* gallery       */}
+        {/* gallery       */}
         <View style={styles.gallflex}>
-        {tags.map(tag => {
+          <FlatList
+            data={tags}
+            keyExtractor={tag => `${tag.id}`}
+            renderItem={renderItem}
+            initialNumToRender={2}
+          />
+          {/* {tags.map(tag => {
           return (
             <View key={tag.id}>
               <Image
@@ -62,7 +88,7 @@ class Gallery extends Component {
               </Text>
             </View>
           )
-        })}
+        })} */}
         </View>
       </ScrollView>
     )

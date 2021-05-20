@@ -1,10 +1,12 @@
 import React, { Component } from "react"
 import { View, Image, TouchableHighlight, Platform } from "react-native"
 import { ViroARSceneNavigator } from "react-viro"
+import { connect } from "react-redux"
+import { addTag } from "../store/myTags"
 import SketchSceneAR from "./SketchSceneAR"
 import styles from "../styles"
 
-export default class ViroNavigator extends Component {
+class ViroNavigator extends Component {
   constructor(props) {
     super(props)
 
@@ -194,8 +196,9 @@ export default class ViroNavigator extends Component {
     if (Platform.OS === "android") {
       alert("Screenshot feature for Android devices coming soon.")
     } else {
-      await this._arNavigator._takeScreenshot("tag", true)
+      const tag = await this._arNavigator._takeScreenshot("tag", true)
       alert("Piece saved to camera roll!")
+      this.props.addTag({ uri: "file://" + tag.url })
     }
   }
 
@@ -206,6 +209,12 @@ export default class ViroNavigator extends Component {
     })
   }
 }
+
+const mapDispatch = dispatch => ({
+  addTag: tag => dispatch(addTag(tag))
+})
+
+export default connect(null, mapDispatch)(ViroNavigator)
 
 //SAMPLE PERMISSIONS CODE:
 
