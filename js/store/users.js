@@ -1,7 +1,6 @@
 import axios from "axios"
 import { AsyncStorage } from "react-native"
-const serverURL = "https://tagged-backend.herokuapp.com/"
-
+import { SERVERURL } from "@env"
 const TOKEN = "token"
 
 const GET_USERS = "GET_USERS"
@@ -22,7 +21,7 @@ export const fetchUsers = () => {
     try {
       const token = await AsyncStorage.getItem(TOKEN)
       if (token) {
-        const { data } = await axios.get(`${serverURL}api/users`, {
+        const { data } = await axios.get(`${SERVERURL}api/users`, {
           headers: {
             authorization: token
           }
@@ -40,7 +39,7 @@ export const deleteUser = id => {
     try {
       const token = await AsyncStorage.getItem(TOKEN)
       if (token) {
-        const { data } = await axios.delete(`${serverURL}api/users/${id}`, {
+        const { data } = await axios.delete(`${SERVERURL}api/users/${id}`, {
           headers: {
             authorization: token
           }

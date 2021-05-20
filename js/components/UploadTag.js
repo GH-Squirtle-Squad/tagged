@@ -95,11 +95,6 @@ class UploadTag extends Component {
     this.setState({
       loading: true
     })
-    // let formData = new FormData()
-    // formData.append("path", this.state.image.uri)
-    // formData.append("title", this.state.title)
-    // formData.append("id", this.props.auth.id)
-    // formData.append("type", "image/png")
 
     const file = {
       uri: this.state.image.uri,

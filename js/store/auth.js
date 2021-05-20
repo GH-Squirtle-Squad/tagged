@@ -1,7 +1,6 @@
 import axios from "axios"
 import { AsyncStorage } from "react-native"
-
-const serverURL = "https://tagged-backend.herokuapp.com/"
+import { SERVERURL } from "@env"
 const TOKEN = "token"
 /**
  * ACTION TYPES
@@ -17,7 +16,7 @@ const setAuth = auth => ({ type: SET_AUTH, auth })
 export const me = history => async dispatch => {
   const token = await AsyncStorage.getItem(TOKEN)
   if (token) {
-    const res = await axios.get(`${serverURL}auth/me`, {
+    const res = await axios.get(`${SERVERURL}auth/me`, {
       headers: {
         authorization: token
       }
@@ -29,7 +28,7 @@ export const me = history => async dispatch => {
 export const authenticate =
   (username, password, method, history) => async dispatch => {
     try {
-      const res = await axios.post(`${serverURL}auth/${method}`, {
+      const res = await axios.post(`${SERVERURL}auth/${method}`, {
         username,
         password
       })

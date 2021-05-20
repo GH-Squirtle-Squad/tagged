@@ -1,5 +1,5 @@
 import axios from "axios"
-const serverURL = "https://tagged-backend.herokuapp.com/"
+import { SERVERURL } from "@env"
 import { AsyncStorage } from "react-native"
 import { uploadImage } from "../s3"
 
@@ -28,7 +28,7 @@ function addTag(tag) {
 export const fetchTags = () => {
   return async dispatch => {
     try {
-      const { data } = await axios.get(`${serverURL}api/tags`)
+      const { data } = await axios.get(`${SERVERURL}api/tags`)
       dispatch(getTags(data))
     } catch (error) {
       console.log(error)
@@ -41,7 +41,7 @@ export const deleteTag = id => {
     try {
       const token = await AsyncStorage.getItem(TOKEN)
       if (token) {
-        const { data } = await axios.delete(`${serverURL}api/tags/${id}`, {
+        const { data } = await axios.delete(`${SERVERURL}api/tags/${id}`, {
           headers: {
             authorization: token
           }
@@ -64,10 +64,9 @@ export const uploadTagThunk = (data, props) => {
         userId: data.userId
       }
       const { data: uploadedTag } = await axios.post(
-        `${serverURL}api/tags/`,
+        `${SERVERURL}api/tags/`,
         tag
       )
-      console.log(uploadedTag)
       dispatch(addTag(uploadedTag))
     } catch (error) {
       console.log(error)

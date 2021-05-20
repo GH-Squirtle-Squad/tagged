@@ -12,9 +12,9 @@ import {
 import styles from "../styles"
 import { fetchTags } from "../store/tags"
 
-const Item = ({ key, imageUrl, title }) => {
+const Item = ({ imageUrl, title }) => {
   return (
-    <View key={key}>
+    <View>
       <Image source={{ uri: imageUrl }} style={styles.galleryImage} />
       <Text h3 style={styles.shadow}>
         {title}
@@ -36,7 +36,7 @@ class Gallery extends Component {
     const tags = this.props.tags || []
 
     const renderItem = ({ item }) => {
-      return <Item key={item.id} imageUrl={item.imageUrl} title={item.title} />
+      return <Item imageUrl={item.imageUrl} title={item.title} />
     }
     return (
       <ScrollView>
@@ -76,19 +76,6 @@ class Gallery extends Component {
             renderItem={renderItem}
             initialNumToRender={2}
           />
-          {/* {tags.map(tag => {
-          return (
-            <View key={tag.id}>
-              <Image
-                source={{ uri: tag.imageUrl }}
-                style={styles.galleryImage}
-              />
-              <Text h3 style={styles.shadow}>
-                {tag.title}
-              </Text>
-            </View>
-          )
-        })} */}
         </View>
       </ScrollView>
     )
