@@ -85,7 +85,7 @@ class ViroNavigator extends Component {
         >
 {/* screenshot button for iOS only */}
 
-{!Platform.OS === "android" ? (
+{Platform.OS !== "android" ? (
           <TouchableHighlight
             style={styles.sprayCanWrapper}
             underlayColor={"#00000000"}
