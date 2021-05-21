@@ -20,7 +20,7 @@ Our team’s goal was to create a fun and safe way to paint and share your artwo
 
 | **Kelsey**    |  **Karina**   |    **Em**      |   **Kathy**   |
 | ------------- | ------------- |  ------------- | ------------- |
-| ![kelseyimg](http://www.image.farm/images/2021/05/21/7026a82c9e981467ec016f588a2c796f.png) | ![karinaimg](http://www.image.farm/images/2021/05/21/9c07604970d6047f64a2b65a7e9f35ec.png)  | ![emimg](http://www.image.farm/images/2021/05/21/5e07b41b7e5ca5fd2f59b57cb7d935e1.png)  | ![taggedlogo](http://www.image.farm/images/2021/05/21/68cc27e54ab8f5a96908c419ad88f9ee.png)  |
+| ![kelseyimg](http://www.image.farm/images/2021/05/21/8425c2839f529d085c98b7e474be455e.png) | ![karinaimg](http://www.image.farm/images/2021/05/21/5a6222f7c097704101ee6d206eaeef3c.png)  | ![emimg](http://www.image.farm/images/2021/05/21/aa092b36153cd705825c560650831394.png)  | ![taggedlogo](http://www.image.farm/images/2021/05/21/ad853380e424a651711eae342c315914.png)  |
 |[Github](https://github.com/ksiman14 "Github") / [LinkedIn](https://www.linkedin.com/in/kelsey-siman/ "LinkedIn") | [Github](https://github.com/mkybun "Github")  / [LinkedIn](https://www.linkedin.com/in/karina-zuniga/ "LinkedIn") | [Github](http://www.github.com/vinejars "Github") / [LinkedIn](https://www.linkedin.com/in/em-comeau/ "LinkedIn") | [Github](http://www.github.com/kson1128 "Github") / [LinkedIn](https://www.linkedin.com/in/kathy-son/ "LinkedIn")
 
 # Tech Stack:  <br/>
