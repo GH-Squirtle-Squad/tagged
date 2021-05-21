@@ -9,7 +9,7 @@
 Our team’s goal was to create a fun and safe way to paint and share your artwork with everyone around the world. 
    </div> <br/>
    
-# How to get started: <br/>
+# Installation:  <br/>
 * Clone the repo: https://github.com/GH-Squirtle-Squad/tagged.git
 * Run npm install
 * Run npm start
