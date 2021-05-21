@@ -7,7 +7,8 @@ import {
   ImageBackground,
   ScrollView,
   TouchableHighlight,
-  Image
+  Image,
+  Platform
 } from "react-native"
 import styles from "../styles"
 import { fetchTags } from "../store/tags"
@@ -51,15 +52,19 @@ class Gallery extends Component {
         ></ImageBackground>
 
         <Image style={styles.logo} source={require("../res/welcomelogo.png")} />
+        <View style={styles.gallbuttons}>
 
 {/* upload button  */}
-        <View style={styles.gallbuttons}>
+{Platform.OS !== "android" ? (
           <TouchableHighlight
             underlayColor={"#00000000"}
             onPress={() => this.props.history.push("/upload")}
           >
             <Image source={require("../res/upload.png")} style={styles.img} />
           </TouchableHighlight>
+          ) : (null)
+
+}
 
  {/* return to home button         */}
 

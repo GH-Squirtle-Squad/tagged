@@ -9,6 +9,7 @@ import Gallery from "./components/Gallery"
 import UploadTag from "./components/UploadTag"
 import AllUsers from "./components/AllUsers"
 import AllTags from "./components/AllTags"
+import HowTo from "./components/HowTo"
 
 const Routes = props => {
   console.disableYellowBox = true
@@ -22,6 +23,7 @@ const Routes = props => {
           render={props => <ViroNavigator {...props} />}
         />
         <Route path="/homebase" component={Homebase} />
+        <Route path='/howto' component={HowTo} />
         <Route path="/gallery" component={Gallery} />
         <Route path="/upload" component={UploadTag} />
         <Route path="/users" component={AllUsers} />
