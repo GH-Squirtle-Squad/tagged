@@ -1,5 +1,5 @@
 import axios from "axios"
-import { SERVERURL } from "@env"
+const SERVERURL = "https://tagged-backend.herokuapp.com/"
 import { AsyncStorage } from "react-native"
 import { uploadImage } from "../s3"
 

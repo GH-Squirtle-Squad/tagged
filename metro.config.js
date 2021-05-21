@@ -31,8 +31,7 @@ module.exports = (async () => {
         "bin",
         "arobject",
         "gif"
-      ],
-      sourceExts: ["jsx", "js", "ts", "tsx"]
+      ]
     }
   }
 })()
