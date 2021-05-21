@@ -15,6 +15,7 @@ class AllTags extends Component {
     return (
       <ScrollView style={{ backgroundColor: "black" }}>
         <View>
+{/* return home button  */}
           <Button
             buttonStyle={styles.homeButton}
             disabledStyle={{
@@ -31,9 +32,13 @@ class AllTags extends Component {
             titleProps={{}}
             titleStyle={{ marginHorizontal: 5 }}
           />
+
+{/* title of all tags for admin */}
+
           <Text style={{ color: "white", height: 50, fontSize: 24 }}>
             All Tags
           </Text>
+
         </View>
         {this.props.isAdmin ? (
           tags.map(tag => {

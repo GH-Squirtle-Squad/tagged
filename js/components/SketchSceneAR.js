@@ -4,14 +4,12 @@ import React, { Component } from "react"
 
 import { ViroARScene, ViroPolyline, ViroMaterials } from "react-viro"
 
-//add texture
+//adds color to lines
 ViroMaterials.createMaterials({
   red: { diffuseColor: "red" },
   blue: { diffuseColor: "blue" },
-  yellow: { diffuseColor: "yellow" },
   green: { diffuseColor: "green" },
   purple: { diffuseColor: "purple" },
-  black: { diffuseColor: "black" },
   white: { diffuseColor: "white" },
   orange: { diffuseColor: "orange" }
 })
@@ -19,8 +17,6 @@ ViroMaterials.createMaterials({
 export default class SketchSceneAR extends Component {
   constructor(props) {
     super(props)
-
-    // Set initial state here
     this.state = {
       thickness: 0.2,
       points: [[0, 0, -3]],
@@ -29,14 +25,14 @@ export default class SketchSceneAR extends Component {
       readAccessPermission: false,
       color: props.arSceneNavigator.viroAppProps.color
     }
-
-    // bind 'this' to functions
     this._onCameraARHitTest = this._onCameraARHitTest.bind(this)
   }
 
   componentDidUpdate(prevProps) {
     const { drawing, color } = prevProps.arSceneNavigator.viroAppProps
     const { color: oldColor, polylines, points } = this.state
+
+//statement to change color of lines
     if (color !== oldColor && drawing) {
       this.setState({
         polylines: [...polylines, { points: points, color: oldColor }],
@@ -45,6 +41,7 @@ export default class SketchSceneAR extends Component {
       })
     }
 
+//to clear lines
     if (!drawing && polylines.length > 0) {
       this.setState({
         polylines: [],
@@ -56,6 +53,8 @@ export default class SketchSceneAR extends Component {
   render() {
     const viroProps = this.props.arSceneNavigator.viroAppProps
     return (
+
+// rendering the AR Scene     
       <ViroARScene onCameraARHitTest={this._onCameraARHitTest}>
         {this.state.polylines.map((line, i) => (
           <ViroPolyline
@@ -66,6 +65,8 @@ export default class SketchSceneAR extends Component {
             materials={line.color}
           />
         ))}
+
+{/* lines to be rendered within AR scene         */}
         <ViroPolyline
           position={[0, 0, -3]}
           points={this.state.points}
@@ -76,6 +77,7 @@ export default class SketchSceneAR extends Component {
     )
   }
 
+// method to use ARHitTest to render lines in AR 
   _onCameraARHitTest(results) {
     if (this.props.arSceneNavigator.viroAppProps.drawing) {
       if (results.hitTestResults.length > 0) {
