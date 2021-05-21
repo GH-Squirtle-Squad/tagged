@@ -1,6 +1,6 @@
 import axios from "axios"
 import { AsyncStorage } from "react-native"
-import { SERVERURL } from "@env"
+const SERVERURL = "https://tagged-backend.herokuapp.com/"
 const TOKEN = "token"
 /**
  * ACTION TYPES
