@@ -13,8 +13,10 @@ class AllUsers extends Component {
   render() {
     const users = this.props.users || []
     return (
-      <ScrollView style={{ backgroundColor: "white" }}>
+      <ScrollView style={{ backgroundColor: "black" }}>
         <View>
+
+{/* return  home button          */}
           <Button
             buttonStyle={styles.homeButton}
             disabledStyle={{
@@ -31,9 +33,14 @@ class AllUsers extends Component {
             titleProps={{}}
             titleStyle={{ marginHorizontal: 5 }}
           />
+
+{/* title for all users admin route */}
+
           <Text style={{ color: "white", height: 50, fontSize: 24 }}>
             All Users
           </Text>
+
+
         </View>
         {this.props.isAdmin ? (
           users.map(user => {
