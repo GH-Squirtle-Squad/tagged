@@ -34,6 +34,8 @@ class ViroNavigator extends Component {
           flex: 1
         }}
       >
+
+{/* renders the scene       */}
         <ViroARSceneNavigator
           style={{ flex: 1 }}
           initialScene={{ scene: SketchSceneAR }}
@@ -55,6 +57,8 @@ class ViroNavigator extends Component {
             alignItems: "center"
           }}
         >
+
+{/* clear button        */}
           <TouchableHighlight
             style={styles.sprayCanWrapper}
             underlayColor={"#00000000"}
@@ -66,6 +70,8 @@ class ViroNavigator extends Component {
             />
           </TouchableHighlight>
         </View>
+
+
         <View
           style={{
             position: "absolute",
@@ -77,6 +83,9 @@ class ViroNavigator extends Component {
             alignItems: "center"
           }}
         >
+{/* screenshot button for iOS only */}
+
+{!Platform.OS === "android" ? (
           <TouchableHighlight
             style={styles.sprayCanWrapper}
             underlayColor={"#00000000"}
@@ -87,6 +96,9 @@ class ViroNavigator extends Component {
               source={require("../res/camerabutton.png")}
             />
           </TouchableHighlight>
+) : (null)
+  }
+
         </View>
         <View
           style={{
@@ -99,6 +111,8 @@ class ViroNavigator extends Component {
             alignItems: "center"
           }}
         >
+
+{/* go home button         */}
           <TouchableHighlight
             style={styles.sprayCanWrapper}
             underlayColor={"#00000000"}
@@ -110,6 +124,7 @@ class ViroNavigator extends Component {
             />
           </TouchableHighlight>
         </View>
+
         <View
           style={{
             position: "absolute",
@@ -121,6 +136,8 @@ class ViroNavigator extends Component {
             alignItems: "center"
           }}
         >
+
+{/* spray cans to change color of lines         */}
           <TouchableHighlight
             style={styles.sprayCanWrapper}
             underlayColor={"#00000000"}
@@ -178,30 +195,31 @@ class ViroNavigator extends Component {
     )
   }
 
+// method to return home
   _goHome() {
     this.props.history.push("/homebase")
   }
 
+// method to clear lines
   _reset() {
     this.setState({
       drawing: false
     })
   }
 
+//method to allow screenshot button to be located outside scene
   _setARNavigatorRef(ARNavigator) {
     this._arNavigator = ARNavigator
   }
 
+//async method to take screenshot for iOS
   async _takeScreenshot() {
-    if (Platform.OS === "android") {
-      alert("Screenshot feature for Android devices coming soon.")
-    } else {
       const tag = await this._arNavigator._takeScreenshot("tag", true)
       alert("Piece saved to camera roll!")
       this.props.addTag({ uri: "file://" + tag.url })
     }
-  }
 
+//method to change color of lines
   _toggleColor(colorName) {
     this.setState({
       drawing: true,
@@ -215,68 +233,3 @@ const mapDispatch = dispatch => ({
 })
 
 export default connect(null, mapDispatch)(ViroNavigator)
-
-//SAMPLE PERMISSIONS CODE:
-
-//import { PermissionsAndroid } from "react-native"
-
-// async requestWriteAccessPermission() {
-//   try {
-//     const granted = await PermissionsAndroid.requestMultiple(
-//       [
-//         PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-//         PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE
-//       ],
-//       {
-//         title: "<tagged/> Write Permission",
-//         message:
-//           "<tagged/> needs to access your photos" +
-//           "so you can record photos of" +
-//           "your tags.",
-//         buttonNeutral: "Ask Me Later",
-//         buttonNegative: "Cancel",
-//         buttonPositive: "OK"
-//       }
-//     )
-//     if (granted == PermissionsAndroid.RESULTS.GRANTED) {
-//       this.setState({
-//         writeAccessPermission: true,
-//         readAccessPermission: true
-//       })
-//     } else {
-//       this.setState({
-//         writeAccessPermission: false
-//       })
-//     }
-//   } catch (err) {
-//     console.warn("[PermissionsAndroid]" + err)
-//   }
-// }
-
-// async requestReadAccessPermission() {
-//   try {
-//     const granted = await PermissionsAndroid.request(
-//       PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-//       {
-//         title: "<tagged/> File Permission",
-//         message:
-//           "<tagged/> needs to access your file " +
-//           "so you can view your tags in the gallery.",
-//         buttonNeutral: "Ask Me Later",
-//         buttonNegative: "Cancel",
-//         buttonPositive: "OK"
-//       }
-//     )
-//     if (granted == PermissionsAndroid.RESULTS.GRANTED) {
-//       this.setState({
-//         readAccessPermission: true
-//       })
-//     } else {
-//       this.setState({
-//         readAccessPermission: false
-//       })
-//     }
-//   } catch (err) {
-//     console.warn("[PermissionsAndroid]" + err)
-//   }
-// }

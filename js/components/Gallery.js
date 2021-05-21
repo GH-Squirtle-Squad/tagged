@@ -12,6 +12,8 @@ import {
 import styles from "../styles"
 import { fetchTags } from "../store/tags"
 
+// functional component to create gallery images in FlatList
+
 const Item = ({ imageUrl, title }) => {
   return (
     <View>
@@ -35,18 +37,22 @@ class Gallery extends Component {
   render() {
     const tags = this.props.tags || []
 
+// functional component to render gallery images in FlatList
+
     const renderItem = ({ item }) => {
       return <Item imageUrl={item.imageUrl} title={item.title} />
     }
     return (
       <ScrollView>
+
         <ImageBackground
           style={styles.backgroundImage}
           source={require("../res/bg.png")}
         ></ImageBackground>
+
         <Image style={styles.logo} source={require("../res/welcomelogo.png")} />
 
-        {/* upload button  */}
+{/* upload button  */}
         <View style={styles.gallbuttons}>
           <TouchableHighlight
             underlayColor={"#00000000"}
@@ -55,7 +61,7 @@ class Gallery extends Component {
             <Image source={require("../res/upload.png")} style={styles.img} />
           </TouchableHighlight>
 
-          {/* return to home button         */}
+ {/* return to home button         */}
 
           <TouchableHighlight
             underlayColor={"#00000000"}
@@ -68,7 +74,7 @@ class Gallery extends Component {
           </TouchableHighlight>
         </View>
 
-        {/* gallery       */}
+{/* gallery       */}
         <View style={styles.gallflex}>
           <FlatList
             data={tags}

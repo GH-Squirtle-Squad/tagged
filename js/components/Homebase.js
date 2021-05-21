@@ -9,15 +9,20 @@ class Homebase extends Component {
   render() {
     return (
       <ScrollView fadingEdgeLength={1} >
+
      <View style={styles.homebasecontainer}>
+
       <ImageBackground style={styles.backgroundImage} source={require('../res/bg.png')}>
           {/* <View style={styles.hblogoContainer}></View> */}
         </ImageBackground>
+
         <View style={styles.homebaseouter}>
+
           <Image
             style={styles.logo}
             source={require("../res/welcomelogo.png")}
           />
+
   {/* throw up button */}
           <View style={styles.blobs}>
            <TouchableHighlight
@@ -29,6 +34,7 @@ class Homebase extends Component {
                style={styles.img}
             />
           </TouchableHighlight>
+
   {/* tag gallery button   */}
           <TouchableHighlight
             underlayColor={"#00000000"}
@@ -40,6 +46,7 @@ class Homebase extends Component {
             />
           </TouchableHighlight>
           </View>
+
   {/* logout button  */}
              <TouchableHighlight
             underlayColor={"#00000000"}
@@ -52,6 +59,7 @@ class Homebase extends Component {
           </TouchableHighlight>
           {this.props.isAdmin ? (
             <View>
+
   {/* admin users button  */}
           <View style={styles.blobsadmin}>
            <TouchableHighlight
@@ -63,6 +71,7 @@ class Homebase extends Component {
               style={styles.imgad}
             />
           </TouchableHighlight>
+          
   {/* admin tags button */}
           <TouchableHighlight
             underlayColor={"#00000000"}

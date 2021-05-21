@@ -31,21 +31,28 @@ class UploadTag extends Component {
   render() {
     return (
       <View style={styles.container}>
+
         <ImageBackground
           style={styles.backgroundImage}
           source={require("../res/bg.png")}
         ></ImageBackground>
+
         <View style={styles.outer}>
+
           <Image
             style={styles.logo}
             source={require("../res/welcomelogo.png")}
           />
+
+{/* statement that renders images if one exists in state */}
           {this.state.image ? (
             <Image
               style={{ height: "25%", width: "25%" }}
               source={{ uri: this.state.image.uri }}
             />
           ) : null}
+
+{/* title input */}
           <TextInput
             style={styles.input}
             placeholder="Title"
@@ -54,17 +61,7 @@ class UploadTag extends Component {
             onChangeText={text => this.setState({ title: text })}
           />
 
-          <TouchableHighlight
-            style={styles.sprayCanWrapper}
-            underlayColor={"#00000000"}
-            onPress={this._reset}
-          >
-            <Image
-              style={styles.img}
-              source={require("../res/choosephoto.png")}
-            />
-          </TouchableHighlight>
-
+{/* upload button */}
           <TouchableHighlight
             style={styles.sprayCanWrapper}
             underlayColor={"#00000000"}
@@ -76,6 +73,7 @@ class UploadTag extends Component {
             />
           </TouchableHighlight>
 
+{/* go home button */}
           <TouchableHighlight
             underlayColor={"#00000000"}
             onPress={() => this.props.history.push("/homebase")}
@@ -90,6 +88,7 @@ class UploadTag extends Component {
     )
   }
 
+// async method to upload to AWS
   async Upload_To_AWS_S3(e) {
     e.preventDefault()
     this.setState({
