@@ -5,9 +5,9 @@ const styles = StyleSheet.create({
     fontFamily: "-apple-system, BlinkMacSystemFont Segoe UI",
     justifyContent: "center",
     alignItems: "center",
-    height: 1000,
+    height: 1000
   },
-    homebaseouter: {
+  homebaseouter: {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
@@ -36,34 +36,34 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-around",
     alignContent: "center",
-    width: "100%",
+    width: "100%"
   },
-   blobs2: {
+  blobs2: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
     alignContent: "center",
-    width: "100%",
+    width: "100%"
   },
-    blobsadmin: {
+  blobsadmin: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
     alignContent: "center",
-    width: "100%",
+    width: "100%"
   },
   img: {
     resizeMode: "contain",
     height: 150,
     width: 150
   },
-   imgad: {
+  imgad: {
     resizeMode: "contain",
     height: 100,
     width: 200
   },
-//AR Nav Styling 
-logoContainer: {
+  //AR Nav Styling
+  logoContainer: {
     alignItems: "center"
   },
   goHome: {
@@ -71,8 +71,8 @@ logoContainer: {
     height: "50%"
   },
   nevermind: {
-    resizeMode: 'contain',
-    height: '100%'
+    resizeMode: "contain",
+    height: "100%"
   },
   sprayCanWrapper: {
     backgroundColor: "#00000000",
@@ -82,7 +82,7 @@ logoContainer: {
     height: "100%",
     resizeMode: "contain"
   },
-   backgroundImage: {
+  backgroundImage: {
     position: "absolute",
     top: 0,
     left: 0,
@@ -97,9 +97,9 @@ logoContainer: {
     fontFamily: "-apple-system, BlinkMacSystemFont Segoe UI",
     justifyContent: "center",
     alignItems: "center",
-    height: 1500,
+    height: 1500
   },
-    outer: {
+  outer: {
     flex: 2,
     flexDirection: "column",
     alignItems: "center",
@@ -109,7 +109,7 @@ logoContainer: {
   inner: {
     flex: 1,
     width: "100%",
-     justifyContent: "center",
+    justifyContent: "center",
     alignItems: "center"
   },
   input: {
@@ -132,7 +132,7 @@ logoContainer: {
     width: 152
   },
   signButton: {
-     width: 250,
+    width: 250,
     height: 200,
     resizeMode: "contain",
     flex: 2
@@ -143,37 +143,37 @@ logoContainer: {
     marginBottom: 210
   },
   //Gallery Styling
-  gallflex:{
+  gallflex: {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     // alignContent: "space-around",
-    width: "100%",
+    width: "100%"
   },
   galleryImage: {
     width: 200,
-    height: 210,
+    height: 210
   },
-    shadow: {
-    color: 'white',
+  shadow: {
+    color: "white",
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 4,
-    textShadowColor: '#9bc44f',
-    textAlign: 'center'
+    textShadowColor: "#9bc44f",
+    textAlign: "center"
   },
-    gallbuttons: {
+  gallbuttons: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
     alignContent: "center",
-    width: "100%",
+    width: "100%"
   },
   //how to page
   howto: {
     fontFamily: "-apple-system, BlinkMacSystemFont Segoe UI",
     justifyContent: "center",
     alignItems: "center",
-    height: 1000,
-  },
+    height: 1000
+  }
 })
 export default styles

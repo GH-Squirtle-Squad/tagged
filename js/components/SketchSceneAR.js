@@ -1,6 +1,7 @@
 "use strict"
 
 import React, { Component } from "react"
+import styles from "../styles"
 
 import { ViroARScene, ViroPolyline, ViroMaterials } from "react-viro"
 
@@ -18,11 +19,10 @@ export default class SketchSceneAR extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      thickness: 0.2,
+      thickness: 0.1,
+      opacity: 0.7,
       points: [[0, 0, -3]],
       polylines: [],
-      writeAccessPermission: false,
-      readAccessPermission: false,
       color: props.arSceneNavigator.viroAppProps.color
     }
     this._onCameraARHitTest = this._onCameraARHitTest.bind(this)
@@ -32,7 +32,7 @@ export default class SketchSceneAR extends Component {
     const { drawing, color } = prevProps.arSceneNavigator.viroAppProps
     const { color: oldColor, polylines, points } = this.state
 
-//statement to change color of lines
+    //statement to change color of lines
     if (color !== oldColor && drawing) {
       this.setState({
         polylines: [...polylines, { points: points, color: oldColor }],
@@ -41,7 +41,7 @@ export default class SketchSceneAR extends Component {
       })
     }
 
-//to clear lines
+    //to clear lines
     if (!drawing && polylines.length > 0) {
       this.setState({
         polylines: [],
@@ -53,11 +53,11 @@ export default class SketchSceneAR extends Component {
   render() {
     const viroProps = this.props.arSceneNavigator.viroAppProps
     return (
-
-// rendering the AR Scene     
+      // rendering the AR Scene
       <ViroARScene onCameraARHitTest={this._onCameraARHitTest}>
         {this.state.polylines.map((line, i) => (
           <ViroPolyline
+            opacity={this.state.opacity}
             key={i}
             position={[0, 0, -3]}
             points={line.points}
@@ -66,8 +66,9 @@ export default class SketchSceneAR extends Component {
           />
         ))}
 
-{/* lines to be rendered within AR scene         */}
+        {/* lines to be rendered within AR scene         */}
         <ViroPolyline
+          opacity={this.state.opacity}
           position={[0, 0, -3]}
           points={this.state.points}
           thickness={this.state.thickness}
@@ -77,7 +78,7 @@ export default class SketchSceneAR extends Component {
     )
   }
 
-// method to use ARHitTest to render lines in AR 
+  // method to use ARHitTest to render lines in AR
   _onCameraARHitTest(results) {
     if (this.props.arSceneNavigator.viroAppProps.drawing) {
       if (results.hitTestResults.length > 0) {
