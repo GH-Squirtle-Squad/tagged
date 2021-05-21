@@ -1,11 +1,17 @@
 import axios from "axios"
 import { AsyncStorage } from "react-native"
+
+//Rando Variables
 const SERVERURL = "https://tagged-backend.herokuapp.com/"
 const TOKEN = "token"
 
+
+//Action Constants
 const GET_USERS = "GET_USERS"
 const REMOVE_USER = "REMOVE_USER"
 
+
+//Action Creators
 const getUsers = users => ({
   type: GET_USERS,
   users
@@ -16,6 +22,9 @@ const removeUser = user => ({
   user
 })
 
+
+
+//Thunks
 export const fetchUsers = () => {
   return async dispatch => {
     try {
@@ -52,6 +61,8 @@ export const deleteUser = id => {
   }
 }
 
+
+//Reducer
 export default (state = [], action) => {
   switch (action.type) {
     case GET_USERS:

@@ -25,6 +25,9 @@ export const me = history => async dispatch => {
     history.push("/homebase")
   }
 }
+
+// function that authenticates users
+
 export const authenticate =
   (username, password, method, history) => async dispatch => {
     try {
@@ -39,6 +42,10 @@ export const authenticate =
     }
   }
 
+
+//logout function
+
+
 export const logout = history => {
   AsyncStorage.removeItem(TOKEN)
   history.push("/")
@@ -47,6 +54,7 @@ export const logout = history => {
     auth: {}
   }
 }
+
 /**
  * REDUCER
  */

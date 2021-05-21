@@ -1,5 +1,7 @@
 import { RNS3 } from "react-native-aws3"
 import axios from "axios"
+
+//Rando Variables
 const SERVERURL = "https://tagged-backend.herokuapp.com/"
 
 
