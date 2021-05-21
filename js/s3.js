@@ -2,16 +2,14 @@ import { BUCKET_NAME, REGION, KEY, SECRET } from "@env"
 
 import { RNS3 } from "react-native-aws3"
 
-const options = {
-  keyPrefix: "uploads/",
-  bucket: BUCKET_NAME,
-  region: REGION,
-  accessKey: KEY,
-  secretKey: SECRET,
-  successActionStatus: 201
+const options = function () {
+const { data } = await axios.get(`${SERVERURL}api/tags/s3`)
+console.log(data)
+return data;
 }
 
 export const uploadImage = async file => {
+  const options = options()
   try {
     const res = await RNS3.put(file, options)
     return res
