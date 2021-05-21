@@ -45,20 +45,20 @@ class Homebase extends Component {
               style={styles.img}
             />
           </TouchableHighlight>
-    
+     </View>
 
 {/* how to play button  */}
-
+<View style={styles.blobs2}>
    <TouchableHighlight
             underlayColor={"#00000000"}
             onPress={() => this.props.history.push("/howto")}
           >
             <Image
-              source={require("../res/checkout.png")}
+              source={require("../res/howtobutton.png")}
               style={styles.img}
             />
           </TouchableHighlight>
-          </View>
+         
 
 
   {/* logout button  */}
@@ -71,6 +71,7 @@ class Homebase extends Component {
               style={styles.img}
             />
           </TouchableHighlight>
+          </View>
           {this.props.isAdmin ? (
             <View>
 

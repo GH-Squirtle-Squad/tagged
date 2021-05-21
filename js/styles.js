@@ -38,6 +38,13 @@ const styles = StyleSheet.create({
     alignContent: "center",
     width: "100%",
   },
+   blobs2: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+    alignContent: "center",
+    width: "100%",
+  },
     blobsadmin: {
     flexDirection: "row",
     alignItems: "center",
@@ -160,6 +167,13 @@ logoContainer: {
     justifyContent: "space-around",
     alignContent: "center",
     width: "100%",
-  }
+  },
+  //how to page
+  howto: {
+    fontFamily: "-apple-system, BlinkMacSystemFont Segoe UI",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 1000,
+  },
 })
 export default styles
