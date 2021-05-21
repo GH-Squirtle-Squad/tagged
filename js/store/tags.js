@@ -3,11 +3,15 @@ const SERVERURL = "https://tagged-backend.herokuapp.com/"
 import { AsyncStorage } from "react-native"
 import { uploadImage } from "../s3"
 
+
+//Action Constants
 const TOKEN = "token"
 const GET_TAGS = "GET_TAGS"
 const REMOVE_TAG = "REMOVE_TAG"
 const ADD_TAG = "ADD_TAG"
 
+
+//Action Creators
 const getTags = tags => ({
   type: GET_TAGS,
   tags
@@ -25,6 +29,8 @@ function addTag(tag) {
   }
 }
 
+
+//Thunks
 export const fetchTags = () => {
   return async dispatch => {
     try {
@@ -75,6 +81,8 @@ export const uploadTagThunk = (data, props) => {
   }
 }
 
+
+//Reducer
 export default function tagsReducer(state = [], action) {
   switch (action.type) {
     case ADD_TAG:
