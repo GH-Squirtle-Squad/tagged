@@ -172,8 +172,8 @@ const styles = StyleSheet.create({
   howto: {
     fontFamily: "-apple-system, BlinkMacSystemFont Segoe UI",
     justifyContent: "center",
-    alignItems: "center",
-    height: 1000
+    alignItems: "center"
+    // height: 1000
   }
 })
 export default styles
