@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { View, Image, TouchableHighlight, Platform } from "react-native"
 import { ViroARSceneNavigator } from "react-viro"
 import { connect } from "react-redux"
-import { addTag } from "../store/myTags"
+import { addMyTag } from "../store/myTags"
 import SketchSceneAR from "./SketchSceneAR"
 import styles from "../styles"
 
@@ -12,7 +12,8 @@ class ViroNavigator extends Component {
 
     this.state = {
       color: "white",
-      drawing: false
+      drawing: false,
+      screenshots: 1
     }
 
     this._getARSketch = this._getARSketch.bind(this)
@@ -34,8 +35,7 @@ class ViroNavigator extends Component {
           flex: 1
         }}
       >
-
-{/* renders the scene       */}
+        {/* renders the scene       */}
         <ViroARSceneNavigator
           style={{ flex: 1 }}
           initialScene={{ scene: SketchSceneAR }}
@@ -57,8 +57,7 @@ class ViroNavigator extends Component {
             alignItems: "center"
           }}
         >
-
-{/* clear button        */}
+          {/* clear button        */}
           <TouchableHighlight
             style={styles.sprayCanWrapper}
             underlayColor={"#00000000"}
@@ -71,7 +70,6 @@ class ViroNavigator extends Component {
           </TouchableHighlight>
         </View>
 
-
         <View
           style={{
             position: "absolute",
@@ -83,22 +81,20 @@ class ViroNavigator extends Component {
             alignItems: "center"
           }}
         >
-{/* screenshot button for iOS only */}
+          {/* screenshot button for iOS only */}
 
-{Platform.OS !== "android" ? (
-          <TouchableHighlight
-            style={styles.sprayCanWrapper}
-            underlayColor={"#00000000"}
-            onPress={this._takeScreenshot}
-          >
-            <Image
-              style={styles.nevermind}
-              source={require("../res/camerabutton.png")}
-            />
-          </TouchableHighlight>
-) : (null)
-  }
-
+          {Platform.OS !== "android" ? (
+            <TouchableHighlight
+              style={styles.sprayCanWrapper}
+              underlayColor={"#00000000"}
+              onPress={this._takeScreenshot}
+            >
+              <Image
+                style={styles.nevermind}
+                source={require("../res/camerabutton.png")}
+              />
+            </TouchableHighlight>
+          ) : null}
         </View>
         <View
           style={{
@@ -111,8 +107,7 @@ class ViroNavigator extends Component {
             alignItems: "center"
           }}
         >
-
-{/* go home button         */}
+          {/* go home button         */}
           <TouchableHighlight
             style={styles.sprayCanWrapper}
             underlayColor={"#00000000"}
@@ -136,8 +131,7 @@ class ViroNavigator extends Component {
             alignItems: "center"
           }}
         >
-
-{/* spray cans to change color of lines         */}
+          {/* spray cans to change color of lines         */}
           <TouchableHighlight
             style={styles.sprayCanWrapper}
             underlayColor={"#00000000"}
@@ -195,31 +189,37 @@ class ViroNavigator extends Component {
     )
   }
 
-// method to return home
+  // method to return home
   _goHome() {
     this.props.history.push("/homebase")
   }
 
-// method to clear lines
+  // method to clear lines
   _reset() {
     this.setState({
       drawing: false
     })
   }
 
-//method to allow screenshot button to be located outside scene
+  //method to allow screenshot button to be located outside scene
   _setARNavigatorRef(ARNavigator) {
     this._arNavigator = ARNavigator
   }
 
-//async method to take screenshot for iOS
+  //async method to take screenshot for iOS
   async _takeScreenshot() {
-      const tag = await this._arNavigator._takeScreenshot("tag", true)
-      alert("Piece saved to camera roll!")
-      this.props.addTag({ uri: "file://" + tag.url })
-    }
+    const tag = await this._arNavigator._takeScreenshot(
+      `tag${this.state.screenshots}`,
+      true
+    )
+    alert("Piece saved to camera roll!")
+    this.props.addMyTag({ uri: "file://" + tag.url })
+    this.setState({
+      screenshots: this.state.screenshots + 1
+    })
+  }
 
-//method to change color of lines
+  //method to change color of lines
   _toggleColor(colorName) {
     this.setState({
       drawing: true,
@@ -229,7 +229,7 @@ class ViroNavigator extends Component {
 }
 
 const mapDispatch = dispatch => ({
-  addTag: tag => dispatch(addTag(tag))
+  addMyTag: tag => dispatch(addMyTag(tag))
 })
 
 export default connect(null, mapDispatch)(ViroNavigator)
