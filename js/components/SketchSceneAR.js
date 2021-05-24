@@ -35,7 +35,7 @@ export default class SketchSceneAR extends Component {
     if (color !== oldColor && drawing === "yes") {
       this.setState({
         polylines: [...polylines, { points: points, color: oldColor }],
-        points: [[0, 0, -3]],
+        points: [],
         color: color
       })
     }
@@ -47,13 +47,24 @@ export default class SketchSceneAR extends Component {
         points: [[0, 0, -3]]
       })
     }
+
+    //to stop drawing
+    if (drawing === "paused" && points.length > 1) {
+      this.setState({
+        polylines: [...polylines, { points: points, color: oldColor }],
+        points: []
+      })
+    }
   }
 
   render() {
     const viroProps = this.props.arSceneNavigator.viroAppProps
     return (
       // rendering the AR Scene
-      <ViroARScene onCameraARHitTest={this._onCameraARHitTest}>
+      <ViroARScene
+        onCameraARHitTest={this._onCameraARHitTest}
+        ref={this._setARSceneRef}
+      >
         {this.state.polylines.map((line, i) => (
           <ViroPolyline
             opacity={this.state.opacity}
@@ -64,15 +75,16 @@ export default class SketchSceneAR extends Component {
             materials={line.color}
           />
         ))}
-
-        {/* lines to be rendered within AR scene         */}
-        <ViroPolyline
-          opacity={this.state.opacity}
-          position={[0, 0, -3]}
-          points={this.state.points}
-          thickness={this.state.thickness}
-          materials={viroProps.color}
-        />
+        {/* current line being drawn in scene */}
+        {this.state.points.length > 0 ? (
+          <ViroPolyline
+            opacity={this.state.opacity}
+            position={[0, 0, -3]}
+            points={this.state.points}
+            thickness={this.state.thickness}
+            materials={viroProps.color}
+          />
+        ) : null}
       </ViroARScene>
     )
   }
@@ -95,6 +107,11 @@ export default class SketchSceneAR extends Component {
           }
         }
       }
+    } else if (results.hitTestResults.length > 0) {
+      const last = results.hitTestResults[results.hitTestResults.length - 1]
+      this.setState({
+        points: [last.transform.position]
+      })
     }
   }
 }
