@@ -1,7 +1,6 @@
 "use strict"
 
 import React, { Component } from "react"
-import styles from "../styles"
 
 import { ViroARScene, ViroPolyline, ViroMaterials } from "react-viro"
 
@@ -33,7 +32,7 @@ export default class SketchSceneAR extends Component {
     const { color: oldColor, polylines, points } = this.state
 
     //statement to change color of lines
-    if (color !== oldColor && drawing) {
+    if (color !== oldColor && drawing === "yes") {
       this.setState({
         polylines: [...polylines, { points: points, color: oldColor }],
         points: [[0, 0, -3]],
@@ -42,7 +41,7 @@ export default class SketchSceneAR extends Component {
     }
 
     //to clear lines
-    if (!drawing && polylines.length > 0) {
+    if (drawing === "no" && polylines.length > 0) {
       this.setState({
         polylines: [],
         points: [[0, 0, -3]]
@@ -80,7 +79,7 @@ export default class SketchSceneAR extends Component {
 
   // method to use ARHitTest to render lines in AR
   _onCameraARHitTest(results) {
-    if (this.props.arSceneNavigator.viroAppProps.drawing) {
+    if (this.props.arSceneNavigator.viroAppProps.drawing === "yes") {
       if (results.hitTestResults.length > 0) {
         for (var i = 0; i < results.hitTestResults.length; i++) {
           let result = results.hitTestResults[i]

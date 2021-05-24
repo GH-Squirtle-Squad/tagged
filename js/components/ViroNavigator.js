@@ -12,13 +12,13 @@ class ViroNavigator extends Component {
 
     this.state = {
       color: "white",
-      drawing: false,
+      drawing: "no",
       screenshots: 1
     }
 
     this._getARSketch = this._getARSketch.bind(this)
     this._goHome = this._goHome.bind(this)
-    this._reset = this._reset.bind(this)
+    this._pause = this._pause.bind(this)
     this._setARNavigatorRef = this._setARNavigatorRef.bind(this)
     this._takeScreenshot = this._takeScreenshot.bind(this)
     this._toggleColor = this._toggleColor.bind(this)
@@ -53,19 +53,28 @@ class ViroNavigator extends Component {
             left: 0,
             right: 0,
             flexDirection: "row",
-            justifyContent: "space-around",
-            alignItems: "center"
+            justifyContent: "space-between"
           }}
         >
-          {/* clear button        */}
+          {/* clear and stop drawing buttons        */}
           <TouchableHighlight
             style={styles.sprayCanWrapper}
             underlayColor={"#00000000"}
-            onPress={this._reset}
+            onPress={() => this._pause("no")}
           >
             <Image
               style={styles.nevermind}
               source={require("../res/nevermind.png")}
+            />
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.sprayCanWrapper}
+            underlayColor={"#00000000"}
+            onPress={() => this._pause("paused")}
+          >
+            <Image
+              style={styles.stopDrawing}
+              source={require("../res/stopdrawing.png")}
             />
           </TouchableHighlight>
         </View>
@@ -194,10 +203,11 @@ class ViroNavigator extends Component {
     this.props.history.push("/homebase")
   }
 
-  // method to clear lines
-  _reset() {
+  // method to clear lines or pause drawing
+  _pause(str) {
+    console.log(str)
     this.setState({
-      drawing: false
+      drawing: str
     })
   }
 
@@ -222,7 +232,7 @@ class ViroNavigator extends Component {
   //method to change color of lines
   _toggleColor(colorName) {
     this.setState({
-      drawing: true,
+      drawing: "yes",
       color: colorName
     })
   }
