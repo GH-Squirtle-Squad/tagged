@@ -205,7 +205,6 @@ class ViroNavigator extends Component {
 
   // method to clear lines or pause drawing
   _pause(str) {
-    console.log(str)
     this.setState({
       drawing: str
     })
