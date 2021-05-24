@@ -80,7 +80,7 @@ export default class SketchSceneAR extends Component {
 
   // method to use ARHitTest to render lines in AR
   _onCameraARHitTest(results) {
-    if (this.props.arSceneNavigator.viroAppProps.drawing) {
+    if (this.props.arSceneNavigator.viroAppProps.drawing === true) {
       if (results.hitTestResults.length > 0) {
         for (var i = 0; i < results.hitTestResults.length; i++) {
           let result = results.hitTestResults[i]
