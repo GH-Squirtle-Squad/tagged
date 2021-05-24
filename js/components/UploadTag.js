@@ -42,23 +42,23 @@ class UploadTag extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={{ height: 1000 }}>
         <ImageBackground
           style={styles.backgroundImage}
           source={require("../res/bg.png")}
         ></ImageBackground>
 
-        <View style={styles.outer}>
+        <View styles={styles.howto}>
           <Image
-            style={styles.logo}
+            style={styles.uploadLogo}
             source={require("../res/welcomelogo.png")}
           />
 
           {/* statement that renders images if one exists in state */}
           {this.state.image ? (
-            <React.Fragment>
+            <React.Fragment style={styles.uploadForm}>
               <Image
-                style={{ height: "25%", width: "25%" }}
+                style={styles.preview}
                 source={{ uri: this.state.image.uri }}
               />
               <TextInput
@@ -70,14 +70,14 @@ class UploadTag extends Component {
               />
             </React.Fragment>
           ) : (
-            <Text style={{ color: "white" }}>
+            <Text style={styles.uploadText}>
               No Screenshots in Camera Roll!
             </Text>
           )}
 
           {/* upload button */}
           {!this.state.loading ? (
-            <View>
+            <View style={styles.outerUpload}>
               <TouchableHighlight
                 style={styles.sprayCanWrapper}
                 underlayColor={"#00000000"}
@@ -91,6 +91,7 @@ class UploadTag extends Component {
 
               {/* go home button */}
               <TouchableHighlight
+                style={styles.sprayCanWrapper}
                 underlayColor={"#00000000"}
                 onPress={() => this.props.history.push("/homebase")}
               >
