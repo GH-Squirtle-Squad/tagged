@@ -20,8 +20,9 @@ export default class SketchSceneAR extends Component {
     this.state = {
       thickness: 0.1,
       opacity: 0.7,
-      points: [[0, 0, -3]],
+      points: [],
       polylines: [],
+      position: [],
       color: props.arSceneNavigator.viroAppProps.color
     }
     this._onCameraARHitTest = this._onCameraARHitTest.bind(this)
@@ -29,12 +30,15 @@ export default class SketchSceneAR extends Component {
 
   componentDidUpdate(prevProps) {
     const { drawing, color } = prevProps.arSceneNavigator.viroAppProps
-    const { color: oldColor, polylines, points } = this.state
+    const { color: oldColor, polylines, points, position } = this.state
 
     //statement to change color of lines
     if (color !== oldColor && drawing === "yes") {
       this.setState({
-        polylines: [...polylines, { points: points, color: oldColor }],
+        polylines: [
+          ...polylines,
+          { points: points, color: oldColor, position: position }
+        ],
         points: [],
         color: color
       })
@@ -44,15 +48,20 @@ export default class SketchSceneAR extends Component {
     if (drawing === "no" && polylines.length > 0) {
       this.setState({
         polylines: [],
-        points: [[0, 0, -3]]
+        points: [],
+        position: []
       })
     }
 
     //to stop drawing
     if (drawing === "paused" && points.length > 1) {
       this.setState({
-        polylines: [...polylines, { points: points, color: oldColor }],
-        points: []
+        polylines: [
+          ...polylines,
+          { points: points, color: oldColor, position: position }
+        ],
+        points: [],
+        position: []
       })
     }
   }
@@ -69,7 +78,8 @@ export default class SketchSceneAR extends Component {
           <ViroPolyline
             opacity={this.state.opacity}
             key={i}
-            position={[0, 0, -3]}
+            position={line.position}
+            scale={[3, 3, 1]}
             points={line.points}
             thickness={this.state.thickness}
             materials={line.color}
@@ -79,7 +89,8 @@ export default class SketchSceneAR extends Component {
         {this.state.points.length > 0 ? (
           <ViroPolyline
             opacity={this.state.opacity}
-            position={[0, 0, -3]}
+            position={this.state.position}
+            scale={[3, 3, 1]}
             points={this.state.points}
             thickness={this.state.thickness}
             materials={viroProps.color}
@@ -92,25 +103,30 @@ export default class SketchSceneAR extends Component {
   // method to use ARHitTest to render lines in AR
   _onCameraARHitTest(results) {
     if (this.props.arSceneNavigator.viroAppProps.drawing === "yes") {
-      if (results.hitTestResults.length > 0) {
-        for (var i = 0; i < results.hitTestResults.length; i++) {
-          let result = results.hitTestResults[i]
-          if (
-            result.type == "ExistingPlaneUsingExtent" ||
-            result.type == "FeaturePoint" ||
-            result.type == "Estimated Horizontal Plane"
-          ) {
-            this.setState({
-              points: [...this.state.points, result.transform.position]
-            })
-            break
-          }
-        }
-      }
-    } else if (results.hitTestResults.length > 0) {
-      const last = results.hitTestResults[results.hitTestResults.length - 1]
+      // if (results.hitTestResults.length > 0) {
+      //   for (var i = 0; i < results.hitTestResults.length; i++) {
+      //     let result = results.hitTestResults[i]
+      //     if (
+      //       result.type == "ExistingPlaneUsingExtent" ||
+      //       result.type == "FeaturePoint" ||
+      //       result.type == "Estimated Horizontal Plane"
+      //     ) {
+      //       this.setState({
+      //         points: [...this.state.points, result.transform.position]
+      //       })
+      //       break
+      //     }
+      //   }
+      // }
+      const current = results.cameraOrientation.forward
       this.setState({
-        points: [last.transform.position]
+        points: [...this.state.points, current]
+      })
+    } else if (results) {
+      const current = results.cameraOrientation.forward
+      this.setState({
+        points: [current],
+        position: current
       })
     }
   }
