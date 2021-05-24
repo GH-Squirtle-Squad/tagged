@@ -72,7 +72,13 @@ const styles = StyleSheet.create({
   },
   nevermind: {
     resizeMode: "contain",
-    height: "100%"
+    height: "100%",
+    width: 200
+  },
+  stopDrawing: {
+    resizeMode: "contain",
+    height: "80%",
+    width: 200
   },
   sprayCanWrapper: {
     backgroundColor: "#00000000",

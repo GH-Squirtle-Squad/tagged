@@ -12,7 +12,7 @@ class ViroNavigator extends Component {
 
     this.state = {
       color: "white",
-      drawing: false,
+      drawing: "no",
       screenshots: 1
     }
 
@@ -53,15 +53,14 @@ class ViroNavigator extends Component {
             left: 0,
             right: 0,
             flexDirection: "row",
-            justifyContent: "space-around",
-            alignItems: "center"
+            justifyContent: "space-between"
           }}
         >
           {/* clear and stop drawing buttons        */}
           <TouchableHighlight
             style={styles.sprayCanWrapper}
             underlayColor={"#00000000"}
-            onPress={() => this._pause(false)}
+            onPress={() => this._pause("no")}
           >
             <Image
               style={styles.nevermind}
@@ -74,7 +73,7 @@ class ViroNavigator extends Component {
             onPress={() => this._pause("paused")}
           >
             <Image
-              style={styles.nevermind}
+              style={styles.stopDrawing}
               source={require("../res/stopdrawing.png")}
             />
           </TouchableHighlight>
@@ -204,7 +203,7 @@ class ViroNavigator extends Component {
     this.props.history.push("/homebase")
   }
 
-  // method to clear lines
+  // method to clear lines or pause drawing
   _pause(str) {
     console.log(str)
     this.setState({
@@ -233,7 +232,7 @@ class ViroNavigator extends Component {
   //method to change color of lines
   _toggleColor(colorName) {
     this.setState({
-      drawing: true,
+      drawing: "yes",
       color: colorName
     })
   }
