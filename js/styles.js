@@ -185,6 +185,28 @@ const styles = StyleSheet.create({
     color: "white",
     marginLeft: 15,
     marginRight: 15
+  },
+  //upload styling
+  uploadLogo: {
+    resizeMode: "contain",
+    height: 250,
+    width: 400
+  },
+  uploadText: {
+    color: "white",
+    alignSelf: "center",
+    marginBottom: 20
+  },
+  outerUpload: {
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    width: "100%"
+  },
+  preview: {
+    height: "25%",
+    width: "25%",
+    alignSelf: "center"
   }
 })
 export default styles
