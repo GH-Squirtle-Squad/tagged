@@ -17,7 +17,7 @@ export default class HowTo extends Component {
           <Image source={require("../res/howtoht.png")} />
           <Image source={require("../res/tagginght.png")} />
           <Text style={styles.howToText}>
-            So you want to vandalize, but you don't want the consequences. Well, 
+            So you want to vandalize, but you don't want the consequences. Well,
             have we got the app for you! Simply "throw up" a piece by tapping
             the "Throw Up" button and enter the virtual realm of graffiti. Tap
             the spray can of your choice to change your color, and move your
@@ -31,17 +31,19 @@ export default class HowTo extends Component {
                 You love your artwork! We don't blame you, its amazing. The
                 camera button in view will take a screenshot (after asking
                 permission the first time, of course) without those pesky
-                spraycans or other buttons showing up to steal the show. 
-                Then it'll save it to your personal Camera Roll!
+                spraycans or other buttons showing up to steal the show. Then
+                it'll save it to your personal Camera Roll!
               </Text>
 
               <Image source={require("../res/galleryht.png")} />
               <Text style={styles.howToText}>
                 Upload your piece to the public gallery and show off! Simply
-                touch the "Check Pieces Out" button on the Homebase to see the Gallery,
-                then press the "Upload" button to send your art to the C L O U D
-                which then will render in the public gallery! Voila! You're a
-                published artist.
+                touch the "Check Pieces Out" button on the Homebase to see the
+                Gallery, then press the "Upload" button to send your art to the
+                C L O U D which then will render in the public gallery! (If you
+                encounter any errors during this process, make sure the Viro
+                Media App has access to your camera and ALL photos in your phone
+                Settings) Voila! You're a published artist.
               </Text>
             </View>
           ) : (
