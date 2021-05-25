@@ -150,10 +150,10 @@ const styles = StyleSheet.create({
   },
   //Gallery Styling
   gallflex: {
+    flex: 1,
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    // alignContent: "space-around",
     width: "100%"
   },
   galleryImage: {

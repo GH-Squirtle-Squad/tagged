@@ -103,21 +103,6 @@ export default class SketchSceneAR extends Component {
   // method to use ARHitTest to render lines in AR
   _onCameraARHitTest(results) {
     if (this.props.arSceneNavigator.viroAppProps.drawing === "yes") {
-      // if (results.hitTestResults.length > 0) {
-      //   for (var i = 0; i < results.hitTestResults.length; i++) {
-      //     let result = results.hitTestResults[i]
-      //     if (
-      //       result.type == "ExistingPlaneUsingExtent" ||
-      //       result.type == "FeaturePoint" ||
-      //       result.type == "Estimated Horizontal Plane"
-      //     ) {
-      //       this.setState({
-      //         points: [...this.state.points, result.transform.position]
-      //       })
-      //       break
-      //     }
-      //   }
-      // }
       const current = results.cameraOrientation.forward
       this.setState({
         points: [...this.state.points, current]

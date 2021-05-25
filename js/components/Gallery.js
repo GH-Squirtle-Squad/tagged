@@ -37,15 +37,13 @@ class Gallery extends Component {
 
   render() {
     const tags = this.props.tags || []
-
-// functional component to render gallery images in FlatList
+    // functional component to render gallery images in FlatList
 
     const renderItem = ({ item }) => {
       return <Item imageUrl={item.imageUrl} title={item.title} />
     }
     return (
-      <ScrollView>
-
+      <View style={{ flex: 1 }}>
         <ImageBackground
           style={styles.backgroundImage}
           source={require("../res/bg.png")}
@@ -53,20 +51,17 @@ class Gallery extends Component {
 
         <Image style={styles.logo} source={require("../res/welcomelogo.png")} />
         <View style={styles.gallbuttons}>
+          {/* upload button  */}
+          {Platform.OS !== "android" ? (
+            <TouchableHighlight
+              underlayColor={"#00000000"}
+              onPress={() => this.props.history.push("/upload")}
+            >
+              <Image source={require("../res/upload.png")} style={styles.img} />
+            </TouchableHighlight>
+          ) : null}
 
-{/* upload button  */}
-{Platform.OS !== "android" ? (
-          <TouchableHighlight
-            underlayColor={"#00000000"}
-            onPress={() => this.props.history.push("/upload")}
-          >
-            <Image source={require("../res/upload.png")} style={styles.img} />
-          </TouchableHighlight>
-          ) : (null)
-
-}
-
- {/* return to home button         */}
+          {/* return to home button         */}
 
           <TouchableHighlight
             underlayColor={"#00000000"}
@@ -79,7 +74,7 @@ class Gallery extends Component {
           </TouchableHighlight>
         </View>
 
-{/* gallery       */}
+        {/* gallery       */}
         <View style={styles.gallflex}>
           <FlatList
             data={tags}
@@ -88,7 +83,7 @@ class Gallery extends Component {
             initialNumToRender={2}
           />
         </View>
-      </ScrollView>
+      </View>
     )
   }
 }
