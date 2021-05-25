@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
   },
   logo: {
     resizeMode: "contain",
-    width: "98%"
+    width: "98%",
+    height: 250
   },
   homebasebackgroundImage: {
     position: "absolute",
@@ -150,11 +151,12 @@ const styles = StyleSheet.create({
   },
   //Gallery Styling
   gallflex: {
+    flex: 1,
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    // alignContent: "space-around",
-    width: "100%"
+    width: "100%",
+    height: 700
   },
   galleryImage: {
     width: 200,
